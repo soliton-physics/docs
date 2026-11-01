@@ -44,3 +44,21 @@ crest = sim.x[np.argmax(sim.state.real)]
 free_flight = -25.0 + 6.0 * sim.time
 print("fast soliton advanced by", crest - free_flight)
 ```
+
+## Mechanics
+
+```python
+from soliton import mechanics
+
+mechanics.catalogue()                         # list of scenario specs with parameter schemas
+scene = mechanics.scenario("rolling", angle=30, inertia_ratio=1.0)
+scene.title, scene.labels, scene.answers()
+run = scene.run(until=3.0, record_every=10)
+run.t                                         # (N,)
+run.body("disc")                              # dict: position, velocity, acceleration (N, 2); angle, angular_velocity (N,)
+run.force("disc", "friction")                 # (N, 2)
+run.energy()                                  # dict of (N,) arrays: kinetic, potential, dissipated, external_work, conserved
+run.events                                    # [{'time': 0.0, 'kind': 'contact_begin', 'bodies': ['incline', 'disc']}, ...]
+scene.save("rolling.json"); mechanics.load("rolling.json")
+mechanics.Scene.from_json(text)               # validated; errors name the problem
+```

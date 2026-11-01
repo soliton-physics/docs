@@ -21,7 +21,17 @@ maturin develop --release
 ```
 
 ```python
-import numpy as np
+from soliton import mechanics
+
+scene = mechanics.scenario("atwood", m1=2, m2=3)
+print(scene.answers())
+run = scene.run(until=2.0)
+print(run.body("m2")["velocity"][-1])
+```
+
+The wave solvers live beside it:
+
+```python
 from soliton import Simulation, kdv_soliton
 
 sim = Simulation("kdv", points=512, length=60.0, dt=1e-3)
