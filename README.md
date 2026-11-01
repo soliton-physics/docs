@@ -6,7 +6,7 @@
 
 <p align="center">Documentation for Soliton Physics. Intuition, mathematics and numerics side by side, with live simulations.</p>
 
-Live at [soliton-physics.github.io/docs](https://soliton-physics.github.io/docs/).
+Live at [soliton-physics.github.io/docs](https://soliton-docs.vercel.app/).
 
 ## Structure
 
@@ -24,7 +24,8 @@ pnpm install
 pnpm dev
 ```
 
-Built with [Astro Starlight](https://starlight.astro.build) and KaTeX.
+Built with [Astro Starlight](https://starlight.astro.build) and KaTeX. Deployed on Vercel from `main`.
+Set `PUBLIC_PLAYGROUND_URL` and `PUBLIC_SITE_URL` in the project settings if the defaults in `.env` do not match your domains.
 
 ## License
 

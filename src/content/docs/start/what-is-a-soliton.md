@@ -34,6 +34,6 @@ like electron or photon.
 
 ## What you can do here
 
-The [KdV page](/docs/physics/kdv/) shows water-wave solitons. The [NLS page](/docs/physics/nls/) shows the optical and
+The [KdV page](/physics/kdv/) shows water-wave solitons. The [NLS page](/physics/nls/) shows the optical and
 matter-wave kind. Each has live simulations you can play with, and each ends with how we compute them and how we know
 the computation is right.

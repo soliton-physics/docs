@@ -5,7 +5,7 @@ description: Run the engine in the browser, in Python, or in Rust.
 
 ## Browser
 
-Nothing to install. Open the [playground](https://soliton-physics.github.io/playground/).
+Nothing to install. Open the [playground](https://soliton-playground.vercel.app/).
 
 ## Python
 
@@ -51,5 +51,5 @@ sim.advance(5000);
 cargo test --release
 ```
 
-The tests compare every solver against closed-form solutions. See [Validation](/docs/numerics/validation/) for the
+The tests compare every solver against closed-form solutions. See [Validation](/numerics/validation/) for the
 current numbers.

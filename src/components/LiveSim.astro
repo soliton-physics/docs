@@ -5,7 +5,7 @@ interface Props {
 }
 
 const { preset, height = 440 } = Astro.props;
-const playground = 'https://soliton-physics.github.io/playground/';
+const playground = `${(import.meta.env.PUBLIC_PLAYGROUND_URL ?? 'https://soliton-playground.vercel.app').replace(/\/$/, '')}/`;
 const src = `${playground}?preset=${preset}&embed`;
 ---
 

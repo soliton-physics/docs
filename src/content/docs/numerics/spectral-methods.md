@@ -39,4 +39,4 @@ the solution has decayed to round-off before the highest wavenumber.
 - Dealiasing (the 2/3 rule) for strongly nonlinear or under-resolved runs.
 - Non-periodic boundaries via Chebyshev or mapped domains.
 
-Both are on the [roadmap](/docs/roadmap/).
+Both are on the [roadmap](/roadmap/).
