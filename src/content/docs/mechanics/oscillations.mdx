@@ -1,0 +1,56 @@
+---
+title: Oscillations
+description: A mass on a spring and the simple pendulum.
+sidebar:
+  order: 5
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+## Mass on a spring
+
+<Scenario id="spring-mass">
+<div slot="intuition">
+Pull a block on a spring and let go. It overshoots the middle, slows, comes back, overshoots again: simple harmonic
+motion. The surprising fact is that the period does not depend on how far you pulled it. A bigger amplitude means
+a bigger speed through the middle, and the two cancel exactly. Watch kinetic and potential energy trade places in the
+energy graph while their sum stays flat.
+</div>
+<div slot="maths">
+$m \ddot{x} = -k x$ gives $x = A \cos(\omega t)$ with
+
+$$
+\omega = \sqrt{k/m}, \qquad T = 2\pi \sqrt{m/k}.
+$$
+
+Maximum speed $A \omega$, maximum force $k A$, energy $\tfrac{1}{2} k A^2$ throughout.
+</div>
+<div slot="engine">
+The spring is a force with a potential, so its energy appears in the ledger. Velocity Verlet is symplectic: the energy
+oscillates slightly within a period but never drifts, and the measured period matches the known Verlet dispersion
+formula to 1e-8 and the textbook period to $(\omega \Delta t)^2 / 12$.
+</div>
+</Scenario>
+
+## Simple pendulum
+
+<Scenario id="simple-pendulum">
+<div slot="intuition">
+For small swings the pendulum keeps time regardless of amplitude, which is why clocks used them for three centuries.
+Pull it back far, say 120°, and the period grows noticeably: the restoring force is no longer proportional to the
+displacement. The playground shows both the small-angle formula and the exact period.
+</div>
+<div slot="maths">
+Small angles: $T_0 = 2\pi \sqrt{L/g}$. Any amplitude $\theta_0$:
+
+$$
+T = 4 \sqrt{L/g}\, K\!\left(\sin \tfrac{\theta_0}{2}\right),
+$$
+
+with $K$ the complete elliptic integral of the first kind, computed by the arithmetic–geometric mean.
+</div>
+<div slot="engine">
+The string is a rod constraint solved with RATTLE, which keeps the length exact and the energy drift at 1e-10 over
+twenty periods. At 2 rad amplitude the period matches the elliptic integral to 1.7e-8 with second-order convergence.
+</div>
+</Scenario>

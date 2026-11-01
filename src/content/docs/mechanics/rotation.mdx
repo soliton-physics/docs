@@ -1,0 +1,57 @@
+---
+title: Rotation
+description: Rolling down an incline and the seesaw.
+sidebar:
+  order: 4
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+## Rolling down an incline
+
+<Scenario id="rolling">
+<div slot="intuition">
+A disc rolling down a slope arrives later than a block sliding down a frictionless one, because part of the energy
+goes into spinning. A ring arrives later still: more of its mass is far from the axis. And rolling needs friction.
+With a slippery slope the disc slides without turning. Lower the friction slider until the slip event appears.
+</div>
+<div slot="maths">
+For a round body with moment of inertia $I = k m R^2$ rolling without slipping,
+
+$$
+a = \frac{g \sin\theta}{1 + k},
+$$
+
+which needs static friction $\mu_s \ge \frac{k}{1 + k} \tan\theta$. A disc has $k = \tfrac{1}{2}$, a ring $k = 1$.
+</div>
+<div slot="engine">
+Rolling is not a special mode in the engine. The contact point's friction is decided like any other, and when it holds,
+the point does not slide, so $v = \omega R$ falls out. When $\mu_s$ is too small the same rule produces slipping and
+the textbook sliding acceleration. Validated to 1e-8 in both regimes.
+</div>
+</Scenario>
+
+## Seesaw
+
+<Scenario id="seesaw">
+<div slot="intuition">
+A seesaw balances when the torques match, not the masses. A child far from the pivot balances a heavier adult close
+to it. Move a mass outward with the slider and the plank tips, slowly at first, because the whole system has to be
+spun up.
+</div>
+<div slot="maths">
+Balance when $m_1 d_1 = m_2 d_2$. Otherwise the initial angular acceleration is
+
+$$
+\alpha = \frac{(m_1 d_1 - m_2 d_2)\, g}{I_{plank} + m_1 d_1^2 + m_2 d_2^2},
+$$
+
+counter-clockwise positive.
+</div>
+<div slot="engine">
+The plank is pinned to the ground and each mass is pinned to the plank: three exact constraints solved together.
+Balanced, the plank's angular velocity stays below 1e-9. Tipping, the initial angular acceleration matches the
+formula to 1e-9. This scenario is also the one that caught a solver bug: the position projection has to be
+Gauss–Seidel, not Jacobi, or three coupled pins diverge.
+</div>
+</Scenario>

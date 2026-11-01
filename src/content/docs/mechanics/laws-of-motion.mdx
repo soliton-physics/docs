@@ -1,0 +1,104 @@
+---
+title: Laws of motion
+description: Friction on an incline, pushing a block, the Atwood machine, a block pulled by a hanging mass.
+sidebar:
+  order: 2
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+## Block on a rough incline
+
+<Scenario id="incline-friction">
+<div slot="intuition">
+Put a block on a gentle slope and friction holds it still. Tilt the slope more and at some angle it lets go.
+That angle depends only on the roughness, not on the mass: a heavy block and a light one slip at the same tilt.
+Once it slides, kinetic friction is a little weaker than the static friction that was holding it, so it does not just
+creep, it accelerates. Drag the angle slider past the critical value and watch the free-body diagram switch.
+</div>
+<div slot="maths">
+Along the slope gravity contributes $m g \sin\theta$; the normal force is $N = m g \cos\theta$. At rest, static friction
+equals $m g \sin\theta$ and cannot exceed $\mu_s N$, so the block stays until
+
+$$
+\tan\theta = \mu_s .
+$$
+
+Sliding, kinetic friction is $\mu_k N$ and the acceleration is $a = g(\sin\theta - \mu_k \cos\theta)$.
+</div>
+<div slot="engine">
+Friction is decided per contact point every step the way a student is taught: compute the force that would hold the
+block, compare it with $\mu_s N$, and if it is too much, switch to $\mu_k N$ opposing the motion. The engine reports
+the actual friction force, so at rest the free-body diagram shows $m g \sin\theta$, not $\mu_s N$.
+Validated to 1e-10 in both regimes.
+</div>
+</Scenario>
+
+## Pushing a block on a rough floor
+
+<Scenario id="pushed-block">
+<div slot="intuition">
+Push gently and nothing happens, yet something is happening: friction is pushing back with exactly your force.
+Push harder and friction grows to match, until it cannot. Then the block moves, and because kinetic friction is weaker
+than the maximum static friction, it accelerates the moment it starts.
+</div>
+<div slot="maths">
+The block moves when $F > \mu_s m g$. Once moving,
+
+$$
+a = \frac{F - \mu_k m g}{m} .
+$$
+
+</div>
+<div slot="engine">
+Below the threshold the engine's friction readout equals the push to 1e-10, which is the free-body diagram textbooks
+draw. The slip is reported as a `friction_slip` event.
+</div>
+</Scenario>
+
+## Atwood machine
+
+<Scenario id="atwood">
+<div slot="intuition">
+Two masses hang on a string over a pulley. If they are equal, nothing moves. Make one heavier and it descends while
+the other rises, both with the same acceleration, because the string keeps them moving together. The string's
+tension is the same on both sides and lies between the two weights: more than the lighter weight (it is being pulled
+up) and less than the heavier (it is being let down).
+</div>
+<div slot="maths">
+Newton's law on each mass with a common acceleration $a$ and tension $T$:
+
+$$
+a = \frac{m_2 - m_1}{m_1 + m_2}\, g, \qquad T = \frac{2 m_1 m_2}{m_1 + m_2}\, g .
+$$
+
+</div>
+<div slot="engine">
+The string is a rope constraint: an inequality on the path length over the pulley's tangent geometry. The engine
+solves for the tension that keeps the path length fixed, and reports it. Validated to round-off against both formulas.
+Set the masses equal and the acceleration readout is exactly zero.
+</div>
+</Scenario>
+
+## Block on a table and a hanging mass
+
+<Scenario id="table-and-hanging-mass">
+<div slot="intuition">
+A block on a table is tied to a mass hanging over the edge. The hanging weight pulls the whole system, but it has to
+accelerate the block as well as itself, so it falls more slowly than free fall. Add table friction and there is a point
+where the hanging weight is not enough to get the block moving at all.
+</div>
+<div slot="maths">
+With table friction $\mu$, the system moves if $m_2 g > \mu m_1 g$, with
+
+$$
+a = \frac{m_2 - \mu m_1}{m_1 + m_2}\, g, \qquad T = m_1 (a + \mu g) .
+$$
+
+The normal force on the block is $m_1 g$ regardless.
+</div>
+<div slot="engine">
+The table is a static polygon with friction, the rope bends over a pulley at its edge. After the hanging mass lands
+on the floor the rope goes slack, which the event log reports, and a frictionless block simply keeps sliding.
+</div>
+</Scenario>

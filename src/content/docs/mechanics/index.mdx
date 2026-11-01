@@ -1,0 +1,30 @@
+---
+title: Mechanics, class 11
+description: Every mechanics scenario in NCERT chapter order, each running live beside its textbook answer.
+sidebar:
+  order: 0
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+These pages follow the NCERT class 11 physics chapters. Each scenario runs live in the page, computed by the same
+engine researchers use. Open any of them in the playground to move sliders, draw the free-body diagram and plot graphs.
+
+Every scenario comes with three layers. **Intuition** says what you are looking at in plain words. **The maths** gives
+the equations and the textbook answer. **How the engine does it** says what the computer actually solves and how we
+checked it.
+
+<CardGrid>
+  <LinkCard title="Motion in a straight line and in a plane" description="Free fall, a ball thrown upward, projectiles." href="/mechanics/kinematics/" />
+  <LinkCard title="Laws of motion" description="Friction on an incline, pushing a block, the Atwood machine, a block pulled by a hanging mass." href="/mechanics/laws-of-motion/" />
+  <LinkCard title="Work, energy and power" description="Collisions and the bob in a vertical circle." href="/mechanics/work-energy/" />
+  <LinkCard title="Rotation" description="Rolling down an incline and the seesaw." href="/mechanics/rotation/" />
+  <LinkCard title="Oscillations" description="A mass on a spring and the simple pendulum." href="/mechanics/oscillations/" />
+  <LinkCard title="Scenes as JSON" description="Export any scenario, edit it, load it back, or run it in a notebook." href="/mechanics/scenes/" />
+</CardGrid>
+
+## What makes these simulations trustworthy
+
+- Forces, tensions and normal reactions you see are the numbers the engine used, not drawings added afterwards.
+- The energy ledger shows where every joule went: kinetic, potential, dissipated by friction, or added by a push.
+- Each scenario is tested against its closed-form answer on every change to the engine. See [Validation](/numerics/validation/).

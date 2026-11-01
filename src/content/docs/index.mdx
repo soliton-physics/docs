@@ -3,12 +3,12 @@ title: Soliton Physics
 description: A research-grade, educational physics engine. Every explanation sits next to a live simulation.
 template: splash
 hero:
-  tagline: Physics you can run. Validated solvers in Rust, Python for research, WebAssembly for everyone.
+  tagline: Physics you can run. The class 11 mechanics syllabus and nonlinear waves, computed live by one validated engine, with every force and every joule on screen.
   image:
     file: ../../assets/logo.svg
   actions:
-    - text: What is a soliton?
-      link: /start/what-is-a-soliton/
+    - text: Start with mechanics
+      link: /mechanics/
       icon: right-arrow
     - text: Open the playground
       link: https://soliton-playground.vercel.app/
@@ -24,8 +24,9 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 
 <CardGrid stagger>
   <Card title="Learn by watching" icon="rocket">
-    Every topic has three layers: the intuition in plain words, the mathematics, and the numerical method with its
-    validation. Live simulations run beside the text.
+    Every topic has three layers: the intuition in plain words, the mathematics, and how the engine does it, with its
+    validation. Live simulations run beside the text, and every one opens in the playground with sliders, a free-body
+    diagram and graphs.
   </Card>
   <Card title="Trust the numbers" icon="approve-check">
     Every solver is tested against closed-form solutions and tracks its own conserved quantities. Errors and drift are
@@ -34,7 +35,7 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
   <Card title="One engine, three doors" icon="puzzle">
     The same Rust core powers the Python package, the browser playground and these docs. No toy version.
   </Card>
-  <Card title="Open and growing" icon="open-book">
-    Start with nonlinear waves. Fields, fluids, particles and quantum systems follow. Contributions welcome.
+  <Card title="Scenes are data" icon="document">
+    Export any scenario as JSON, edit it, load it back in the playground, or run it in a notebook with NumPy arrays out.
   </Card>
 </CardGrid>

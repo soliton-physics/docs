@@ -1,0 +1,103 @@
+---
+title: Motion in a straight line and in a plane
+description: Free fall, a ball thrown upward, and projectiles.
+sidebar:
+  order: 1
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+## Free fall
+
+<Scenario id="free-fall">
+<div slot="intuition">
+Drop a ball and it speeds up. Not gradually faster and faster in a vague way: its speed grows by the same 9.8 m/s
+every second. Watch the velocity graph in the playground. It is a straight line, and its slope is $g$.
+The position graph is a parabola because distance grows with the square of time.
+</div>
+<div slot="maths">
+With $u = 0$ and acceleration $g$ downward,
+
+$$
+v = g t, \qquad h = \tfrac{1}{2} g t^2 .
+$$
+
+So a ball dropped from height $h$ lands after $t = \sqrt{2h/g}$ with speed $v = \sqrt{2 g h}$.
+Doubling the height does not double the time: it multiplies it by $\sqrt{2}$.
+</div>
+<div slot="engine">
+The engine integrates Newton's second law with velocity Verlet, which is exact for constant acceleration, so the
+landing position is reproduced to round-off at any time step. The ground is a contact with restitution zero, so the
+ball stops instead of bouncing. Test: `projectile_is_exact_at_any_step` in `soliton-mechanics`.
+</div>
+</Scenario>
+
+## Ball thrown upward
+
+<Scenario id="thrown-upward">
+<div slot="intuition">
+The ball slows down on the way up, stops for an instant at the top, and falls back. The trap is to think the
+acceleration is zero at the top. It is not. The velocity is zero there, but it is changing at 9.8 m/s² the whole time,
+which is exactly why the ball does not stay up.
+</div>
+<div slot="maths">
+
+$$
+v = u - g t, \qquad y = u t - \tfrac{1}{2} g t^2 .
+$$
+
+Maximum height when $v = 0$: $H = u^2 / 2g$ at $t = u/g$. The flight is symmetric, so the total time is $2u/g$ and
+the ball returns at speed $u$.
+</div>
+<div slot="engine">
+Same integrator as free fall. The acceleration readout in the playground stays at 9.8 m/s² through the top, which is
+the point of the lesson.
+</div>
+</Scenario>
+
+## Projectile
+
+<Scenario id="projectile">
+<div slot="intuition">
+A projectile is two motions happening at once that do not know about each other. Horizontally nothing pushes or
+pulls, so the horizontal speed never changes. Vertically it is a ball thrown upward. Put them together and the path
+is a parabola. Tilt the launch angle in the playground: 45° gives the longest range, and angles equally above and
+below 45° land in the same place.
+</div>
+<div slot="maths">
+With launch speed $u$ at angle $\theta$,
+
+$$
+x = u \cos\theta \, t, \qquad y = u \sin\theta \, t - \tfrac{1}{2} g t^2 .
+$$
+
+Time of flight $T = 2 u \sin\theta / g$, range $R = u^2 \sin 2\theta / g$, maximum height $H = u^2 \sin^2\theta / 2g$.
+</div>
+<div slot="engine">
+The ground is a half-plane contact. The engine reports the landing as a `contact_begin` event, visible in the event log.
+Impact timing is located to within one time step, so the landing time is accurate to a millisecond at the default step.
+</div>
+</Scenario>
+
+## Projectile from a cliff
+
+<Scenario id="projectile-from-height">
+<div slot="intuition">
+Launched from a height, the projectile has further to fall, so it stays in the air longer and travels further.
+Try a negative angle: throwing downward from a cliff. And try launching horizontally: a bullet fired horizontally and a
+bullet dropped from the same height hit the ground at the same moment.
+</div>
+<div slot="maths">
+The vertical motion is $y = h + u \sin\theta \, t - \tfrac{1}{2} g t^2$. Setting $y = 0$ gives a quadratic whose
+positive root is the flight time,
+
+$$
+T = \frac{u \sin\theta + \sqrt{u^2 \sin^2\theta + 2 g h}}{g},
+$$
+
+and the range is $u \cos\theta \, T$. Energy conservation gives the landing speed $\sqrt{u^2 + 2 g h}$ regardless of angle.
+</div>
+<div slot="engine">
+The cliff is a static polygon and the ground a half-plane. Both are contacts the engine handles the same way.
+</div>
+</Scenario>
