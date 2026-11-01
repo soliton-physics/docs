@@ -1,0 +1,40 @@
+---
+title: Soliton Physics
+description: A research-grade, educational physics engine. Every explanation sits next to a live simulation.
+template: splash
+hero:
+  tagline: Physics you can run. Validated solvers in Rust, Python for research, WebAssembly for everyone.
+  image:
+    file: ../../assets/logo.svg
+  actions:
+    - text: What is a soliton?
+      link: /docs/start/what-is-a-soliton/
+      icon: right-arrow
+    - text: Open the playground
+      link: https://soliton-physics.github.io/playground/
+      icon: external
+      variant: minimal
+    - text: GitHub
+      link: https://github.com/soliton-physics
+      icon: github
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+  <Card title="Learn by watching" icon="rocket">
+    Every topic has three layers: the intuition in plain words, the mathematics, and the numerical method with its
+    validation. Live simulations run beside the text.
+  </Card>
+  <Card title="Trust the numbers" icon="approve-check">
+    Every solver is tested against closed-form solutions and tracks its own conserved quantities. Errors and drift are
+    published, not hidden.
+  </Card>
+  <Card title="One engine, three doors" icon="puzzle">
+    The same Rust core powers the Python package, the browser playground and these docs. No toy version.
+  </Card>
+  <Card title="Open and growing" icon="open-book">
+    Start with nonlinear waves. Fields, fluids, particles and quantum systems follow. Contributions welcome.
+  </Card>
+</CardGrid>

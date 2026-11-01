@@ -1,0 +1,17 @@
+---
+interface Props {
+  preset: string;
+  height?: number;
+}
+
+const { preset, height = 440 } = Astro.props;
+const playground = 'https://soliton-physics.github.io/playground/';
+const src = `${playground}?preset=${preset}&embed`;
+---
+
+<figure class="live-sim">
+  <iframe src={src} height={height} loading="lazy" title={`Live simulation: ${preset}`}></iframe>
+  <figcaption>
+    Running live in your browser. <a href={`${playground}?preset=${preset}`} target="_blank" rel="noopener">Open in the playground</a>
+  </figcaption>
+</figure>

@@ -1,0 +1,92 @@
+---
+title: Korteweg–de Vries
+description: Shallow-water solitons. The equation that started it all.
+sidebar:
+  order: 1
+---
+
+import LiveSim from '../../../components/LiveSim.astro';
+
+<div class="layer">
+## Intuition
+
+Shallow water has a rule: taller waves move faster. A hump therefore steepens at its front, like a wave about to break
+on a beach. But shallow water also has dispersion, which spreads a hump out. The Korteweg–de Vries equation is the
+simplest model that contains both effects, and it has an exact hump shape where they cancel perfectly.
+
+<LiveSim preset="kdv-soliton" />
+
+Notice the shape never changes and the speed is constant. Taller solitons are narrower and faster.
+That is not a coincidence. Height, width and speed are locked together by one parameter.
+
+Now watch two of them meet.
+
+<LiveSim preset="kdv-collision" />
+
+The fast one catches the slow one, they merge into a single hump for a moment, and then both reappear exactly as
+before. The only trace of the collision is that the fast soliton is a little ahead of where it would have been, and the
+slow one is a little behind.
+
+What if you start with a shape that is not a soliton?
+
+<LiveSim preset="kdv-fission" />
+
+The bump sorts itself into a line of solitons, tallest first, leaving behind a small ripple that spreads away.
+The number and heights of the solitons that come out are determined by the initial shape alone. That is the
+inverse scattering transform at work.
+</div>
+
+<div class="layer">
+## The mathematics
+
+The equation, in the normalisation this engine uses, is
+
+$$
+u_t + 6\,u\,u_x + u_{xxx} = 0 .
+$$
+
+The term $6 u u_x$ is the nonlinear steepening and $u_{xxx}$ is the dispersion. Look for a travelling wave
+$u(x,t) = f(x - ct)$ and you find the single-soliton solution
+
+$$
+u(x,t) = \frac{c}{2}\,\operatorname{sech}^2\!\left(\frac{\sqrt{c}}{2}\,(x - ct - x_0)\right).
+$$
+
+One parameter, the speed $c$, fixes the amplitude $c/2$ and the width $2/\sqrt{c}$.
+
+The equation has infinitely many conserved quantities. The engine tracks the first three:
+
+| Name | Expression |
+| --- | --- |
+| Mass | $\int u \, dx$ |
+| Momentum | $\int u^2 \, dx$ |
+| Energy | $\int \left( u^3 - \tfrac{1}{2} u_x^2 \right) dx$ |
+
+The energy is the Hamiltonian that generates the flow, $u_t = -\partial_x\, \delta H / \delta u$.
+</div>
+
+<div class="layer">
+## The numerics
+
+On a periodic domain the engine writes the equation as $u_t = L u + N(u)$ with
+
+$$
+L(k) = i k^3, \qquad N(u) = -3\,(u^2)_x .
+$$
+
+In Fourier space $L$ is just a number for each wavenumber, so the linear part is handled exactly. The nonlinear part is
+computed in physical space and transformed back. This is the [pseudo-spectral method](/docs/numerics/spectral-methods/).
+Time stepping uses [ETDRK4](/docs/numerics/etdrk4/), which treats the stiff dispersive term exactly and the nonlinear
+term to fourth order.
+
+### Validation
+
+| Test | Setup | Result |
+| --- | --- | --- |
+| Single soliton | $c = 4$, $N = 512$, $L = 60$, $\Delta t = 10^{-3}$, $t = 5$ | max error $5 \times 10^{-8}$ |
+| Two solitons | $c = 4$ and $c = 1$, 8000 steps | invariant drift below $10^{-8}$ |
+| Collision | $c = 6$ and $c = 1.5$ | fast soliton amplitude restored to $3.0$ within $0.02$ |
+
+Source: [`crates/soliton-core/src/equations/kdv.rs`](https://github.com/soliton-physics/soliton/blob/main/crates/soliton-core/src/equations/kdv.rs)
+and its [tests](https://github.com/soliton-physics/soliton/blob/main/crates/soliton-core/tests/kdv.rs).
+</div>

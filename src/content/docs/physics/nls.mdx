@@ -1,0 +1,83 @@
+---
+title: Nonlinear Schrödinger
+description: Bright solitons in optical fibres and matter waves.
+sidebar:
+  order: 2
+---
+
+import LiveSim from '../../../components/LiveSim.astro';
+
+<div class="layer">
+## Intuition
+
+A light pulse in a glass fibre is a fast oscillation wrapped in a slow envelope. The glass has dispersion, so
+different colours in the pulse travel at different speeds and the envelope spreads. But intense light also changes the
+glass's refractive index, which bends the phase of the wave in proportion to its intensity. For the right pulse shape
+the two effects cancel and the envelope holds together. That is an optical soliton, and the same equation describes
+Bose–Einstein condensates and deep-water wave groups.
+
+<LiveSim preset="nls-soliton" />
+
+The bright line is the envelope $|\psi|$. The faint line is the real part, the oscillation underneath. The envelope
+keeps its shape while the carrier runs through it.
+
+<LiveSim preset="nls-collision" />
+
+Two envelopes meet, interfere during the overlap, and separate intact.
+
+Now start with twice the soliton amplitude.
+
+<LiveSim preset="nls-breather" />
+
+It does not travel. It breathes. This is the Satsuma–Yajima solution, two solitons bound together at one point,
+oscillating with period $\pi/2$.
+</div>
+
+<div class="layer">
+## The mathematics
+
+The focusing cubic nonlinear Schrödinger equation is
+
+$$
+i\,\psi_t + \tfrac{1}{2}\,\psi_{xx} + |\psi|^2 \psi = 0 .
+$$
+
+Here $\psi$ is complex. Its magnitude is the envelope and its phase carries the oscillation. The bright soliton is
+
+$$
+\psi(x,t) = a\,\operatorname{sech}\big(a (x - v t - x_0)\big)\,
+\exp\!\Big( i\,v x + \tfrac{i}{2}\,(a^2 - v^2)\,t \Big).
+$$
+
+Unlike KdV, amplitude $a$ and velocity $v$ are independent. Galilean invariance lets you boost any soliton to any speed.
+
+Conserved quantities tracked by the engine:
+
+| Name | Expression |
+| --- | --- |
+| Mass | $\int \lvert\psi\rvert^2 \, dx$ |
+| Momentum | $\operatorname{Im}\int \psi^* \psi_x \, dx$ |
+| Energy | $\int \left( \tfrac{1}{2}\lvert\psi_x\rvert^2 - \tfrac{1}{2}\lvert\psi\rvert^4 \right) dx$ |
+</div>
+
+<div class="layer">
+## The numerics
+
+Written as $\psi_t = L\psi + N(\psi)$:
+
+$$
+L(k) = -\tfrac{i}{2}\,k^2, \qquad N(\psi) = i\,|\psi|^2 \psi .
+$$
+
+Same machinery as KdV: Fourier pseudo-spectral in space, ETDRK4 in time.
+
+### Validation
+
+| Test | Setup | Result |
+| --- | --- | --- |
+| Moving bright soliton | $a = 1$, $v = 1$, $N = 512$, $L = 40\pi$, $\Delta t = 10^{-3}$, $t = 10$ | max error $3 \times 10^{-9}$ |
+| Two solitons | 10000 steps | invariant drift below $10^{-8}$ |
+
+Source: [`crates/soliton-core/src/equations/nls.rs`](https://github.com/soliton-physics/soliton/blob/main/crates/soliton-core/src/equations/nls.rs)
+and its [tests](https://github.com/soliton-physics/soliton/blob/main/crates/soliton-core/tests/nls.rs).
+</div>
