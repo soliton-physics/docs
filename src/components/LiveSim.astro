@@ -1,17 +1,22 @@
 ---
 interface Props {
-  preset: string;
+  preset?: string;
+  scenario?: string;
   height?: number;
 }
 
-const { preset, height = 440 } = Astro.props;
+const { preset, scenario, height = 460 } = Astro.props;
 const playground = `${(import.meta.env.PUBLIC_PLAYGROUND_URL ?? 'https://soliton-playground.vercel.app').replace(/\/$/, '')}/`;
-const src = `${playground}?preset=${preset}&embed`;
+const query = scenario ? `?mode=mechanics&scenario=${scenario}` : `?mode=waves&preset=${preset}`;
+const src = `${playground}${query}&embed`;
+const full = `${playground}${query}`;
+const title = scenario ?? preset ?? 'simulation';
 ---
 
 <figure class="live-sim">
-  <iframe src={src} style={`height: ${height}px`} loading="lazy" title={`Live simulation: ${preset}`}></iframe>
+  <iframe src={src} style={`height: ${height}px`} loading="lazy" title={`Live simulation: ${title}`}></iframe>
   <figcaption>
-    Running live in your browser. <a href={`${playground}?preset=${preset}`} target="_blank" rel="noopener">Open in the playground</a>
+    <span>Live in your browser, computed by the engine.</span>
+    <a href={full} target="_blank" rel="noopener">Open in the playground with sliders and graphs ↗</a>
   </figcaption>
 </figure>

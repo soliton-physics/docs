@@ -1,0 +1,26 @@
+---
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import LiveSim from './LiveSim.astro';
+
+interface Props {
+  id: string;
+  height?: number;
+}
+
+const { id, height = 420 } = Astro.props;
+---
+
+<section class="scenario">
+  <LiveSim scenario={id} height={height} />
+  <Tabs>
+    <TabItem label="Intuition" icon="star">
+      <slot name="intuition" />
+    </TabItem>
+    <TabItem label="The maths" icon="pencil">
+      <slot name="maths" />
+    </TabItem>
+    <TabItem label="How the engine does it" icon="setting">
+      <slot name="engine" />
+    </TabItem>
+  </Tabs>
+</section>

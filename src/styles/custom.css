@@ -1,17 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
 :root {
+  --sl-font: 'Inter', system-ui, sans-serif;
+  --sl-font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --sl-color-accent-low: #0e2a3a;
   --sl-color-accent: #22d3ee;
   --sl-color-accent-high: #a5f3fc;
+  --sl-content-width: 50rem;
 }
 
 :root[data-theme='light'] {
   --sl-color-accent-low: #cffafe;
   --sl-color-accent: #0891b2;
   --sl-color-accent-high: #164e63;
+  --sl-color-bg: #fbfcfe;
+}
+
+.sl-markdown-content h2 {
+  letter-spacing: -0.01em;
+}
+
+.scenario {
+  margin: 1rem 0 3rem;
+  padding: 1.5rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 16px;
+  background: var(--sl-color-bg-nav);
 }
 
 .live-sim {
-  margin: 1.5rem 0;
+  margin: 1.25rem 0;
 }
 
 .live-sim iframe {
@@ -22,9 +40,12 @@
 }
 
 .live-sim figcaption {
-  margin-top: 0.4rem;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
   font-size: 0.85rem;
-  text-align: right;
+  color: var(--sl-color-gray-3);
 }
 
 .layer {
@@ -35,4 +56,16 @@
 
 .layer > h2 {
   margin-top: 0;
+}
+
+.hero .tagline {
+  max-width: 36rem;
+}
+
+.card-grid .card {
+  border-radius: 14px;
+}
+
+table {
+  font-variant-numeric: tabular-nums;
 }
