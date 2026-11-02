@@ -64,7 +64,8 @@ Anchors are `{"fixed": [x, y]}` or `{"body": {"id": "...", "local": [x, y]}}`.
 
 `{"pin": {"a", "b"}}`, `{"rod": {"a", "b", "length"?}}`, `{"slot": {"body", "origin", "direction", "local"?}}`,
 `{"fixed_angle": {"body", "angle"}}`, and `{"rope": {"nodes": [...], "length"?}}` whose nodes are
-`{"attach": {"body", "local"?}}`, `{"peg": [x, y]}` or `{"pulley": {"center", "radius", "wrap"}}`.
+`{"attach": {"body", "local"?}}`, `{"peg": [x, y]}`, `{"pulley": {"center", "radius", "wrap"}}` for a massless
+pulley, or `{"wheel": {"body", "radius", "wrap"}}` for a rigid body the rope turns without slipping.
 A rope or rod without a length is taut at the start.
 
 ### Other fields

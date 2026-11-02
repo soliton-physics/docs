@@ -31,6 +31,48 @@ the textbook sliding acceleration. Validated to 1e-8 in both regimes.
 </div>
 </Scenario>
 
+## Atwood machine with a massive pulley
+
+<Scenario id="atwood-massive">
+<div slot="intuition">
+In the ideal Atwood machine the string's tension is the same on both sides. Give the pulley mass and that can no
+longer be true: something has to spin the pulley up, and the only thing touching it is the string. So the heavier
+side pulls a little harder than the lighter side, and the difference supplies the torque. The whole system
+accelerates more slowly than with a massless pulley, because the pulley's inertia is along for the ride.
+</div>
+<div slot="maths">
+With a uniform disc of mass $M$, $I = \tfrac{1}{2} M R^2$, and the no-slip condition $a = \alpha R$,
+
+$$
+a = \frac{(m_2 - m_1)\, g}{m_1 + m_2 + M/2}, \qquad T_1 = m_1 (g + a), \qquad T_2 = m_2 (g - a).
+$$
+
+The torque on the pulley is $(T_2 - T_1) R = I \alpha$.
+</div>
+<div slot="engine">
+The pulley is a rigid disc pinned at its centre, and the rope wraps it as a wheel: the rope's tangent points are
+treated as material points of the rim, so the rope segment on each side is its own constraint and the no-slip
+coupling falls out of the geometry. Validated to 1e-8 for the acceleration, both tensions and the rim speed.
+</div>
+</Scenario>
+
+## Flywheel with a hanging mass
+
+<Scenario id="flywheel">
+<div slot="intuition">
+Wind a string around a heavy wheel and hang a mass from it. The mass falls, but slowly: most of the energy goes into
+spinning the wheel. Double the wheel's mass and watch the fall slow further. This is how a flywheel stores energy.
+</div>
+<div slot="maths">
+$$
+a = \frac{m g}{m + I / R^2} = \frac{m g}{m + M/2}, \qquad T = m (g - a).
+$$
+</div>
+<div slot="engine">
+Same wheel node as the massive pulley, with one end of the rope fixed to the rim. Validated to 1e-8.
+</div>
+</Scenario>
+
 ## Seesaw
 
 <Scenario id="seesaw">

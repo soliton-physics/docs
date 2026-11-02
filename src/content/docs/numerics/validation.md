@@ -24,7 +24,8 @@ Every solver in the engine ships with tests that run in CI on every change. Thre
 | Collisions | elastic and inelastic outgoing velocities, energy lost, 90° scattering of equal discs | 1e-10 |
 | Rolling disc | rolling acceleration and $v = \omega R$; slipping when $\mu_s$ is too small | 1e-8 |
 | Seesaw | balanced stays still; tipping angular acceleration | 1e-9 |
-| Bouncing ball | apex ratios $e^2$ | 4e-4, first order in $dt$ |
+| Bouncing ball | apex ratios $e^2$, first landing time | 3e-5, 1e-6 s |
+| Massive pulley, flywheel | acceleration, both tensions, rim speed | 1e-8 |
 | Every catalogue scenario | builds, runs, round-trips through JSON | passes |
 
 ## Waves

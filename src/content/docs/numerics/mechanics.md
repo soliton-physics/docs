@@ -47,7 +47,10 @@ Two more lessons:
 - A 1 µm contact margin let a resting box rock on alternate corners forever. A 0.1 mm margin keeps both corners in the
   contact set; a contact with a positive gap carries no force, so nothing hovers.
 
-## What stays first order
+## Impacts
 
-Impact times are located to within a step, so bounce apex heights carry about 4e-4 relative error at `dt = 1e-4`.
-Phase 2 interpolates the impact time.
+A contact is found after the drift, so an impact is detected up to one step late with the bodies overlapping by some
+depth. The engine estimates how long ago the impact happened from the depth and the approach speed, corrects the
+approach speed for the gravity gained in that time, aims the rebound at where the body would be had it bounced on
+time, and reports the event at the interpolated instant. Bounce apex heights and landing times are then second
+order: the first landing of a dropped ball is reported to 1e-6 s and successive apex ratios match $e^2$ to 3e-5.
