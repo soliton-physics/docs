@@ -35,7 +35,8 @@ build it: an unknown body id, a missing mass, an unsupported schema.
     ] } }
   ],
   "focus": "block",
-  "answers": [ { "name": "Acceleration (m/s²)", "value": 2.0 } ]
+  "answers": [ { "name": "Acceleration (m/s²)", "value": 2.0 } ],
+  "finish": [ { "when": { "contact": ["weight", "ground"] } }, { "when": { "time": 3 } } ]
 }
 ```
 
@@ -71,8 +72,30 @@ A rope or rod without a length is taut at the start.
 ### Other fields
 
 `focus` names the body the free-body diagram shows first; `answers` carries textbook values to show beside the
-simulation; `view` is `{"center": [x, y], "half_height": h}` for the camera; `ignore_collisions` lists body pairs that
-should not touch. Bodies joined by a pin or rod never collide with each other.
+simulation; `view` is `{"center": [x, y], "half_height": h}` for the camera, with an optional `half_width` when the
+whole flight must fit; `ignore_collisions` lists body pairs that should not touch. Bodies joined by a pin or rod never
+collide with each other.
+
+`finish` says where the problem ends. The playground pauses there, so the graphs show exactly the motion the question
+is about, and Play carries on past it. The first rule to fire wins:
+
+| Rule | Fires when |
+| --- | --- |
+| `{"contact": ["a", "b"]}` | the two bodies first touch |
+| `{"separation": ["a", "b"]}` | two touching bodies come apart |
+| `{"rest": 0.5}` | every moving body has been still for that many seconds |
+| `{"time": 3}` | the clock reaches that time |
+
+A rule may add `"hold": 1` to keep going for a second after it fires, which lets a collision be watched to separation.
+Contacts that exist at the start are never announced as events, and a launched ball starts a hair above the ground so
+it begins free.
+
+## In the playground
+
+Choose **Remix** on any scenario and it opens in the sandbox as your own copy. Move bodies, add balls, boxes, ropes,
+rods, springs and pins, change masses and friction, and press play. **Save** downloads the scene as JSON, **Open**
+loads one, and **Share** copies a link that carries the whole scene. Edit a paused run and the playground first takes
+the world as it stands, so the change applies to what you see.
 
 ## In a notebook
 

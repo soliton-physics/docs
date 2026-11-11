@@ -58,7 +58,8 @@ run.t                                         # (N,)
 run.body("disc")                              # dict: position, velocity, acceleration (N, 2); angle, angular_velocity (N,)
 run.force("disc", "friction")                 # (N, 2)
 run.energy()                                  # dict of (N,) arrays: kinetic, potential, dissipated, external_work, conserved
-run.events                                    # [{'time': 0.0, 'kind': 'contact_begin', 'bodies': ['incline', 'disc']}, ...]
+run.events                                    # [{'time': 2.37, 'kind': 'contact_begin', 'bodies': ['ground', 'disc']}, ...]
+run.finished                                  # {'time': 2.37, 'reason': 'disc touched ground'} once the problem has ended, else None
 scene.save("rolling.json"); mechanics.load("rolling.json")
 mechanics.Scene.from_json(text)               # validated; errors name the problem
 ```
