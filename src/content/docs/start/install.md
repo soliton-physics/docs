@@ -5,19 +5,19 @@ description: Run the engine in the browser, in Python, or in Rust.
 
 ## Browser
 
-Nothing to install. Open the [playground](https://soliton-playground.vercel.app/).
+Nothing to install. Open the [playground](https://soliton-playground.vercel.app/). In a web page of your own:
+
+```sh
+npm install @soliton-physics/engine
+```
 
 ## Python
 
-The `soliton` package wraps the Rust engine with NumPy arrays in and out. Until it is published on PyPI, build it
-from source:
+The package wraps the Rust engine with NumPy arrays in and out. It installs as `soliton-physics` and imports as
+`soliton`:
 
 ```sh
-git clone https://github.com/soliton-physics/soliton
-cd soliton/crates/soliton-py
-uv venv && source .venv/bin/activate
-uv pip install maturin numpy
-maturin develop --release
+pip install soliton-physics
 ```
 
 ```python
@@ -43,12 +43,12 @@ print(sim.time, sim.invariants())
 ## Rust
 
 ```sh
-cargo add soliton-core --git https://github.com/soliton-physics/soliton
+cargo add soliton-fields soliton-mechanics --git https://github.com/soliton-physics/soliton
 ```
 
 ```rust
-use soliton_core::exact::kdv_soliton;
-use soliton_core::{Complex64, Kdv, PeriodicGrid, Simulation};
+use soliton_fields::exact::kdv_soliton;
+use soliton_fields::{Complex64, Kdv, PeriodicGrid, Simulate, Simulation};
 
 let mut sim = Simulation::new(PeriodicGrid::new(512, 60.0), Kdv, 1e-3);
 sim.set_profile(|x| Complex64::new(kdv_soliton(x, 0.0, 4.0, -10.0), 0.0));
