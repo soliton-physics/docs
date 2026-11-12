@@ -24,7 +24,7 @@ scenario.
 - [x] Canvas-first stage, timeline scrubbing, one inspector
 - [x] Sandbox: build a world from balls, boxes, ropes, rods, springs and pins, and share it by link
 - [x] Gravity between bodies in the sandbox, with an orbits world to start from
-- [ ] Draw any polygon; inclines and walls as tools
+- [x] Draw any shape corner by corner; inclines and walls as tools
 - [ ] Notebook widget that reuses the playground's renderer
 
 ## Nonlinear waves

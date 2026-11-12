@@ -97,8 +97,8 @@ it begins free.
 
 ## In the playground
 
-Choose **Remix** on any scenario and it opens in the sandbox as your own copy. Move bodies, add balls, boxes, ropes,
-rods, springs and pins, change masses and friction, and press play. **Save** downloads the scene as JSON, **Open**
+Choose **Remix** on any scenario and it opens in the sandbox as your own copy. Move bodies, add balls, boxes, shapes you
+draw corner by corner, inclines, walls, ropes, rods, springs and pins, change masses and friction, and press play. **Save** downloads the scene as JSON, **Open**
 loads one, and **Share** copies a link that carries the whole scene. Under **Gravity** you choose the downward pull
 (Earth, Mars, the Moon, none) and how strongly bodies pull on each other; the **Orbits sandbox** in the gallery starts
 you with a sun and two planets. Edit a paused run and the playground first takes
