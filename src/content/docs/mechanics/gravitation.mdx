@@ -1,0 +1,104 @@
+---
+title: Gravitation
+description: A satellite in a circular orbit, an elliptical orbit and Kepler's laws, and escape velocity.
+sidebar:
+  order: 5
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+These scenes are in space around the Earth, drawn to scale: the planet is 6371 km in radius and the distances are
+real. An orbit takes about an hour and a half, so the playground plays these a few hundred times faster than life;
+the clock still shows the real time.
+
+## Satellite in a circular orbit
+
+<Scenario id="circular-orbit" height={460}>
+<div slot="intuition">
+A satellite is not beyond gravity. At 400 km up, gravity is still nine tenths of what it is on the ground. It stays up
+because it moves sideways so fast that, as it falls, the ground curves away beneath it just as quickly. It is falling
+the whole time and never getting closer.
+
+Drag the satellite outward and watch the speed it needs drop and its year lengthen. At 35 786 km the period is one
+day, which is where satellites that seem to hang still in the sky are parked.
+</div>
+<div slot="maths">
+Gravity supplies exactly the centripetal force:
+
+$$
+\frac{G M m}{r^2} = \frac{m v^2}{r}
+\quad\Longrightarrow\quad
+v = \sqrt{\frac{G M}{r}}, \qquad T = 2\pi \sqrt{\frac{r^3}{G M}} .
+$$
+
+The satellite's mass cancels: a spanner let go outside the station stays beside it.
+</div>
+<div slot="engine">
+Newton's law is a force like any other, pointing at the Earth's centre, and the engine's stepping is symplectic, so
+the orbit neither spirals in nor drifts out however long it runs. At a few thousand steps a turn the speed stays
+constant to 1e-4 and the energy to 1e-9. The scene runs a little over two turns, so the period you see measured is
+the time between two passes of the same point.
+</div>
+</Scenario>
+
+## Elliptical orbit
+
+<Scenario id="elliptical-orbit" height={460}>
+<div slot="intuition">
+Give the satellite more than the circular speed and it climbs away, slowing as it goes, until it has too little speed
+to stay that far out and falls back, speeding up, to exactly where it started. The path is an ellipse with the centre
+of the Earth at one focus.
+
+Watch the velocity arrow: long at the near point, short at the far one. The line from the Earth to the satellite
+sweeps the same area every minute, which is Kepler's second law, and is nothing more than angular momentum being
+conserved.
+</div>
+<div slot="maths">
+With speed $v_p$ at the nearest point, a distance $r_p$ from the centre, the energy per unit mass and the shape are
+
+$$
+\varepsilon = \tfrac12 v_p^2 - \frac{G M}{r_p}, \qquad
+a = -\frac{G M}{2 \varepsilon}, \qquad
+e = \frac{r_p v_p^2}{G M} - 1 .
+$$
+
+The farthest point is at $r_a = a(1 + e)$, where $r_a v_a = r_p v_p$. Kepler's third law gives the period from the
+semi-major axis alone: $T = 2\pi \sqrt{a^3 / G M}$.
+</div>
+<div slot="engine">
+Nothing is told that the path is an ellipse; the engine only adds up the pull of gravity step by step. The farthest
+point and the slowest speed come out right to 1e-5. The areal velocity $\tfrac12\, r \times v$ is constant to
+round-off, 1e-10, because the stepping scheme conserves angular momentum exactly for a force that points at a
+centre.
+</div>
+</Scenario>
+
+## Escape velocity
+
+<Scenario id="escape-velocity" height={460}>
+<div slot="intuition">
+Throw something straight up and it comes back. Throw it harder and it goes higher before it does. But gravity
+weakens with distance, so the total it can take from the thing's motion on the way out is finite. Leave with more
+than that and it never comes back: gravity slows it for ever and never stops it.
+
+For the Earth that speed is 11.2 km/s. Drag the launch arrow across it and see the answer change from a maximum height
+to a speed left over.
+</div>
+<div slot="maths">
+Energy conservation between the surface, radius $R$, and far away:
+
+$$
+\tfrac12 u^2 - \frac{G M}{R} \ge 0
+\quad\Longrightarrow\quad
+v_\text{esc} = \sqrt{\frac{2 G M}{R}} = \sqrt{2 g R} .
+$$
+
+Below it, the height reached is $h = R \,/\, (v_\text{esc}^2 / u^2 - 1)$; above it, the speed far away is
+$\sqrt{u^2 - v_\text{esc}^2}$. Note $h$ is not $u^2 / 2g$: that formula assumes $g$ stays the same all the way up.
+</div>
+<div slot="engine">
+The rocket is a body with one force on it, and the scene ends when it touches the Earth again. Its maximum height
+matches the formula to 1e-5, and above the escape speed its speed ten Earth radii out agrees with energy
+conservation to 1e-5. A launch is followed for at most six hours: just under the escape speed the return takes days.
+</div>
+</Scenario>
