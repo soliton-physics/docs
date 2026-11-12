@@ -2,7 +2,7 @@
 title: Scenes as JSON
 description: Every scenario is a JSON file you can export, edit, load back and run in a notebook.
 sidebar:
-  order: 6
+  order: 7
 ---
 
 A scene is data. The scenario catalogue produces one, the playground loads one, and the Python package runs one.
@@ -57,7 +57,12 @@ build it: an unknown body id, a missing mass, an unsupported schema.
 
 `{"applied": {"body", "force", "point"?, "from"?, "until"?}}`, `{"torque": {"body", "torque"}}`,
 `{"spring": {"a", "b", "stiffness", "rest_length"?}}`, `{"linear_drag": {"body", "coefficient"}}`,
-`{"quadratic_drag": {...}}`, `{"driving": {"body", "amplitude", "angular_frequency", "phase"?}}`.
+`{"quadratic_drag": {...}}`, `{"driving": {"body", "amplitude", "angular_frequency", "phase"?}}`,
+`{"gravitation": {"constant", "fixed"?: [{"at": [x, y], "mass"}]}}`.
+
+`gravitation` is Newton's law between every pair of moving bodies, and from each fixed mass: the planet a satellite
+goes round. A scene in space sets `world.gravity` to `[0, 0]`. If it takes hours, add `"playback": 400` at the top
+level, the seconds of simulation to show per second of watching.
 
 Anchors are `{"fixed": [x, y]}` or `{"body": {"id": "...", "local": [x, y]}}`.
 
@@ -94,7 +99,9 @@ it begins free.
 
 Choose **Remix** on any scenario and it opens in the sandbox as your own copy. Move bodies, add balls, boxes, ropes,
 rods, springs and pins, change masses and friction, and press play. **Save** downloads the scene as JSON, **Open**
-loads one, and **Share** copies a link that carries the whole scene. Edit a paused run and the playground first takes
+loads one, and **Share** copies a link that carries the whole scene. Under **Gravity** you choose the downward pull
+(Earth, Mars, the Moon, none) and how strongly bodies pull on each other; the **Orbits sandbox** in the gallery starts
+you with a sun and two planets. Edit a paused run and the playground first takes
 the world as it stands, so the change applies to what you see.
 
 ## In a notebook

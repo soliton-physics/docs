@@ -11,17 +11,19 @@ scenario.
 - [x] Bodies, forces, velocity Verlet, the energy ledger
 - [x] Pins, rods, ropes over pulleys, massive pulleys and flywheels
 - [x] Contact with Coulomb friction and restitution, impact timing
-- [x] The NCERT class 11 catalogue, 16 scenarios with textbook answers
+- [x] The NCERT class 11 catalogue, 22 scenarios with textbook answers
 - [x] Scenes as JSON, finish rules, snapshots
 - [x] A hand on the physics: grab a body in a running simulation
-- [ ] Newtonian gravity: orbits, Kepler's laws, escape velocity
-- [ ] Damped and driven oscillators, resonance, coupled oscillators
+- [x] Newtonian gravity: a circular orbit, an elliptical orbit and Kepler's laws, escape velocity
+- [x] Damped and driven oscillators, resonance, coupled oscillators
+- [ ] A resonance curve as a graph
 - [ ] The rest of the class 11 catalogue: banked roads, conical pendulum, springs in series
 
 ## Playground
 
 - [x] Canvas-first stage, timeline scrubbing, one inspector
 - [x] Sandbox: build a world from balls, boxes, ropes, rods, springs and pins, and share it by link
+- [x] Gravity between bodies in the sandbox, with an orbits world to start from
 - [ ] Draw any polygon; inclines and walls as tools
 - [ ] Notebook widget that reuses the playground's renderer
 

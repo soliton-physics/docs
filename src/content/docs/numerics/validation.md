@@ -26,6 +26,13 @@ Every solver in the engine ships with tests that run in CI on every change. Thre
 | Seesaw | balanced stays still; tipping angular acceleration | 1e-9 |
 | Bouncing ball | apex ratios $e^2$, first landing time | 3e-5, 1e-6 s |
 | Massive pulley, flywheel | acceleration, both tensions, rim speed | 1e-8 |
+| Circular orbit | speed constant, closes after one period, energy | 1e-4, one step, 1e-9 |
+| Elliptical orbit | farthest point and slowest speed; areal velocity (Kepler's second law) | 1e-5, 1e-10 |
+| Escape velocity | maximum height below it; speed far away above it | 1e-5 |
+| Two free masses | circle their common centre: separation, momentum, energy | 1e-7, 1e-12, 1e-9 |
+| Damped oscillator | position against the closed form over six seconds | 1e-5 m |
+| Driven oscillator | steady amplitude below, near and above resonance | 2e-3 |
+| Coupled oscillators | each normal mode against one cosine; beats against the sum of two | 2e-5 m, 5e-5 m |
 | Every catalogue scenario | builds, runs, round-trips through JSON | passes |
 
 ## Waves
