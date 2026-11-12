@@ -2,7 +2,7 @@
 title: Oscillations
 description: A mass on a spring and the simple pendulum.
 sidebar:
-  order: 5
+  order: 6
 ---
 
 import Scenario from '../../../components/Scenario.astro';
@@ -52,5 +52,102 @@ with $K$ the complete elliptic integral of the first kind, computed by the arith
 <div slot="engine">
 The string is a rod constraint solved with RATTLE, which keeps the length exact and the energy drift at 1e-10 over
 twenty periods. At 2 rad amplitude the period matches the elliptic integral to 1.7e-8 with second-order convergence.
+</div>
+</Scenario>
+
+## Damped oscillator
+
+<Scenario id="damped-oscillator">
+<div slot="intuition">
+Real oscillators run down. Here the block feels a drag that grows with its speed, like a hand moving through water.
+Each swing is a fixed fraction smaller than the one before, so the amplitude halves again and again in equal times.
+
+Turn the damping up and the swings die faster and come very slightly less often. Turn it up far enough and the block
+does not swing at all: it creeps back to rest. The boundary between the two is called critical damping, and it is what
+a good door closer is tuned to.
+</div>
+<div slot="maths">
+$m\ddot x + b\dot x + kx = 0$. With $\gamma = b/2m$ and $\omega_0 = \sqrt{k/m}$, the block oscillates when
+$\gamma < \omega_0$:
+
+$$
+x(t) = A\, e^{-\gamma t} \cos(\omega_d t + \varphi), \qquad
+\omega_d = \sqrt{\omega_0^2 - \gamma^2} .
+$$
+
+The swing halves every $\ln 2 / \gamma$ seconds.
+</div>
+<div slot="engine">
+A force that depends on velocity makes the last half of each step implicit; the engine solves it by a few fixed-point
+iterations, which keeps the scheme second order. The block follows the closed form to 1e-5 m over six seconds, and
+the energy ledger shows every joule the spring loses arriving in "dissipated".
+</div>
+</Scenario>
+
+## Driven oscillator and resonance
+
+<Scenario id="driven-oscillator">
+<div slot="intuition">
+Now something pushes the block back and forth in a steady rhythm. At first the motion is a muddle of the block's own
+rhythm and the push's. The block's own part dies away, as in the damped oscillator, and what is left keeps time with
+the push, not with the spring.
+
+How far it swings depends on how close the push's rhythm is to the block's own. Slide the driving frequency towards
+the natural frequency and the swing grows several times larger for the same force. That is resonance: a child on a
+swing, a wine glass and a singer, a bridge and marching feet.
+</div>
+<div slot="maths">
+$m\ddot x + b\dot x + kx = F_0 \cos\omega t$. Once the start has died away,
+
+$$
+x(t) = A \cos(\omega t - \delta), \qquad
+A = \frac{F_0}{\sqrt{(k - m\omega^2)^2 + (b\omega)^2}}, \qquad
+\tan\delta = \frac{b\omega}{k - m\omega^2} .
+$$
+
+The amplitude is largest at $\omega = \sqrt{\omega_0^2 - 2\gamma^2}$, a little below the natural frequency, and the
+lighter the damping the taller and narrower the peak.
+</div>
+<div slot="engine">
+The scene runs for six decay times and then five steady cycles, so the swing measured at the end is the steady one;
+it matches the formula to 2e-3 at driving frequencies below, near and above resonance. In the energy ledger the push
+appears as work done and the drag as dissipated, and in the steady state the two grow at the same rate.
+</div>
+</Scenario>
+
+## Coupled oscillators
+
+<Scenario id="coupled-oscillators">
+<div slot="intuition">
+Two identical blocks, each on its own spring, joined by a weaker spring between them. Pull one aside and let go. It
+swings, but each swing tugs the other through the middle spring, and little by little the motion drains across: the
+first block comes to rest while the second swings at full size. Then it all drains back.
+
+There are exactly two ways to start them where this does not happen. Pull both the same way and the middle spring
+never stretches, so each swings as if alone. Pull them apart by equal amounts and they mirror each other for ever,
+a little faster, because the middle spring now helps. Every other motion is a mixture of these two. Drag the two
+knobs to try all three.
+</div>
+<div slot="maths">
+With outer springs $k$ and a middle spring $k'$, the two normal modes are
+
+$$
+\omega_1 = \sqrt{\frac{k}{m}} \quad\text{(together)}, \qquad
+\omega_2 = \sqrt{\frac{k + 2k'}{m}} \quad\text{(against each other)} .
+$$
+
+Starting one block at $a$ and the other at rest gives both modes equally:
+
+$$
+x_1 = a \cos\!\frac{(\omega_2 - \omega_1)t}{2}\, \cos\!\frac{(\omega_2 + \omega_1)t}{2} ,
+$$
+
+a fast swing inside a slow envelope. The motion has crossed over completely after $\pi / (\omega_2 - \omega_1)$.
+</div>
+<div slot="engine">
+Nothing about modes is built in: there are three springs and two blocks on a track. Started together or against each
+other, each block follows a single cosine to 2e-5 m over six seconds; started with one alone it follows the sum of
+the two to 5e-5 m over two full exchanges. The energy tab shows the total staying put while it moves between the
+blocks.
 </div>
 </Scenario>
