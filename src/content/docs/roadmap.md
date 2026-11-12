@@ -30,6 +30,16 @@ scenario.
 - [x] Draw any shape corner by corner; inclines and walls as tools
 - [ ] Notebook widget that reuses the playground's renderer
 
+## Waves, class 11
+
+- [x] Travelling waves on a string and in air, and the speed of a wave on a string
+- [x] Superposition, pulses crossing, reflection at a fixed and at a free end
+- [x] Standing waves on a string, air columns closed and open, beats
+- [x] Read any point of a wave: displacement, velocity, amplitude, phase, and the phase difference between two points
+- [x] A wave lab: take any wave apart into its sine waves and pulses, change them, add more, share by link
+- [ ] The Doppler effect
+- [ ] Waves in two dimensions: ripples and two-source interference
+
 ## Nonlinear waves
 
 - [x] Korteweg–de Vries
