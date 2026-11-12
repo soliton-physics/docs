@@ -33,6 +33,16 @@ Every solver in the engine ships with tests that run in CI on every change. Thre
 | Damped oscillator | position against the closed form over six seconds | 1e-5 m |
 | Driven oscillator | steady amplitude below, near and above resonance | 2e-3 |
 | Coupled oscillators | each normal mode against one cosine; beats against the sum of two | 2e-5 m, 5e-5 m |
+| Stopping distance | distance and time to stop | 1e-6, 2 ms |
+| Projectile on an incline | time of flight and range on three slopes | 5e-4, 8 cm |
+| Uniform circular motion | speed, radius, tension | round-off, round-off, 1e-5 |
+| Two blocks and a string | acceleration and tension, with and without friction | 1e-8 |
+| Lift | the floor's push at four accelerations, including free fall | 1e-6 N |
+| Recoil | both speeds, total momentum | 1e-10, 1e-9 |
+| Block and ball on a spring | greatest compression, energy | 1e-4 |
+| Glancing collision | right angle, momentum, energy; angle and speeds | round-off; 0.5°, 1 % |
+| Torque on a rod | angular speed and angle after two seconds | 1e-8, 1e-5 |
+| Vertical spring, springs in parallel and in series | period | 1e-5, 1e-5, 2e-3 |
 | Every catalogue scenario | builds, runs, round-trips through JSON | passes |
 
 ## Waves

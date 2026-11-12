@@ -56,9 +56,12 @@ build it: an unknown body id, a missing mass, an unsupported schema.
 ### Forces
 
 `{"applied": {"body", "force", "point"?, "from"?, "until"?}}`, `{"torque": {"body", "torque"}}`,
-`{"spring": {"a", "b", "stiffness", "rest_length"?}}`, `{"linear_drag": {"body", "coefficient"}}`,
+`{"spring": {"a", "b", "stiffness", "rest_length"?, "pushes_only"?}}`, `{"linear_drag": {"body", "coefficient"}}`,
 `{"quadratic_drag": {...}}`, `{"driving": {"body", "amplitude", "angular_frequency", "phase"?}}`,
 `{"gravitation": {"constant", "fixed"?: [{"at": [x, y], "mass"}]}}`.
+
+A spring with `"pushes_only": true` has a free end: it pushes when squeezed shorter than its natural length and does
+nothing otherwise, which is the spring a block runs into.
 
 `gravitation` is Newton's law between every pair of moving bodies, and from each fixed mass: the planet a satellite
 goes round. A scene in space sets `world.gravity` to `[0, 0]`. If it takes hours, add `"playback": 400` at the top
