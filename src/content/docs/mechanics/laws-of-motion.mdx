@@ -1,6 +1,6 @@
 ---
 title: Laws of motion
-description: Friction on an incline, pushing a block, the Atwood machine, a block pulled by a hanging mass.
+description: Friction on an incline, pushing a block, the Atwood machine, blocks joined by a string, apparent weight in a lift, and recoil.
 sidebar:
   order: 2
 ---
@@ -100,5 +100,87 @@ The normal force on the block is $m_1 g$ regardless.
 <div slot="engine">
 The table is a static polygon with friction, the rope bends over a pulley at its edge. After the hanging mass lands
 on the floor the rope goes slack, which the event log reports, and a frictionless block simply keeps sliding.
+</div>
+</Scenario>
+
+## Two blocks joined by a string
+
+<Scenario id="connected-blocks">
+<div slot="intuition">
+Pull the front block and the string drags the other along. Both move together, so they share one acceleration, set by
+your pull and their total mass. The string, though, only has to move the block behind it, so its tension is less than
+your pull: the fraction of the total mass that it is hauling.
+
+Now add floor friction. The acceleration drops, but watch the tension: it does not change at all. Friction takes from
+each block in proportion to its mass, exactly as the pull is shared.
+</div>
+<div slot="maths">
+For the pair, $F - \mu(m_1 + m_2)g = (m_1 + m_2)\,a$. For the block behind alone, $T - \mu m_1 g = m_1 a$. Together:
+
+$$
+a = \frac{F}{m_1 + m_2} - \mu g, \qquad T = \frac{m_1}{m_1 + m_2}\, F .
+$$
+
+</div>
+<div slot="engine">
+The string is a rope constraint between two points on the blocks, and its tension is whatever keeps its length fixed.
+The answer agrees to eight figures with and without friction. If the pull is too small to move the blocks, the
+tension is not fixed by the laws of motion alone (either block's friction could be holding), and no value is claimed.
+</div>
+</Scenario>
+
+## Apparent weight in a lift
+
+<Scenario id="lift">
+<div slot="intuition">
+You feel heavier when a lift starts upward and lighter when it starts down. Your weight, the pull of the Earth, has
+not changed. What you feel, and what a bathroom scale reads, is the push of the floor on your feet, and the floor
+must push harder than your weight to accelerate you upward and less hard to let you accelerate down.
+
+Slide the acceleration to −9.8 m/s², the lift in free fall. The floor's push drops to zero: you and the lift fall
+together, and a scale under you reads nothing. That is weightlessness, and it is what astronauts in orbit feel.
+</div>
+<div slot="maths">
+With the lift accelerating upward at $a$, the forces on the person are the floor's push $N$ up and $mg$ down:
+
+$$
+N - mg = ma \quad\Longrightarrow\quad N = m\,(g + a) .
+$$
+
+A scale shows $N / g$ kilograms.
+</div>
+<div slot="engine">
+The lift's floor is a body on a vertical track, hauled by a cable with exactly the force that gives floor and
+passenger the chosen acceleration. The person simply stands on it. The normal force in the free-body diagram is then
+the apparent weight, found by the contact solver and not put in: it matches $m(g+a)$ to a millionth of a newton,
+including zero in free fall.
+</div>
+</Scenario>
+
+## Recoil of a gun
+
+<Scenario id="recoil">
+<div slot="intuition">
+When the charge fires, it pushes the shell forward and the gun backward with equal forces, for the same length of
+time. Equal force for equal time means equal momentum, in opposite directions: the total was zero before and is zero
+after. The gun is heavier, so it moves more slowly.
+
+Energy is not shared so evenly. The light shell, moving fast, takes nearly all of it. That is why the shell is
+dangerous and the recoil is only a shove.
+</div>
+<div slot="maths">
+Momentum is conserved, starting from rest:
+
+$$
+M V = m v \quad\Longrightarrow\quad V = \frac{m}{M}\, v .
+$$
+
+The kinetic energies are in the inverse ratio of the masses, so the shell carries a fraction $M / (M + m)$ of the
+energy released.
+</div>
+<div slot="engine">
+The charge is a pair of equal and opposite forces that act for two hundredths of a second: Newton's third law, as it
+is. How long they act does not matter, only the impulse. Afterwards the total momentum is zero to round-off, and the
+energy tab shows the work done by the charge equal to the kinetic energy of the two together.
 </div>
 </Scenario>

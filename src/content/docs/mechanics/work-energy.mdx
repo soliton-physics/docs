@@ -1,6 +1,6 @@
 ---
 title: Work, energy and power
-description: Collisions and the bob in a vertical circle.
+description: Collisions head-on and glancing, the bob in a vertical circle, and springs that store and return energy.
 sidebar:
   order: 3
 ---
@@ -54,5 +54,91 @@ Tension at the bottom is $m (v^2/L + g)$.
 The string is a rope constraint, so it cannot push. When the required tension would be negative the engine lets the
 rope go slack and emits a `rope_slack` event. Validated: the event appears when launched at 95 % of the critical speed
 and not at 105 %.
+</div>
+</Scenario>
+
+## A block runs into a spring
+
+<Scenario id="spring-compression">
+<div slot="intuition">
+A block slides along a smooth floor into a spring. The spring pushes back harder the more it is squeezed, slowing the
+block until, for an instant, it stops. At that instant all the block's kinetic energy is stored in the spring. Then the
+spring gives every joule back, and the block leaves at the speed it came in with, the other way.
+
+Open the energy tab and watch kinetic turn into potential and back, with the total not moving.
+</div>
+<div slot="maths">
+At the greatest compression $x$ the block is at rest:
+
+$$
+\tfrac12 m u^2 = \tfrac12 k x^2 \quad\Longrightarrow\quad x = u \sqrt{\frac{m}{k}} .
+$$
+
+The spring's push is then at its largest, $k x$. A stiffer spring is squeezed less but pushes harder.
+</div>
+<div slot="engine">
+The spring here has a free end: it pushes when it is squeezed shorter than its natural length and does nothing
+otherwise, as a real spring that is not hooked to anything does. It has no mass, as in the textbook, so no energy is
+lost when the block meets it. Compression, greatest force and return speed all agree to a part in 10 000.
+</div>
+</Scenario>
+
+## A ball dropped onto a spring
+
+<Scenario id="ball-on-spring" height={460}>
+<div slot="intuition">
+Set the ball gently on the spring and it would squeeze it by its own weight and rest there. Dropped from a height, it
+squeezes the spring much further. It arrives moving, and it keeps losing height, and so keeps gaining energy from
+gravity, all the while the spring is slowing it.
+
+That second part is easy to miss. The energy the spring has to take in is not $mgh$ but $mg(h + x)$.
+</div>
+<div slot="maths">
+From the release to the lowest point the ball falls $h + x$ and is at rest at both ends:
+
+$$
+m g (h + x) = \tfrac12 k x^2
+\quad\Longrightarrow\quad
+x = \frac{m g + \sqrt{(m g)^2 + 2 k\, m g\, h}}{k} .
+$$
+
+Even for $h = 0$, a ball let go from the top of the spring, this gives $x = 2mg/k$: twice the squeeze it would rest
+at.
+</div>
+<div slot="engine">
+The same free-ended spring, standing upright. The ball is kept on the vertical line through it. The greatest
+compression matches the formula to a part in 10 000 at three different heights and stiffnesses, and the scene ends a
+moment after the spring has thrown the ball back up.
+</div>
+</Scenario>
+
+## A glancing collision
+
+<Scenario id="oblique-collision">
+<div slot="intuition">
+Two equal discs on a smooth table, seen from above; one is at rest and the other hits it off-centre. However glancing
+the blow, they leave at right angles to each other. Hit it nearly square and the struck disc takes nearly everything;
+barely clip it and it hardly moves, while the first carries on almost undisturbed. In between, the right angle holds.
+
+Drag the incoming disc sideways to change how off-centre the hit is.
+</div>
+<div slot="maths">
+Momentum is conserved, $\mathbf u = \mathbf v_1 + \mathbf v_2$, and so, for an elastic collision of equal masses, is
+kinetic energy, $u^2 = v_1^2 + v_2^2$. Squaring the first and comparing with the second gives
+
+$$
+\mathbf v_1 \cdot \mathbf v_2 = 0 .
+$$
+
+Smooth discs can only push each other along the line joining their centres, so the struck disc leaves along that
+line, at an angle $\varphi$ to the incoming path with $\sin\varphi = b / 2R$ for an offset $b$. Then
+$v_2 = u\cos\varphi$ and $v_1 = u\sin\varphi$.
+</div>
+<div slot="engine">
+The right angle, the momentum and the kinetic energy all hold to round-off: they follow from the collision being
+elastic, whatever its geometry. How the speed is shared depends on exactly where the discs touch. The engine notices
+a contact up to one step late, with the discs a few millimetres into each other, which turns the line of centres by
+a fraction of a degree: the angles agree to about half a degree and the speeds to about one percent, a little worse
+for a hit that barely grazes.
 </div>
 </Scenario>

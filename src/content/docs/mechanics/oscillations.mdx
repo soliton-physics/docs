@@ -1,6 +1,6 @@
 ---
 title: Oscillations
-description: A mass on a spring and the simple pendulum.
+description: Masses on springs level and hanging, springs combined, the simple pendulum, damping, driving and coupling.
 sidebar:
   order: 6
 ---
@@ -149,5 +149,82 @@ Nothing about modes is built in: there are three springs and two blocks on a tra
 other, each block follows a single cosine to 2e-5 m over six seconds; started with one alone it follows the sum of
 the two to 5e-5 m over two full exchanges. The energy tab shows the total staying put while it moves between the
 blocks.
+</div>
+</Scenario>
+
+## A mass on a vertical spring
+
+<Scenario id="vertical-spring" height={460}>
+<div slot="intuition">
+Hang a mass on a spring and let go from where the spring is relaxed. It drops, overshoots, and bobs up and down about
+a point lower than where it started: the place it would hang at rest, where the spring's pull equals its weight.
+
+Gravity moves the middle of the swing down. It does nothing else. The period is exactly what the same mass and spring
+have on a level table, and it does not depend on $g$: the same spring bobs at the same rate on the Moon.
+</div>
+<div slot="maths">
+At rest, $k x_0 = m g$, so $x_0 = mg/k$. Measured from there, with $y = x - x_0$, the weight cancels:
+
+$$
+m \ddot y = -k y \quad\Longrightarrow\quad T = 2\pi \sqrt{\frac{m}{k}} .
+$$
+
+Released from the relaxed length the mass swings a distance $x_0$ either side, so its lowest point is $2 x_0$ below the
+release.
+</div>
+<div slot="engine">
+One spring force and gravity, on a body kept on a vertical line. The lowest point, the period and the greatest speed
+all match to a part in 100 000. The energy tab shows three things trading: kinetic, the spring's potential and
+gravity's.
+</div>
+</Scenario>
+
+## Springs in series
+
+<Scenario id="springs-in-series">
+<div slot="intuition">
+Join two springs end to end and pull. Each one stretches, and the stretches add, so the pair gives more than either
+alone: together they are softer than the softer of the two. The softer spring does most of the stretching.
+
+Each spring carries the full force, because one pulls on the other. That is the rule for anything joined end to end.
+</div>
+<div slot="maths">
+Both feel the same force $F$, so $x_1 = F/k_1$, $x_2 = F/k_2$ and the total stretch is $x_1 + x_2$:
+
+$$
+\frac{1}{k_\text{eff}} = \frac{1}{k_1} + \frac{1}{k_2}
+\quad\Longrightarrow\quad
+k_\text{eff} = \frac{k_1 k_2}{k_1 + k_2}, \qquad T = 2\pi\sqrt{\frac{m}{k_\text{eff}}} .
+$$
+
+</div>
+<div slot="engine">
+Two spring forces with a small body where they join. The textbook's join has no mass; here it has a five-hundredth of
+the block's, which lengthens the period by about a part in a thousand. It starts where the two springs already pull
+equally, so it has nothing to shake about.
+</div>
+</Scenario>
+
+## Springs in parallel
+
+<Scenario id="springs-in-parallel">
+<div slot="intuition">
+Fix two springs side by side to the same block and pull. Now they must stretch by the same amount, and each pulls
+back, so their pulls add: together they are stiffer than the stiffer of the two. The stiffer spring does most of the
+pulling.
+
+Compare the period here with the one in series, with the same two springs and the same block. Stiffer means faster.
+</div>
+<div slot="maths">
+Both stretch by the same $x$, so the forces are $k_1 x$ and $k_2 x$:
+
+$$
+k_\text{eff} = k_1 + k_2, \qquad T = 2\pi\sqrt{\frac{m}{k_1 + k_2}} .
+$$
+
+</div>
+<div slot="engine">
+Two spring forces on one block, held level so that the stiffer one, pulling harder on its side, cannot turn it. The
+period matches to a part in 100 000.
 </div>
 </Scenario>

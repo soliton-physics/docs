@@ -1,6 +1,6 @@
 ---
 title: Rotation
-description: Rolling down an incline and the seesaw.
+description: Rolling down an incline, pulleys and flywheels with mass, the seesaw, and torque on a pivoted rod.
 sidebar:
   order: 4
 ---
@@ -95,5 +95,33 @@ The plank is pinned to the ground and each mass is pinned to the plank: three ex
 Balanced, the plank's angular velocity stays below 1e-9. Tipping, the initial angular acceleration matches the
 formula to 1e-9. This scenario is also the one that caught a solver bug: the position projection has to be
 Gauss–Seidel, not Jacobi, or three coupled pins diverge.
+</div>
+</Scenario>
+
+## Torque on a pivoted rod
+
+<Scenario id="torque-on-rod">
+<div slot="intuition">
+A rod on a smooth table, pivoted at one end and seen from above, with a steady twist applied. It turns faster and
+faster at a constant rate, just as a mass under a steady force speeds up at a constant rate.
+
+What plays the part of mass is not the rod's mass alone but where that mass is. Make the rod twice as long, with the
+same mass, and it is four times harder to spin up, because its mass is now further from the pivot. Drag the end of the
+rod to see it.
+</div>
+<div slot="maths">
+Torque is to rotation what force is to motion in a line, and the moment of inertia $I$ is what mass is:
+
+$$
+\tau = I \alpha, \qquad I_\text{rod about one end} = \tfrac13 M L^2 .
+$$
+
+From rest, $\omega = \alpha t$ and $\theta = \tfrac12 \alpha t^2$, the same as $v = at$ and $s = \tfrac12 a t^2$.
+</div>
+<div slot="engine">
+The rod is a rigid body with the moment of inertia of a thin rod about its middle, $\tfrac1{12} M L^2$, pinned at one
+end. Nothing tells the engine about $\tfrac13 M L^2$: that comes from the pin forcing the centre to go round too. The
+angular speed after two seconds matches to eight figures, and the work done by the torque, $\tau\theta$, equals the
+kinetic energy $\tfrac12 I \omega^2$.
 </div>
 </Scenario>

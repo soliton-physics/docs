@@ -1,6 +1,6 @@
 ---
 title: Motion in a straight line and in a plane
-description: Free fall, a ball thrown upward, and projectiles.
+description: Free fall, a ball thrown upward, stopping distance, projectiles on level ground and on a slope, and uniform circular motion.
 sidebar:
   order: 1
 ---
@@ -99,5 +99,89 @@ and the range is $u \cos\theta \, T$. Energy conservation gives the landing spee
 </div>
 <div slot="engine">
 The cliff is a static polygon and the ground a half-plane. Both are contacts the engine handles the same way.
+</div>
+</Scenario>
+
+## Stopping distance
+
+<Scenario id="stopping-distance">
+<div slot="intuition">
+A block sliding across a rough floor loses speed at a steady rate until it stops. The surprise is in how far it goes.
+At twice the speed it does not slide twice as far but four times: it has twice the speed to lose, which takes twice as
+long, and it is moving twice as fast on average while it does. This is why a car at 100 km/h needs four times the
+braking distance of one at 50.
+</div>
+<div slot="maths">
+Kinetic friction $\mu_k m g$ gives a steady deceleration $a = \mu_k g$, whatever the mass. From $v^2 = u^2 - 2as$ with
+$v = 0$:
+
+$$
+s = \frac{u^2}{2 \mu_k g}, \qquad t = \frac{u}{\mu_k g} .
+$$
+
+</div>
+<div slot="engine">
+The floor's friction is found at each step from the contact, not put in as a formula, and the distance comes out to
+a part in a million. The energy tab shows the block's kinetic energy moving into "dissipated" joule for joule: the
+work friction does is $\mu_k m g\, s = \tfrac12 m u^2$.
+</div>
+</Scenario>
+
+## Projectile on an incline
+
+<Scenario id="projectile-on-incline" height={460}>
+<div slot="intuition">
+Throw a ball up a hillside and it lands sooner than it would on level ground, because the ground comes up to meet
+it. The best angle is no longer 45°. It is halfway between the slope and straight up: on a 30° hill, 60° above the
+horizontal. Drag the launch arrow and watch the range grow to its greatest value, shown beside it, and shrink again.
+</div>
+<div slot="maths">
+Take the slope at angle $\alpha$ and launch at $\beta$ above the slope, so at $\theta = \alpha + \beta$ above the
+horizontal. Measuring along and across the slope, gravity has components $g \sin\alpha$ and $g \cos\alpha$, and the
+ball returns to the slope when its motion across it is used up:
+
+$$
+T = \frac{2 u \sin\beta}{g \cos\alpha}, \qquad
+R = \frac{2 u^2 \sin\beta \cos(\alpha + \beta)}{g \cos^2\alpha} .
+$$
+
+The range is greatest when $\beta = 45° - \alpha/2$, and then $R_\text{max} = u^2 / \big(g\,(1 + \sin\alpha)\big)$.
+</div>
+<div slot="engine">
+The slope is a fixed triangle and the ball a body that touches it once. The ball starts 2 mm clear of the slope so
+that it begins in free flight, which adds a few ten-thousandths of a second to the time of flight. The landing
+point is found by working back from how far the ball had sunk in when the contact was noticed.
+</div>
+</Scenario>
+
+## Uniform circular motion
+
+<Scenario id="circular-motion">
+<div slot="intuition">
+A stone whirled on a string, seen from above on a smooth table. Its speed never changes, yet it is accelerating all
+the time, because its direction keeps changing. Left alone it would go in a straight line; the string keeps pulling
+it off that line, always towards the centre.
+
+Look at the two arrows: velocity along the circle, the string's pull across it, at right angles. A force at right
+angles to the motion changes direction and nothing else, so the stone neither speeds up nor slows down, and the
+string does no work.
+</div>
+<div slot="maths">
+For speed $v$ on a circle of radius $r$:
+
+$$
+a = \frac{v^2}{r} \ \text{towards the centre}, \qquad T = \frac{m v^2}{r}, \qquad \text{period} = \frac{2\pi r}{v} .
+$$
+
+Double the speed and the string must pull four times as hard.
+</div>
+<div slot="engine">
+The string is a constraint on length, not a force law: the engine finds each step the tension that keeps the stone at
+distance $r$, and reports it. Nothing tells it about $v^2/r$. Speed and radius hold to round-off and the tension
+matches $m v^2 / r$ to a part in 100 000.
+
+This view is from above, so gravity points into the screen and does nothing in the picture. Motion in a horizontal
+circle seen from the side, such as a conical pendulum or a car on a banked road, needs the third dimension and is
+not in this engine.
 </div>
 </Scenario>
