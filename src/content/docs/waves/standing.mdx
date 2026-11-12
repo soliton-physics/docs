@@ -1,0 +1,123 @@
+---
+title: Standing waves and beats
+description: Harmonics of a string, air columns closed and open, and beats.
+sidebar:
+  order: 3
+---
+
+import Wave from '../../../components/Wave.astro';
+
+## Standing waves on a string
+
+<Wave id="standing-wave">
+<div slot="intuition">
+A string fixed at both ends, like a guitar's. A wave running along it reflects at one end, runs back, reflects again,
+and the string ends up carrying two equal waves going opposite ways. Added together they do not travel at all. Some
+points, the nodes, never move. Halfway between them, the antinodes swing the most. Everything between two nodes rises
+and falls together.
+
+Only some patterns fit, because both ends have to be nodes: one loop, two, three. Each has its own frequency, and those
+are the notes the string can play.
+</div>
+<div slot="maths">
+
+$$
+y = A\sin(kx - \omega t) + A\sin(kx + \omega t) = 2A\,\sin kx\,\cos\omega t .
+$$
+
+Nodes are where $\sin kx = 0$, half a wavelength apart. With nodes at both ends of a length $L$:
+
+$$
+L = \frac{n\lambda}{2}, \qquad f_n = \frac{n v}{2L} = \frac{n}{2L}\sqrt{\frac{T}{\mu}}, \qquad n = 1, 2, 3, \dots
+$$
+
+</div>
+<div slot="try">
+- Click a node: the amplitude there reads zero and it has no phase. Click an antinode: the full swing.
+- Click two points in the same loop: in step. Put the second in the next loop: exactly out of step.
+- Step the harmonic from 1 upward and watch the frequency go up in equal steps.
+- Press Remix. The standing wave opens as its two travelling waves; change the amplitude of one and it starts to
+  crawl.
+</div>
+</Wave>
+
+## Air column closed at one end
+
+<Wave id="closed-pipe">
+<div slot="intuition">
+Blow across the top of a bottle. The air inside sets into a standing wave. At the closed bottom the air has nowhere to
+go, so it stays put: a node. At the open top it moves freely: an antinode.
+
+A node at one end and an antinode at the other is a quarter of a wavelength, or three quarters, or five. So the pipe
+sounds its fundamental, then three times that, then five times. The even harmonics are missing.
+</div>
+<div slot="maths">
+
+$$
+L = (2n - 1)\frac{\lambda}{4}, \qquad f = (2n - 1)\,\frac{v}{4L}, \qquad n = 1, 2, 3, \dots
+$$
+
+Where the air moves least, the pressure changes most: the closed end is a displacement node and a pressure antinode.
+</div>
+<div slot="try">
+- Step the mode from 1 to 3 and read the frequency: 170, 510, 850 Hz for a half-metre pipe.
+- Halve the length. Every frequency doubles.
+</div>
+</Wave>
+
+## Air column open at both ends
+
+<Wave id="open-pipe">
+<div slot="intuition">
+A flute, or any pipe open at both ends. The air moves freely at each end, so both are antinodes, with a node between.
+That is half a wavelength, and then two halves, three halves: every harmonic is there.
+
+The longest wave that fits is half as long as in a closed pipe of the same length, so an open pipe sounds an octave
+higher.
+</div>
+<div slot="maths">
+
+$$
+L = \frac{n\lambda}{2}, \qquad f_n = \frac{n v}{2L}, \qquad n = 1, 2, 3, \dots
+$$
+
+</div>
+<div slot="try">
+- Compare the fundamental with the closed pipe at the same length: 340 Hz against 170 Hz.
+- Count the nodes for each harmonic: one, two, three.
+</div>
+</Wave>
+
+## Beats
+
+<Wave id="beats">
+<div slot="intuition">
+Play two notes that are almost but not quite the same. For a moment their waves are in step and the sound is loud. A
+little later one has gained half a cycle on the other, they cancel, and it is quiet. Then loud again. The swelling is
+called beats, and it gets slower as the notes get closer. A musician tunes a string by listening for the beats to
+stop.
+</div>
+<div slot="maths">
+At the listener:
+
+$$
+s = s_0\cos\omega_1 t + s_0\cos\omega_2 t
+  = \Big[2s_0\cos\frac{(\omega_1 - \omega_2)\,t}{2}\Big]\cos\frac{(\omega_1 + \omega_2)\,t}{2} .
+$$
+
+A note at the average frequency, with a loudness that rises and falls. It is loud twice in each cycle of the bracket,
+so
+
+$$
+f_\text{beat} = |f_1 - f_2| .
+$$
+
+</div>
+<div slot="try">
+- Click any point. The little graph in the panel is what a listener standing there hears: the note swelling and
+  fading.
+- Bring the two frequencies together. The swells stretch out, and at equal frequencies they stop.
+- The frequencies here are low, 20 and 22 Hz, so that the separate waves can be seen. At 256 and 260 Hz the same thing
+  happens, four times a second.
+</div>
+</Wave>

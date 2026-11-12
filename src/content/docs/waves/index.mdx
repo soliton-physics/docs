@@ -1,0 +1,49 @@
+---
+title: Waves, class 11
+description: The NCERT Waves chapter, live. Travelling waves, sound, superposition, reflection, standing waves, air columns and beats.
+sidebar:
+  order: 0
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+These pages follow the Waves chapter of NCERT class 11 physics. Every wave runs live in the page, and opens in the
+playground where you can change it and read it.
+
+<CardGrid>
+  <LinkCard title="Travelling waves" description="A wave on a string, a sound wave, and what sets the speed of a wave." href="/waves/travelling/" />
+  <LinkCard title="Superposition and reflection" description="Two waves adding, two pulses crossing, and a pulse coming back from a fixed end and from a free end." href="/waves/superposition/" />
+  <LinkCard title="Standing waves and beats" description="Harmonics of a string, air columns closed and open, and beats." href="/waves/standing/" />
+</CardGrid>
+
+## What the playground gives you
+
+- **Read any point.** Click anywhere on a wave and the panel shows that point's displacement, the velocity and
+  acceleration of the string or the air there, the amplitude it swings with, and its phase. Under them is a small
+  graph of that one point over the last few cycles. Drag the point along the wave to watch them change.
+- **Compare two points.** Click a second point and you get the distance between them, as metres and as a fraction of a
+  wavelength, and the phase difference. Half a wavelength apart reads "exactly out of step".
+- **The numbers worth knowing.** Wavelength, frequency, period, speed, wave number and angular frequency are always on
+  screen, worked out from the sliders, with the formulas typeset underneath. On the wave itself the wavelength and
+  amplitude are marked, and nodes and antinodes are labelled N and A.
+- **Slow motion, honestly labelled.** A 170 Hz sound wave is shown about five hundred times slower than life, and the
+  clock says so.
+- **Remix.** Every wave is a sum of sine waves and pulses. Press Remix and it opens in the wave lab as its parts: change
+  each one, send it the other way, add more. A standing wave comes apart into the two travelling waves that make it.
+  The link in the address bar carries your mixture, so a lab can be handed to a class.
+
+## How these are computed
+
+The waves on these pages are closed formulas, sums of $A\sin(kx \mp \omega t + \varphi)$ and of pulses
+$f(x \mp vt)$, evaluated in your browser at each instant. Nothing is integrated step by step, so there is no numerical
+error to speak of: a reading is the formula's value. That is also why any point can be read at any time.
+
+Reflection is done the way the textbook argues it. The wall is replaced by a mirror-image pulse coming from behind
+it, upside down for a fixed end and upright for a free one, and the two are added.
+
+The [solitons](/physics/kdv/) are a different matter. They obey nonlinear equations with no such shortcut, and are
+integrated by the engine.
+
+## Not here yet
+
+The Doppler effect, and waves in two dimensions (ripples, interference from two sources), are not built.

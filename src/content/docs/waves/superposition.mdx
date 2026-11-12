@@ -1,0 +1,117 @@
+---
+title: Superposition and reflection
+description: Two waves adding, two pulses crossing, and a pulse coming back from a fixed end and from a free end.
+sidebar:
+  order: 2
+---
+
+import Wave from '../../../components/Wave.astro';
+
+## Two waves add
+
+<Wave id="superposition">
+<div slot="intuition">
+Send two waves down the same string and the string does not choose between them. At every point it moves by what the
+first asks plus what the second asks. That is the whole principle of superposition.
+
+When the two are in step, crest on crest, they build a wave twice as tall. Half a cycle apart, crest on trough, they
+cancel and the string lies still, although two waves are passing through it. In between you get something in between.
+The faint lines are the two waves; the bright one is the string.
+</div>
+<div slot="maths">
+For two equal waves a phase $\varphi$ apart:
+
+$$
+y = A\sin(kx - \omega t) + A\sin(kx - \omega t + \varphi)
+  = 2A\cos\frac{\varphi}{2}\,\sin\!\Big(kx - \omega t + \frac{\varphi}{2}\Big) .
+$$
+
+For unequal ones the amplitude of the sum is
+
+$$
+A_R = \sqrt{A_1^2 + A_2^2 + 2A_1A_2\cos\varphi},
+$$
+
+largest, $A_1 + A_2$, at $\varphi = 0, 2\pi, \dots$ and smallest, $|A_1 - A_2|$, at $\varphi = \pi, 3\pi, \dots$
+</div>
+<div slot="try">
+- Slide the phase difference to 180° with equal amplitudes: the bright line goes flat.
+- Make the amplitudes unequal and try 180° again. They can no longer cancel completely; what is left is the difference.
+- At 120° with equal amplitudes the sum has the same amplitude as each wave. Check it against $2A\cos(\varphi/2)$.
+</div>
+</Wave>
+
+## Two pulses cross
+
+<Wave id="pulses-crossing">
+<div slot="intuition">
+Two pulses run at each other along one string. While they overlap, their heights add. Then they separate and each
+carries on with the shape and speed it had, as if it had met nothing.
+
+Set one up and one down and at one instant the string is completely straight. It has not stopped: every piece of it
+is moving. All the energy is in that motion for that moment, and it is what rebuilds the two pulses on the far side.
+</div>
+<div slot="maths">
+Any shape moving right and any shape moving left can share a string:
+
+$$
+y(x,t) = f(x - vt) + g(x + vt) .
+$$
+
+With $g = -f$ mirrored, $y = 0$ everywhere at the instant of overlap, while $\partial y/\partial t \neq 0$.
+</div>
+<div slot="try">
+- Pause when the string is flat, click a point near the middle and read its velocity. It is far from zero.
+- Make both heights positive. At the overlap the string reaches their sum.
+- Press Remix in the playground and add a third pulse.
+</div>
+</Wave>
+
+## Reflection at a fixed end
+
+<Wave id="reflection-fixed">
+<div slot="intuition">
+The string is tied to a wall. When the pulse arrives it pulls up on the wall. The wall does not move, so it pulls down
+on the string just as hard, and that downward tug is what starts the pulse on its way back: upside down.
+</div>
+<div slot="maths">
+The end cannot move, $y(L,t) = 0$ at all times. That is satisfied by adding to the incoming pulse its mirror image,
+turned over:
+
+$$
+y(x,t) = f(x - vt) - f(2L - x - vt) .
+$$
+
+Turning a sine wave over is the same as shifting it by half a cycle: reflection at a fixed end changes the phase by
+$\pi$.
+</div>
+<div slot="try">
+- Switch on "show each wave" in the playground's dock. The mirror-image pulse comes out of the wall as the real one
+  goes in.
+- Click a point right at the wall and watch its reading through the whole reflection: zero.
+</div>
+</Wave>
+
+## Reflection at a free end
+
+<Wave id="reflection-free">
+<div slot="intuition">
+Now the string ends in a light ring that slides freely up a smooth rod. Nothing holds the end down. When the pulse
+arrives the ring is flung up, and with nothing beyond it to pull against it overshoots to twice the height of the
+pulse. As it comes down it pulls the string along behind it and sends the pulse back the same way up.
+</div>
+<div slot="maths">
+A free end can have no sideways force on it, so the string must meet the rod level:
+$\partial y/\partial x = 0$ at $x = L$. The mirror image is now added without turning it over:
+
+$$
+y(x,t) = f(x - vt) + f(2L - x - vt), \qquad y(L,t) = 2f(L - vt) .
+$$
+
+There is no change of phase.
+</div>
+<div slot="try">
+- Watch the ring: it rises to twice the pulse's height. The panel gives the number.
+- Compare with the fixed end, same pulse. Same speed, same shape coming back, one upside down and one not.
+</div>
+</Wave>

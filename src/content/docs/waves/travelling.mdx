@@ -1,0 +1,105 @@
+---
+title: Travelling waves
+description: A wave on a string, a sound wave, and what sets the speed of a wave.
+sidebar:
+  order: 1
+---
+
+import Wave from '../../../components/Wave.astro';
+
+## A travelling wave
+
+<Wave id="travelling-wave">
+<div slot="intuition">
+Flick one end of a long string and a shape runs along it. Nothing travels with the shape. Watch any one bead: it goes
+up and down in the same place, and the bead beside it does the same a moment later. A wave is that lateness, handed
+along.
+
+Two different speeds are on screen. The pattern moves along at the wave speed. Each bead moves up and down at a speed
+of its own, fastest as it passes through the middle and zero at the top and bottom.
+</div>
+<div slot="maths">
+A wave moving towards $+x$:
+
+$$
+y(x,t) = A\sin(kx - \omega t + \varphi), \qquad k = \frac{2\pi}{\lambda}, \qquad \omega = 2\pi f = \frac{2\pi}{T} .
+$$
+
+The pattern moves one wavelength in one period, so
+
+$$
+v = \frac{\lambda}{T} = f\lambda = \frac{\omega}{k} .
+$$
+
+The velocity of a bead is $\partial y/\partial t = -A\omega\cos(kx - \omega t + \varphi)$, at most $A\omega$. Two
+points $\Delta x$ apart differ in phase by $\Delta\varphi = 2\pi\,\Delta x/\lambda$.
+</div>
+<div slot="try">
+- Open it in the playground and click a crest. Its velocity reads zero and its acceleration is at its largest. Drag
+  the point to where the string crosses the axis: now the velocity is largest and the acceleration zero.
+- Click a second point exactly one wavelength from the first. The phase difference reads 0°, in step. Move it to half a
+  wavelength: 180°, exactly out of step.
+- Double the frequency. The wave moves twice as fast here, because the wavelength slider has not moved. Compare with
+  the string below, where the speed is fixed.
+</div>
+</Wave>
+
+## A sound wave
+
+<Wave id="sound-wave">
+<div slot="intuition">
+Sound is a wave too, but the air moves back and forth along the direction of travel, not across it. The strip under
+the graph shows layers of air. Where they crowd together is a compression, marked C; where they thin out, a
+rarefaction, R. Those patches travel. Each layer only shuffles to and fro about its own place.
+
+The graph above is the same wave drawn the usual way: how far each layer is from where it belongs. Notice where the
+compressions sit. They are not at the crests of that graph but where it crosses zero going down, because that is where
+the layers behind have moved forward and the ones ahead have moved back.
+</div>
+<div slot="maths">
+With $s$ the displacement of a layer along $x$:
+
+$$
+s(x,t) = s_0\sin(kx - \omega t), \qquad \Delta p = -B\,\frac{\partial s}{\partial x} = -B k s_0\cos(kx - \omega t),
+$$
+
+where $B$ is the bulk modulus. Pressure and displacement are a quarter of a wavelength out of step. In a gas
+
+$$
+v = \sqrt{\frac{\gamma P}{\rho}},
+$$
+
+Newton's formula with Laplace's correction, about 340 m/s in air at room temperature.
+</div>
+<div slot="try">
+- Click a compression and read its displacement: zero. Click a crest of the graph: the layers there are evenly spaced.
+- Raise the frequency. The speed of sound does not change, so the compressions get closer together.
+- The displacement is a few thousandths of a millimetre. The strip exaggerates it so that it can be seen.
+</div>
+</Wave>
+
+## Speed of a wave on a string
+
+<Wave id="wave-on-string">
+<div slot="intuition">
+How fast a wave runs along a string depends only on the string: how hard it is pulled and how heavy it is. A tighter
+string snaps each piece back faster, so the wave goes faster. A heavier string is more sluggish, so it goes slower.
+
+The frequency is up to whoever is shaking the end. Shake faster and the wave does not hurry; the crests just come
+closer together.
+</div>
+<div slot="maths">
+For tension $T$ and mass per unit length $\mu$:
+
+$$
+v = \sqrt{\frac{T}{\mu}}, \qquad \lambda = \frac{v}{f} .
+$$
+
+Four times the tension doubles the speed.
+</div>
+<div slot="try">
+- Change the frequency and watch the speed in the panel: it does not move. The wavelength does.
+- Make the tension four times as large. The speed doubles and so does the wavelength.
+- Change the amplitude. Nothing about the speed changes: loud and soft travel together.
+</div>
+</Wave>
