@@ -63,7 +63,19 @@ scenario.
 - [ ] Induction, inductance, alternating current and the LCR circuit
 - [ ] Ferromagnets and hysteresis
 - [ ] A magnetic field in the plane acting on a moving charge (helical paths): needs the third dimension
-- [ ] Ray optics and wave optics
+
+## Optics, class 12
+
+- [x] Exact ray tracing: reflection, Snell's law, total internal reflection, through mirrors, glass of any outline
+      made of lines and arcs, and ideal thin lenses
+- [x] Paraxial images, real and virtual, found from the rays
+- [x] Fifteen scenarios with textbook answers: concave and convex mirrors, refraction at a flat surface, a glass
+      slab, apparent depth, total internal reflection, an optical fibre, a curved surface, convex and concave
+      lenses, the lens maker's formula, lenses in contact, the prism, the telescope, the compound microscope
+- [ ] A bench of your own: place and move mirrors, lenses and blocks
+- [ ] Dispersion: a refractive index that depends on colour, the spectrum from a prism, the rainbow
+- [ ] The eye and its defects; the simple microscope; reflecting telescopes
+- [ ] Wave optics: Huygens' principle, Young's double slit, diffraction, polarisation
 
 ## Nonlinear waves
 

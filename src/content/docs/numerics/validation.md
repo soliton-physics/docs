@@ -66,6 +66,24 @@ Every solver in the engine ships with tests that run in CI on every change. Thre
 | Free magnets and a magnetised bead | momentum, angular momentum, energy | 1e-15, 1e-12, 1e-6 |
 | Every catalogue scenario | builds, runs, round-trips through JSON | passes |
 
+## Ray optics
+
+| What | Test | Error |
+|---|---|---|
+| Reflection | angle of reflection equals angle of incidence, 0° to 80° | round-off |
+| Refraction | Snell's law at 5° to 85°; a ray sent back retraces its path | round-off |
+| Total internal reflection | refracts 0.01° inside the critical angle, reflects 0.01° beyond it | exact |
+| Ideal thin lens | five rays from one point, to the edge of the lens, all through the image point | round-off |
+| Spherical mirror | near-axis rays cross at R/2; a ray at half the radius crosses well short | 1e-6 |
+| Mirror formula, concave and convex | image distance and magnification at five object distances | 1e-6 |
+| Lens formula, convex and concave | the same; no image reported with the object at the focus | 1e-6 |
+| Flat surface, slab, apparent depth, curved surface | traced angles and image against the formulas | 1e-9, 1e-6 |
+| Prism | deviation at four angles; least at the predicted angle and larger either side | 1e-9 |
+| Optical fibre | only total reflections inside the acceptance angle; leaks 5° outside it | exact |
+| Lens maker's formula | a real lens 8 mm thick against the thin-lens focus; marginal focus short of it | 2 % |
+| Lenses in contact, telescope, microscope | focal length and magnifying power | 1e-4, 1e-9, 1e-6 |
+| Every optics scenario | builds, traces, round-trips through JSON | passes |
+
 ## Waves
 
 | Equation | Test | Error |

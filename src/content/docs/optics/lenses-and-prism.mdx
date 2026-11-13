@@ -1,0 +1,152 @@
+---
+title: Lenses and the prism
+description: Refraction at a curved surface, convex and concave lenses, the lens maker's formula, lenses in contact and the prism.
+sidebar:
+  order: 2
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+## Refraction at a curved surface
+
+<Scenario id="spherical-surface" optics>
+<div slot="intuition">
+Before a lens, one curved face. Rays from a point on the axis meet the glass at different places, and the normal
+there, the radius, tilts more the further out they hit. So the outer rays are bent more, and all of them come
+together at a point inside the glass. Bring the object closer and that point runs away; closer still and the rays
+are spreading even after the surface, as though from a point behind the object.
+</div>
+<div slot="maths">
+From a medium of index $n_1$ into one of $n_2$, through a surface of radius $R$:
+
+$$
+\frac{n_2}{v} - \frac{n_1}{u} = \frac{n_2 - n_1}{R} .
+$$
+
+From air into glass of 1.5 with $R = 10$ cm and $u = -40$ cm: $1.5/v = 0.05 - 0.025$, so $v = 60$ cm.
+</div>
+<div slot="engine">
+The glass is a long block with a spherical cap for a face. The image from near-axis rays matches the formula to a
+part in a million. The outer rays of the fan cross the axis a little early.
+</div>
+</Scenario>
+
+## Image formed by a convex lens
+
+<Scenario id="convex-lens" optics>
+<div slot="intuition">
+Three rays from the top of the object. The one parallel to the axis is bent through the far focus. The one
+through the centre of the lens goes straight on. The one that passes through the near focus comes out parallel.
+They meet at the top of the image.
+
+Drag the object in. Beyond 2F the image is smaller; at 2F the same size; between 2F and F larger, and further
+away. At the focus the rays leave parallel and there is no image. Inside the focus they spread, and traced back
+they give an upright, enlarged, virtual image on the same side as the object: a magnifying glass.
+</div>
+<div slot="maths">
+$$
+\frac1v - \frac1u = \frac1f, \qquad m = \frac vu, \qquad P = \frac1f \ \ (\text{dioptres, with } f \text{ in metres}).
+$$
+
+With $u = -40$ cm and $f = +15$ cm, $v = +24$ cm and $m = -0.6$.
+</div>
+<div slot="engine">
+This lens is ideal: a line that changes each ray's slope by its height over $f$. Every ray from a point, however
+far from the axis, goes to the same image point, so the red rays meet exactly at the blue arrow. With the object
+at the focus the two near-axis rays leave parallel, and the engine reports no image.
+</div>
+</Scenario>
+
+## Image formed by a concave lens
+
+<Scenario id="concave-lens" optics>
+<div slot="intuition">
+A concave lens is thinner in the middle and spreads light. The ray parallel to the axis leaves as though it had
+come from the focus on the object's own side. The image is always there, between the lens and that focus:
+upright, smaller, virtual. Lenses like this correct short sight.
+</div>
+<div slot="maths">
+The same formula with $f$ negative. With $u = -30$ cm and $f = -15$ cm, $v = -10$ cm and $m = +\tfrac13$.
+</div>
+<div slot="engine">
+The same ideal lens with a negative focal length; the arrowheads on its symbol point inward.
+</div>
+</Scenario>
+
+## The lens maker's formula
+
+<Scenario id="lens-maker" optics>
+<div slot="intuition">
+Here the lens is real: glass, with two curved faces, and Snell's law at each. Make a face more curved and the
+focus moves in. Use denser glass and it moves in again. That is all a lens maker has to work with.
+
+Now widen the beam with the knob. The outer rays cross the axis short of where the inner ones do. A lens with
+spherical faces has no single focus for a wide beam; the formula gives the focus for rays near the axis.
+</div>
+<div slot="maths">
+For a lens in air with faces of radius $R_1$ and $R_2$, both bulging outward:
+
+$$
+\frac1f = (n - 1)\left(\frac1{R_1} + \frac1{R_2}\right).
+$$
+
+With both radii 30 cm and $n = 1.5$, $f = 30$ cm and the power is 3.33 D.
+</div>
+<div slot="engine">
+The lens is two spherical caps meeting at a sharp edge, 10 cm across and about 8 mm thick in the middle. Two
+rays a fifth of a millimetre from the axis give a focus within about 1 % of the thin-lens formula; the small difference
+is the thickness the formula leaves out. The second number is where the outermost rays of the beam cross, and it
+falls short by more as the beam widens.
+</div>
+</Scenario>
+
+## Two lenses in contact
+
+<Scenario id="lenses-in-contact" optics>
+<div slot="intuition">
+The first lens bends the beam towards its focus; the second, right behind it, bends it again. Together they act
+as one lens whose power is the sum of the two. Slide the second lens's focal length negative to make it concave:
+its power is negative, it undoes part of the first, and the focus moves away. Make the two equal and opposite and
+the beam goes on parallel, as through a window.
+</div>
+<div slot="maths">
+$$
+\frac1f = \frac1{f_1} + \frac1{f_2}, \qquad P = P_1 + P_2 .
+$$
+
+A 20 cm lens with a 30 cm lens: $P = 5 + 3.33 = 8.33$ D, $f = 12$ cm.
+</div>
+<div slot="engine">
+Two ideal lenses a thousandth of a millimetre apart, each met in turn. The traced focus matches the formula to a
+part in ten thousand.
+</div>
+</Scenario>
+
+## Refraction through a prism
+
+<Scenario id="prism" optics>
+<div slot="intuition">
+A prism bends a ray towards its base at the first face and again at the second. Drag the incoming ray and watch
+the deviation. It is large for a glancing ray, falls as the ray steepens, reaches a least value, and rises again.
+At the least value the path is symmetrical: the ray inside runs parallel to the base and comes out at the angle
+it went in. Measuring that one angle is how the refractive index of a glass is found.
+</div>
+<div slot="maths">
+$$
+\delta = i + e - A, \qquad r_1 + r_2 = A .
+$$
+
+At minimum deviation $i = e$ and $r_1 = r_2 = A/2$, so
+
+$$
+n = \frac{\sin\frac{A + D_m}{2}}{\sin\frac A2} .
+$$
+
+For $A = 60°$ and $n = 1.5$, $D_m = 37.2°$ at $i = 48.6°$.
+</div>
+<div slot="engine">
+Two exact refractions. The deviation traced at the predicted angle equals $D_m$ to round-off and is larger six
+degrees either side. If the ray inside meets the second face beyond the critical angle it is totally reflected
+and leaves by the base; the answers then say it does not come out of the second face.
+</div>
+</Scenario>

@@ -68,3 +68,28 @@ world.free();
 | `field_on(body)`, `fixed_field_at(x, y)`, `magnetic_field_lines(n, cx, cy, reach)` | the same six at a body, without its own magnet's field; `[Bx, By]` of the fixed magnets; their field lines |
 | `flux_through(cx, cy, r)`, `distributions()` | electric flux out of a sphere, summed over it; fixed wires, sheets and shells of charge |
 | `scene_json()`, `scene_json_now()` | the scene as built, and as it stands at this moment |
+
+## Ray optics
+
+```js
+import init, { OpticsBench, optics_catalogue } from '@soliton-physics/engine';
+
+await init();
+optics_catalogue();                                   // ids, titles, parameter schemas
+const bench = new OpticsBench('convex-lens', { focal: 15, distance: 40 });
+bench.answers();                                      // [{ name, value, measured }]
+bench.rays();                                         // [{ points, events, end, angles, faint }]
+bench.free();
+```
+
+A bench is traced once, when it is made; change a number by making another.
+
+| Method | Returns |
+|---|---|
+| `elements()` | what is on the bench, as lines to draw: `{ kind: 'mirror' \| 'screen' \| 'glass' \| 'lens', points, index, focal }` |
+| `rays()` | every ray: the points it turns at, and at each an event with its kind, normal and the two angles in degrees |
+| `objects()` | each object arrow with its paraxial image, `{ base, tip, real }`, or `null` for one at infinity |
+| `answers()` | the textbook's value for each answer and, where the rays can give it, the traced one |
+| `marks()`, `axis()`, `view()`, `title()` | named points, the principal axis, a suggested frame |
+| `index_at(x, y)` | the refractive index at a point |
+| `scene_json()`, `OpticsBench.from_scene(json)` | the bench as data, and a bench from data |

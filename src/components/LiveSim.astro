@@ -2,14 +2,16 @@
 interface Props {
   preset?: string;
   scenario?: string;
+  /** The scenario is one of the optics bench's, not a mechanics one. */
+  optics?: boolean;
   height?: number;
   /** What stands under the frame; the default is for what the engine integrates. */
   caption?: string;
 }
 
-const { preset, scenario, height = 460, caption = 'Live in your browser, computed by the engine.' } = Astro.props;
+const { preset, scenario, optics = false, height = 460, caption = 'Live in your browser, computed by the engine.' } = Astro.props;
 const playground = `${(import.meta.env.PUBLIC_PLAYGROUND_URL ?? 'https://soliton-playground.vercel.app').replace(/\/$/, '')}/`;
-const query = scenario ? `?mode=mechanics&scenario=${scenario}` : `?mode=waves&preset=${preset}`;
+const query = scenario ? `?mode=${optics ? 'optics' : 'mechanics'}&scenario=${scenario}` : `?mode=waves&preset=${preset}`;
 const src = `${playground}${query}&embed`;
 const full = `${playground}${query}`;
 const title = scenario ?? preset ?? 'simulation';

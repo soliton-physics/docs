@@ -5,13 +5,20 @@ import LiveSim from './LiveSim.astro';
 interface Props {
   id: string;
   height?: number;
+  /** A scenario of the optics bench. */
+  optics?: boolean;
 }
 
-const { id, height = 420 } = Astro.props;
+const { id, height = 420, optics = false } = Astro.props;
 ---
 
 <section class="scenario">
-  <LiveSim scenario={id} height={height} />
+  <LiveSim
+    scenario={id}
+    optics={optics}
+    height={height}
+    caption={optics ? 'Live in your browser: every ray traced by the engine. Drag the knob.' : undefined}
+  />
   <Tabs>
     <TabItem label="Intuition" icon="star">
       <slot name="intuition" />

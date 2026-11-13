@@ -1,0 +1,59 @@
+---
+title: Optical instruments
+description: The astronomical telescope and the compound microscope.
+sidebar:
+  order: 3
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+Both instruments are two lenses on one axis. The lenses here are ideal thin lenses, so what you see is how the
+instrument works, without the aberrations a designer then has to fight.
+
+## An astronomical telescope
+
+<Scenario id="telescope" optics>
+<div slot="intuition">
+Light from a star arrives parallel. The objective, a lens of long focal length, brings it to a point in its focal
+plane. The eyepiece, a lens of short focal length, is placed with its own focus at that same point, so it sends the
+light on parallel again, into a relaxed eye. But the light leaves at a much steeper angle than it arrived. Two
+stars that were a little apart in the sky are far apart in the eyepiece.
+</div>
+<div slot="maths">
+In normal adjustment the lenses are $f_o + f_e$ apart and
+
+$$
+m = \frac{\beta}{\alpha} = \frac{f_o}{f_e} .
+$$
+
+A 40 cm objective with a 5 cm eyepiece magnifies 8 times in a tube 45 cm long. The image is upside down.
+</div>
+<div slot="engine">
+The magnifying power is read off one ray: the slope it leaves the eyepiece with over the slope it arrived with.
+It matches $f_o/f_e$ to round-off.
+</div>
+</Scenario>
+
+## A compound microscope
+
+<Scenario id="compound-microscope" optics height={460}>
+<div slot="intuition">
+The object sits just beyond the focus of the objective, a lens of very short focal length, which makes a real,
+enlarged image of it some way up the tube. The eyepiece is a magnifying glass held up to that image, close enough
+that the final image is virtual and stands at the distance of comfortable close viewing, 25 cm. The enlargement
+of the objective is multiplied by that of the eyepiece.
+</div>
+<div slot="maths">
+$$
+m = m_o \times m_e = \frac{v_o}{u_o}\left(1 + \frac{D}{f_e}\right), \qquad D = 25\ \text{cm}.
+$$
+
+With $f_o = 2$ cm and the object 2.5 cm away, $v_o = 10$ cm and $m_o = -4$. With $f_e = 5$ cm, $m_e = 6$. Together,
+24 times, inverted.
+</div>
+<div slot="engine">
+The final image is found by following near-axis rays through both lenses and producing them back. Its height over
+the object's matches the product of the two formulas to a part in a million. Move the object closer to the focus
+and the first image, and the tube, get longer.
+</div>
+</Scenario>

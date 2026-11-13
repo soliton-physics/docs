@@ -1,0 +1,181 @@
+---
+title: Mirrors and refraction
+description: Spherical mirrors, Snell's law, a glass slab, apparent depth, total internal reflection and the optical fibre.
+sidebar:
+  order: 1
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+## Image in a concave mirror
+
+<Scenario id="concave-mirror" optics>
+<div slot="intuition">
+Three rays from the top of the object are easy to follow. One parallel to the axis comes back through the focus.
+One aimed at the centre of curvature hits the mirror square on and comes straight back. One aimed at the pole
+leaves at the same angle on the other side of the axis. Where they meet is the top of the image.
+
+Drag the object in from far away. The image moves out and grows; at the centre of curvature it is the same size;
+between there and the focus it is enlarged. Cross the focus and the reflected rays no longer meet. They spread, as
+though from a point behind the mirror: an upright, enlarged, virtual image, the one in a shaving mirror.
+</div>
+<div slot="maths">
+$$
+\frac1v + \frac1u = \frac1f, \qquad f = \frac R2, \qquad m = \frac{h'}{h} = -\frac vu .
+$$
+
+For a concave mirror $f$ is negative. With $u = -40$ cm and $f = -15$ cm, $v = -24$ cm: a real image 24 cm in
+front of the mirror, and $m = -0.6$, upside down and smaller.
+</div>
+<div slot="engine">
+The mirror is an arc of a circle. Each ray is reflected about the normal at the point it strikes, which is the
+radius there. The image distance and magnification traced from near-axis rays match the formula to a part in a
+million wherever the object is. The red rays from a tall object cross a little short of the blue arrow's tip:
+that gap is spherical aberration, not an error.
+</div>
+</Scenario>
+
+## Image in a convex mirror
+
+<Scenario id="convex-mirror" optics>
+<div slot="intuition">
+A convex mirror bulges towards you and spreads every ray that hits it. The reflected rays never meet in front.
+Follow them backwards, behind the mirror, and they all point to one place between the pole and the focus. Wherever
+you put the object, the image is there: upright, smaller, virtual. A small image of a wide scene is what a driver
+wants from a wing mirror.
+</div>
+<div slot="maths">
+The same formula, with $f$ positive:
+
+$$
+\frac1v + \frac1u = \frac1f .
+$$
+
+With $u = -30$ cm and $f = +15$ cm, $v = +10$ cm and $m = -v/u = +\tfrac13$. As $u \to -\infty$, $v \to f$: the image
+never gets further back than the focus.
+</div>
+<div slot="engine">
+Same mirror, facing the other way. The image is found by producing the last stretch of two near-axis rays
+backwards until they cross; because they cross behind the point where the rays turned, it is reported as virtual
+and drawn dashed.
+</div>
+</Scenario>
+
+## Refraction at a flat surface
+
+<Scenario id="snells-law" optics>
+<div slot="intuition">
+Light travels more slowly in water or glass than in air, and where its speed changes it bends. Going into the
+slower medium it bends towards the normal; coming out, away from it. Drag the start of the ray round and watch
+the two angles: they are never equal, but their sines keep the same ratio.
+
+Now open the parameters and make the medium above the denser one. The ray bends away from the normal, and as
+you raise the angle it gets closer and closer to skimming the surface. Past the critical angle it cannot get out.
+</div>
+<div slot="maths">
+$$
+n_1 \sin i = n_2 \sin r, \qquad n = \frac{c}{v} .
+$$
+
+From air into water at 45°: $\sin r = \sin 45°/1.33$, so $r = 32.1°$. From a denser medium into a rarer one there
+is no $r$ once $\sin i > n_2/n_1$.
+</div>
+<div slot="engine">
+Snell's law is applied in vector form, with the refractive index sampled a hair either side of the surface to
+learn what the ray is passing between. The traced angle matches to round-off at every incidence from 0° to 89°.
+Sent back along its own path, a ray retraces it exactly.
+</div>
+</Scenario>
+
+## Through a glass slab
+
+<Scenario id="glass-slab" optics>
+<div slot="intuition">
+A slab has two parallel faces. The ray is bent towards the normal going in and away from it by the same amount
+coming out, so it leaves parallel to the way it arrived. The whole effect of the slab is to shift the ray
+sideways. A thicker slab or a steeper ray shifts it more.
+</div>
+<div slot="maths">
+With $\sin i = n \sin r$, the ray emerges at $i$ again, displaced sideways by
+
+$$
+d = \frac{t\,\sin(i - r)}{\cos r} .
+$$
+</div>
+<div slot="engine">
+Two refractions, each exact. The traced total turning is zero to round-off and the angle of emergence equals the
+angle of incidence.
+</div>
+</Scenario>
+
+## Apparent depth
+
+<Scenario id="apparent-depth" optics>
+<div slot="intuition">
+Rays from a coin at the bottom spread as they rise, and spread more once they leave the water, because each is
+bent away from the normal. An eye above follows them straight back, along the dashed lines, to a point above the
+coin. The pool looks about three quarters as deep as it is.
+</div>
+<div slot="maths">
+For rays close to the vertical,
+
+$$
+\text{apparent depth} = \frac{\text{real depth}}{n} .
+$$
+
+At 20 cm in water, $20/1.33 = 15$ cm: the coin appears raised by 5 cm.
+</div>
+<div slot="engine">
+The image is found from two rays a hair either side of the vertical, produced backwards. It matches $d/n$ to a
+part in a million. The outer rays of the fan, traced back, cross a little higher still: seen at a slant the coin
+looks shallower again.
+</div>
+</Scenario>
+
+## Total internal reflection
+
+<Scenario id="total-internal-reflection" optics>
+<div slot="intuition">
+A lamp under water sends rays up in all directions. The steep ones get out, bent towards the surface. As a ray
+leans over, the one in the air leans faster, until it is skimming the surface. That is the critical angle. Any ray
+flatter than that has nowhere to go in the air, and all of it is reflected: the surface becomes a perfect mirror.
+From below, the world above is squeezed into a bright circle overhead.
+</div>
+<div slot="maths">
+$$
+\sin i_c = \frac{1}{n}, \qquad i_c = 48.8° \text{ for water}.
+$$
+
+A lamp at depth $h$ lights a circle of radius $h\tan i_c = h/\sqrt{n^2 - 1}$ on the surface.
+</div>
+<div slot="engine">
+Nothing switches this on. Snell's law asks for $\sin r > 1$, which no angle has, and the ray is reflected by the
+ordinary law instead. A hundredth of a degree inside the critical angle the ray leaves at more than 88° to the
+normal; a hundredth beyond it, it is turned back.
+</div>
+</Scenario>
+
+## An optical fibre
+
+<Scenario id="optical-fibre" optics>
+<div slot="intuition">
+A fibre is a thread of glass inside a coat of glass that is slightly less dense. Light sent in nearly along the
+thread meets the wall at a glancing angle, well beyond the critical angle, and is totally reflected, again and
+again, all the way along. Nothing leaks, even round a bend. Drag the ray so that it enters more steeply: once it
+is outside the fibre's acceptance angle it meets the wall too squarely and escapes into the coat.
+</div>
+<div slot="maths">
+At the wall, $\sin i_c = n_2/n_1$. Light entering the end at $\theta$ is carried if
+
+$$
+\sin\theta \le \sqrt{n_1^2 - n_2^2} .
+$$
+
+With a core of 1.50 and a cladding of 1.40 the widest angle is 32.6°.
+</div>
+<div slot="engine">
+The core is a rectangle of glass inside a larger rectangle of cladding; where two pieces overlap, the inner one
+is what is there. Inside the acceptance angle every meeting with the wall is a total reflection. Five degrees
+outside it, the first meeting is a refraction into the cladding.
+</div>
+</Scenario>

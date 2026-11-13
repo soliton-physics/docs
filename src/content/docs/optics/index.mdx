@@ -1,0 +1,53 @@
+---
+title: Ray optics, class 12
+description: Mirrors, refraction, lenses, the prism and optical instruments, with every ray traced live beside its textbook answer.
+sidebar:
+  order: 0
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+These pages follow the NCERT class 12 chapter on ray optics and optical instruments. Light here is a ray: a
+straight line that turns only where it meets a mirror, a lens, or the surface between two materials. The engine
+follows each ray to the point where it actually strikes and applies the law of reflection or Snell's law there,
+exactly, with no small-angle shortcut.
+
+On every bench you can drag the round knob: the top of the object, the start of a ray, the eyepiece. The picture
+is traced again as you move it. Beside each textbook answer is the same quantity **traced**, read off the rays
+themselves.
+
+<CardGrid>
+  <LinkCard title="Mirrors and refraction" description="Concave and convex mirrors, Snell's law, a glass slab, apparent depth, total internal reflection, an optical fibre." href="/optics/mirrors-and-refraction/" />
+  <LinkCard title="Lenses and the prism" description="A curved surface, convex and concave lenses, the lens maker's formula, lenses in contact, the prism." href="/optics/lenses-and-prism/" />
+  <LinkCard title="Optical instruments" description="The astronomical telescope and the compound microscope." href="/optics/instruments/" />
+</CardGrid>
+
+## Signs
+
+Distances follow the textbook's convention. Light travels from left to right. Distances are measured from the pole
+of a mirror or the centre of a lens: positive to the right, negative to the left, heights positive upward. So an
+object on the left is at a negative $u$, a concave mirror has a negative focal length, and a real image in a
+mirror has a negative $v$.
+
+## Two kinds of image
+
+The mirror and lens formulas are about rays close to the axis and objects of small height. The image the engine
+reports, and draws as the blue arrow, is that one: it follows two rays a hair either side of the axis and finds
+where they cross. A dashed arrow is a virtual image, with dashed lines showing the rays produced backwards to it.
+
+The red rays you see are the real ones, traced exactly from the top of the object. For a spherical mirror they
+miss the blue arrow's tip by a little when the object is tall, because a spherical mirror does not bring wide rays
+to exactly one point. That is spherical aberration, and it is real.
+
+## What is and is not here
+
+- **Mirrors and glass are real surfaces.** Reflection and refraction are worked out at the true point of contact.
+- **The lenses in most scenes are ideal thin lenses,** a line that turns every ray by exactly what the lens formula
+  asks. They have no thickness and no aberration. The lens maker's scene is the exception: it is a real lens of
+  glass, traced face by face.
+- **Each ray either reflects or refracts.** The faint reflection off a glass surface that also transmits is not
+  drawn, and neither is absorption.
+- **One colour.** The refractive index does not depend on wavelength, so there is no dispersion and no rainbow from
+  the prism yet.
+- **Not built yet:** the eye and its defects, the simple microscope on its own, reflecting telescopes, a plane
+  mirror scene, and a bench where you place your own mirrors and lenses.

@@ -70,4 +70,13 @@ scene.electric_potential(0.0, 1.0)            # volts
 run.force("test charge", "electric")          # also "magnetic"
 mechanics.scenario("gauss-law").electric_flux(-1.0, 0.0, 0.7)        # N·m²/C out of a sphere: q inside / ε₀
 mechanics.scenario("bar-magnet-field").magnetic_field(0.2, 0.0)      # (Bx, By) in tesla, in the page
+
+# Ray optics
+from soliton import optics
+bench = optics.scenario("convex-lens", focal=15, distance=40)
+bench.answers()                               # {'Image distance, v (cm)': 24.0, ...} from the formulas
+bench.measured()                              # the same, read off the traced rays
+bench.rays()                                  # list of (N, 2) arrays of points, metres
+bench.images()                                # [{'base': (0.24, 0.0), 'tip': (0.24, -0.018), 'real': True}]
+optics.Bench.from_json(bench.to_json())       # scenes are data here too
 ```
