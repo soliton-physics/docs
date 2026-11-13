@@ -52,13 +52,18 @@ build it: an unknown body id, a missing mass, an unsupported schema.
 | `friction` | `[static, kinetic]`; default smooth |
 | `restitution` | default 1 (elastic); the pair uses the smaller of the two bodies' values |
 | `inertia` | override the shape's moment of inertia |
+| `charge` | electric charge in coulombs, at the body's centre; default none. A charged `static` body is a fixed charge |
+| `magnet` | `{"moment", "length"}`: makes the body a bar magnet along its own x axis, with moment in A·m² from south pole to north and `length` metres between the poles |
+| `magnetisable` | `{"susceptibility", "volume"}`: a small sphere of a material a magnet magnetises; χ negative for a diamagnet, positive for a paramagnet |
 
 ### Forces
 
 `{"applied": {"body", "force", "point"?, "from"?, "until"?}}`, `{"torque": {"body", "torque"}}`,
 `{"spring": {"a", "b", "stiffness", "rest_length"?, "pushes_only"?}}`, `{"linear_drag": {"body", "coefficient"}}`,
 `{"quadratic_drag": {...}}`, `{"driving": {"body", "amplitude", "angular_frequency", "phase"?}}`,
-`{"gravitation": {"constant", "fixed"?: [{"at": [x, y], "mass"}]}}`.
+`{"gravitation": {"constant", "fixed"?: [{"at": [x, y], "mass"}]}}`,
+`{"electrostatics": {"fixed"?: [...]}}`, `{"electric_field": {"field": [Ex, Ey], "region"?, "angular_frequency"?, "phase"?}}`,
+`{"magnetic_field": {"strength", "region"?}}`, `{"magnetostatics": {"background"?: [Bx, By]}}`.
 
 A spring with `"pushes_only": true` has a free end: it pushes when squeezed shorter than its natural length and does
 nothing otherwise, which is the spring a block runs into.
@@ -66,6 +71,19 @@ nothing otherwise, which is the spring a block runs into.
 `gravitation` is Newton's law between every pair of moving bodies, and from each fixed mass: the planet a satellite
 goes round. A scene in space sets `world.gravity` to `[0, 0]`. If it takes hours, add `"playback": 400` at the top
 level, the seconds of simulation to show per second of watching.
+
+`electrostatics` is Coulomb's law between every pair of charged bodies. `electric_field` is a uniform field in N/C
+and `magnetic_field` one in tesla, perpendicular to the page and positive towards you. Either fills the plane, or
+only the rectangle `"region": {"min": [x, y], "max": [x, y]}`. An electric field with an `angular_frequency`
+alternates as a cosine.
+
+`electrostatics` can also hold fixed spreads of charge in `fixed`: `{"wire": {"at": [x, y], "density"}}`, a long
+wire through the page in C/m; `{"sheet": {"point": [x, y], "normal": [nx, ny], "density"}}`, a large sheet seen
+edge on in C/m²; and `{"shell": {"centre": [x, y], "radius", "charge"}}`. A top-level
+`"surface": {"centre": [x, y], "radius"}` is a closed sphere to total the electric flux through.
+
+`magnetostatics` makes every body with a `magnet` act on every other, pole on pole, and on every `magnetisable`
+body, in a uniform `background` field in tesla that lies in the page: the earth's.
 
 Anchors are `{"fixed": [x, y]}` or `{"body": {"id": "...", "local": [x, y]}}`.
 

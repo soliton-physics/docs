@@ -62,4 +62,12 @@ run.events                                    # [{'time': 2.37, 'kind': 'contact
 run.finished                                  # {'time': 2.37, 'reason': 'disc touched ground'} once the problem has ended, else None
 scene.save("rolling.json"); mechanics.load("rolling.json")
 mechanics.Scene.from_json(text)               # validated; errors name the problem
+
+# Class 12: charges and fields
+scene = mechanics.scenario("field-of-two-charges")
+scene.electric_field(0.0, 1.0)                # (Ex, Ey) in N/C at a point, as the scene starts
+scene.electric_potential(0.0, 1.0)            # volts
+run.force("test charge", "electric")          # also "magnetic"
+mechanics.scenario("gauss-law").electric_flux(-1.0, 0.0, 0.7)        # N·m²/C out of a sphere: q inside / ε₀
+mechanics.scenario("bar-magnet-field").magnetic_field(0.2, 0.0)      # (Bx, By) in tesla, in the page
 ```

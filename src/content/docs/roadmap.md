@@ -40,6 +40,31 @@ scenario.
 - [ ] The Doppler effect
 - [ ] Waves in two dimensions: ripples and two-source interference
 
+## Electromagnetism, class 12
+
+- [x] Charge on a body; Coulomb's law between charges, fixed or free
+- [x] Uniform electric and magnetic fields, everywhere or between plates
+- [x] Field and potential read at any point; field lines
+- [x] Electric flux through a closed surface, summed numerically; Gauss's law
+- [x] Fixed wires, sheets and shells of charge
+- [x] Bar magnets, compass needles, a uniform background field, field lines and a lattice of needles
+- [x] Diamagnetic and paramagnetic samples in a magnet's field
+- [x] Nineteen scenarios with textbook answers. Electric charges and fields: Coulomb's law, the field of two
+      charges, a charged bob, deflection between plates, a balanced drop, a dipole, Gauss's law, a charged wire,
+      a sheet, a shell. Potential: closest approach, an accelerating voltage. Moving charges: a circle in a
+      magnetic field, the velocity selector, the cyclotron. Magnetism and matter: a bar magnet's field, a compass
+      needle, neutral points, magnetic materials
+- [x] Electromagnetic waves, from their formulas: displacement current, the travelling wave of E and B, standing
+      waves off a metal sheet, the spectrum
+- [ ] Charges, magnets and fields in the sandbox
+- [ ] Capacitors and dielectrics; equipotentials
+- [ ] Current electricity: Ohm's law, Kirchhoff's rules, the Wheatstone bridge
+- [ ] The magnetic field of a current, and the force between two wires
+- [ ] Induction, inductance, alternating current and the LCR circuit
+- [ ] Ferromagnets and hysteresis
+- [ ] A magnetic field in the plane acting on a moving charge (helical paths): needs the third dimension
+- [ ] Ray optics and wave optics
+
 ## Nonlinear waves
 
 - [x] Korteweg–de Vries

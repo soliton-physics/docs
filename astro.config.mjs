@@ -29,6 +29,7 @@ export default defineConfig({
         },
         { label: 'Mechanics, class 11', items: [{ autogenerate: { directory: 'mechanics' } }] },
         { label: 'Waves, class 11', items: [{ autogenerate: { directory: 'waves' } }] },
+        { label: 'Electromagnetism, class 12', items: [{ autogenerate: { directory: 'electromagnetism' } }] },
         { label: 'Solitons', items: [{ autogenerate: { directory: 'physics' } }] },
         { label: 'Numerics', items: [{ autogenerate: { directory: 'numerics' } }] },
         { label: 'Reference', items: [{ autogenerate: { directory: 'reference' } }] },

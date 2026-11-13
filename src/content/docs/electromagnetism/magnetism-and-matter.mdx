@@ -1,0 +1,134 @@
+---
+title: Magnetism and matter
+description: The field of a bar magnet, a compass needle swinging, neutral points in the earth's field, and what a magnet does to bismuth and aluminium.
+sidebar:
+  order: 4
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+On this page the magnetic field lies in the page, the way it does round a magnet lying on a table. A magnet is
+painted red at its north pole and blue at its south, and the small needles all over the stage are compasses: the
+red end of each points the way the field goes.
+
+## Field of a bar magnet
+
+<Scenario id="bar-magnet-field">
+<div slot="intuition">
+The lines leave the north pole, loop round, and come back in at the south. They never start or stop in empty
+space, because nobody has ever found a north pole without its south. Drag the compass along the axis, out past the
+north pole, and read the field. Now carry it to the same distance beside the middle of the magnet. The field there
+points the opposite way and is half as strong.
+</div>
+<div slot="maths">
+For a magnet of moment $m$ and length $2l$, at distance $r$ from its centre:
+
+$$
+B_\text{axis} = \frac{\mu_0}{4\pi}\,\frac{2mr}{(r^2 - l^2)^2}, \qquad
+B_\text{beside} = \frac{\mu_0}{4\pi}\,\frac{m}{(r^2 + l^2)^{3/2}}.
+$$
+
+Far away, $r \gg l$, these become $\mu_0 2m/4\pi r^3$ and $\mu_0 m/4\pi r^3$: the field of a dipole, the same
+shape as the electric field of two opposite charges.
+</div>
+<div slot="engine">
+A magnet is modelled as two poles, north and south, at its ends, each acting by an inverse-square law. Outside the
+magnet that gives exactly the two formulas above; the test checks them to round-off. Inside the magnet the true
+field runs from south to north and the model's does not, so nothing is read there. The compass is a small magnet
+on a pivot, set down already at rest: it lies along the field averaged over its own length, which near the magnet
+is a few degrees from the field at its middle.
+</div>
+</Scenario>
+
+## A compass needle set swinging
+
+<Scenario id="compass-needle">
+<div slot="intuition">
+A uniform field cannot pull a magnet anywhere, since it pulls the two poles equally in opposite directions. What it
+can do is twist. Turn the needle away from the field and let go: it swings back, overshoots, and keeps swinging.
+Make the field stronger and it swings faster. This is how a magnetic field is measured with nothing but a needle
+and a stopwatch.
+</div>
+<div slot="maths">
+$$
+\tau = mB\sin\theta, \qquad U = -mB\cos\theta .
+$$
+
+For small angles $\tau \approx -mB\theta$, which is simple harmonic motion:
+
+$$
+T = 2\pi\sqrt{\frac{I}{mB}} \quad\Longrightarrow\quad B = \frac{4\pi^2 I}{mT^2}.
+$$
+
+Let go from $\theta_0$, it passes through the field direction turning at
+$\omega = \sqrt{2mB(1 - \cos\theta_0)/I}$.
+</div>
+<div slot="engine">
+No torque is put in by hand: the field pushes on each pole and the twist follows. Released at 5° the period
+matches the formula to two parts in a thousand; at 20° it reads about 1 % long, as any pendulum does. Released at
+60° the fastest spin matches the energy equation to a part in ten thousand, and the needle's centre does not move.
+</div>
+</Scenario>
+
+## A bar magnet in the earth's field
+
+<Scenario id="neutral-point">
+<div slot="intuition">
+A magnet on a table is never alone: the earth's field is there too, pointing north, up the page. The two add.
+With the magnet's north pole pointing north, its own field beside it points south, against the earth's. At one
+distance either side the two are equal and cancel: a neutral point. The lattice of needles fades out there. Carry
+the compass to it and watch the reading drop to nothing. Then turn the magnet round, and look for the neutral
+points on its axis.
+</div>
+<div slot="maths">
+North pole pointing north, neutral points east and west at distance $d$:
+
+$$
+\frac{\mu_0}{4\pi}\,\frac{m}{(d^2 + l^2)^{3/2}} = B_H .
+$$
+
+North pole pointing south, neutral points on the axis:
+
+$$
+\frac{\mu_0}{4\pi}\,\frac{2md}{(d^2 - l^2)^2} = B_H .
+$$
+
+Either one, measured with a ruler, gives the moment of the magnet if the earth's field is known.
+</div>
+<div slot="engine">
+The earth's field is a uniform background of the size you choose; about 35 μT is its horizontal part over much of
+India. With the compass placed at the predicted point, the field on it is zero to a part in a billion of the
+earth's. The compass is itself a weak magnet, so the pointer readout a few centimetres from it includes a little of
+its field.
+</div>
+</Scenario>
+
+## Pushed out or pulled in
+
+<Scenario id="magnetic-materials">
+<div slot="intuition">
+Every material responds to a magnet, most of them far too feebly to notice. A sample of bismuth is magnetised
+against the field it sits in, and is pushed gently away from the pole, towards where the field is weaker: it is
+diamagnetic. Slide the susceptibility up past zero to aluminium's value and the sample is magnetised along the
+field and drifts in: paramagnetic. The forces are millionths of a newton next to a strong magnet. Iron's response
+is thousands of times larger and does not follow this simple rule.
+</div>
+<div slot="maths">
+A sample of volume $V$ and susceptibility $\chi$ takes on a moment $m = \chi V B/\mu_0$ along the field for
+$\chi > 0$ and against it for $\chi < 0$. In a field that changes from place to place the force on it is
+
+$$
+F = \frac{\chi V}{\mu_0}\, B\,\frac{dB}{dx} = \frac{\chi V}{2\mu_0}\,\frac{d(B^2)}{dx} .
+$$
+
+Positive $\chi$: towards stronger field. Negative: towards weaker. Bismuth has $\chi = -1.66\times10^{-4}$,
+aluminium $+2.2\times10^{-5}$, water $-9\times10^{-6}$.
+</div>
+<div slot="engine">
+The sample is a one cubic centimetre ball of mass 10 g, hanging where gravity does not matter. The engine
+magnetises it in proportion to the field at its centre and applies the force above, with the equal and opposite
+force on the magnet. The force at the start matches the formula to a part in a million, and kinetic plus magnetic
+energy holds to a part in a million as it drifts. Ferromagnets, with their saturation and memory, are not
+modelled.
+</div>
+</Scenario>

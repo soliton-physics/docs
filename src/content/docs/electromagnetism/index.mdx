@@ -1,0 +1,51 @@
+---
+title: Electromagnetism, class 12
+description: Charges and fields, magnets and matter, and electromagnetic waves, in NCERT chapter order, each running live beside its textbook answer.
+sidebar:
+  order: 0
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+These pages begin the NCERT class 12 chapters. A charge here is a body like any in mechanics with one more number,
+its charge, and the laws that move it are forces like any other. So everything from class 11 still works: the
+free-body diagram, the energy ledger, the graphs, and the textbook answer beside what the engine measures.
+
+Positive charges are drawn red with a plus sign and negative ones blue with a minus sign. An electric field is
+drawn as arrows, a magnetic field coming out of the page as dots (the tips of arrows) and one going into it as
+crosses (their tails). Move the pointer over the stage in the playground and it reads out the field and the
+potential at that point.
+
+<CardGrid>
+  <LinkCard title="Electric charges and fields" description="Coulomb's law, field lines, a charged bob, a charge between plates, a balanced drop, a dipole, Gauss's law, and the fields of a wire, a sheet and a shell." href="/electromagnetism/electric-fields/" />
+  <LinkCard title="Electrostatic potential" description="The closest a charge can come to a like charge, and the speed gained in falling through a potential difference." href="/electromagnetism/potential/" />
+  <LinkCard title="Moving charges and magnetism" description="A circle in a magnetic field, the velocity selector, the cyclotron." href="/electromagnetism/magnetism/" />
+  <LinkCard title="Magnetism and matter" description="The field of a bar magnet, a compass needle swinging, neutral points in the earth's field, diamagnets and paramagnets." href="/electromagnetism/magnetism-and-matter/" />
+  <LinkCard title="Electromagnetic waves" description="Displacement current, the wave of E and B, standing radio waves off a metal sheet, the spectrum." href="/electromagnetism/electromagnetic-waves/" />
+</CardGrid>
+
+## The size of things
+
+The charges on these pages are those of a school laboratory: microcoulombs, on beads of a few grams. The forces
+are then millinewtons and the motion takes seconds. An electron in the same fields obeys the same laws about a
+billion times faster. The numbers were chosen so that the motion can be watched and the forces read, not because
+the physics is any different.
+
+## What is not here yet
+
+Capacitors, circuits, the magnetic field of a current, induction and alternating current are not built. They are
+on the [roadmap](/roadmap/).
+
+A few things about what is here are worth knowing before you teach from it.
+
+- **A flat picture has two kinds of magnetic field.** For a moving charge the field points into or out of the
+  page, the only direction in which a charge moving in the page stays in it. For bar magnets and compasses the
+  field lies in the page. The two are not mixed in one scene, and helical paths, which need both, are not shown.
+- **Charges on bodies are points.** A long wire, a large sheet and a spherical shell of charge are there as fixed
+  sources, with the fields Gauss's law gives them. A charged rod or disc of finite size is not modelled, and
+  plates are drawn round a uniform field, but it is the field that acts.
+- **A magnet is two poles.** That is exact outside the magnet and wrong inside it. Iron and other ferromagnets,
+  with saturation and hysteresis, are not modelled, and nor is the earth's field as a dipole with dip and
+  declination: it is a uniform background.
+- **The electromagnetic waves are drawn from their formulas,** like the class 11 waves. Nothing there is found by
+  solving Maxwell's equations step by step.

@@ -1,0 +1,58 @@
+---
+title: Electrostatic potential
+description: How close a charge can come to a like charge, and the speed gained in falling through a potential difference.
+sidebar:
+  order: 2
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+## Closest approach to a fixed charge
+
+<Scenario id="closest-approach">
+<div slot="intuition">
+A charge fired straight at a like charge that is held in place. It slows all the way in, because it is climbing a
+hill of potential energy, stops for an instant, and is thrown back out with the speed it came in at. How close it
+gets depends only on how much kinetic energy it had. Rutherford used exactly this to put a ceiling on the size of
+the nucleus: an alpha particle of known energy turned back at a distance he could work out.
+</div>
+<div slot="maths">
+Energy at the start equals energy at the turning point, where the speed is zero:
+
+$$
+\tfrac{1}{2}mv^2 + \frac{qQ}{4\pi\varepsilon_0 r_0} = \frac{qQ}{4\pi\varepsilon_0 r_\text{min}}.
+$$
+
+Fired from far away, $r_\text{min} = qQ / (4\pi\varepsilon_0 \cdot \tfrac{1}{2}mv^2)$.
+</div>
+<div slot="engine">
+Nothing tells the engine where to stop the charge; it steps Coulomb's law forward and the turning point comes out.
+The closest distance matches the energy argument to one part in a hundred thousand. Open the Energy tab while it
+runs: kinetic drains into potential and comes back, and the total does not move.
+</div>
+</Scenario>
+
+## Speeding up through a potential difference
+
+<Scenario id="accelerating-voltage">
+<div slot="intuition">
+A charge starts at rest at one plate and is pushed across to the other. Move the plates further apart and the
+field between them is weaker, but it acts over a longer distance, and the two effects cancel exactly: the charge
+leaves at the same speed. Only the potential difference matters. That is why the energy of a particle from an
+accelerator is quoted in volts.
+</div>
+<div slot="maths">
+The work done on the charge is $qV$, all of which becomes kinetic energy:
+
+$$
+qV = \tfrac{1}{2}mv^2, \qquad v = \sqrt{\frac{2qV}{m}}.
+$$
+
+The field is $E = V/d$, and the crossing takes $t = d\sqrt{2m/qV}$: the gap changes the time, not the speed.
+</div>
+<div slot="engine">
+The field exists only between the plates, so its work is booked as external, done by the supply. With gaps of
+0.5 m and 2 m the leaving speed is the same to a part in a thousand, and the ledger's external work equals the
+kinetic energy gained to a part in a million.
+</div>
+</Scenario>

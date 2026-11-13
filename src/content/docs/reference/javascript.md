@@ -64,4 +64,7 @@ world.free();
 | `series_time()`, `series(body, q)`, `series_force(body, label)`, `series_energy(q)` | recorded history for graphs |
 | `grab(body, x, y)`, `drag_to(x, y)`, `release()`, `grabbed()` | take hold of a body with a spring to the pointer |
 | `body_at(x, y, slop)` | the movable body under a point |
+| `fields()`, `field_at(x, y)`, `field_lines(n, cx, cy, reach)` | uniform fields to draw; `[Ex, Ey, V, Bz, Bx, By]` at a point; field lines of the charges |
+| `field_on(body)`, `fixed_field_at(x, y)`, `magnetic_field_lines(n, cx, cy, reach)` | the same six at a body, without its own magnet's field; `[Bx, By]` of the fixed magnets; their field lines |
+| `flux_through(cx, cy, r)`, `distributions()` | electric flux out of a sphere, summed over it; fixed wires, sheets and shells of charge |
 | `scene_json()`, `scene_json_now()` | the scene as built, and as it stands at this moment |

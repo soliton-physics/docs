@@ -1,0 +1,287 @@
+---
+title: Electric charges and fields
+description: Coulomb's law, field lines, a charged bob, a charge between plates, a balanced drop, a dipole, Gauss's law, and the fields of a wire, a sheet and a shell.
+sidebar:
+  order: 1
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+## Force between two charges
+
+<Scenario id="coulomb-force">
+<div slot="intuition">
+Two like charges, one fixed and one free. The free one is pushed away, hardest at the start when they are closest,
+and less and less as it goes. Halve the starting distance and the push is four times as large. Because the force
+never quite vanishes the charge keeps gaining speed for ever, but less and less: there is a speed it approaches
+and never passes.
+</div>
+<div slot="maths">
+$$
+F = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r^2}, \qquad \frac{1}{4\pi\varepsilon_0} = 8.99 \times 10^9\ \mathrm{N\,m^2/C^2}.
+$$
+
+The potential energy of the pair is $U = q_1 q_2 / 4\pi\varepsilon_0 r$. Released from rest at $r_0$, energy gives the
+speed at any distance:
+
+$$
+\tfrac{1}{2} m v^2 = \frac{q_1 q_2}{4\pi\varepsilon_0}\left(\frac{1}{r_0} - \frac{1}{r}\right).
+$$
+
+At $r = 2r_0$ it already has half of all the kinetic energy it will ever have.
+</div>
+<div slot="engine">
+Coulomb's law is a force between every pair of charged bodies, with its potential energy in the ledger. A charged
+body that is fixed in place is felt but not moved. The force at the first instant matches the formula to the last
+digit, the speed at twice the distance to two parts in a thousand (the instant is caught between two steps), and
+the total energy holds to one part in ten million.
+</div>
+</Scenario>
+
+## Field of two charges
+
+<Scenario id="field-of-two-charges">
+<div slot="intuition">
+The field at a point is the force a small positive test charge would feel there, per unit of its charge. The lines
+show its direction everywhere: out of positive charge, into negative. Make the two charges alike and the lines
+push apart, leaving a point between them where the field is zero. The test charge starts off along the line
+through it, but it does not follow the line: a field line shows force, not path.
+</div>
+<div slot="maths">
+Fields add as vectors, potentials as numbers:
+
+$$
+\mathbf{E} = \sum_i \frac{q_i}{4\pi\varepsilon_0}\frac{\mathbf{r} - \mathbf{r}_i}{|\mathbf{r} - \mathbf{r}_i|^3},
+\qquad V = \sum_i \frac{q_i}{4\pi\varepsilon_0 |\mathbf{r} - \mathbf{r}_i|}.
+$$
+
+For equal and opposite charges the potential is zero everywhere on the line midway between them, while the field
+there is not: it points straight across, from the positive charge to the negative.
+</div>
+<div slot="engine">
+The engine can be asked for the field and the potential at any point; the playground does so wherever the pointer
+is. Field lines are traced along the field in small steps, starting on positive charges in number proportional to
+the charge. They are a drawing: their direction is exact, their number is a choice, and their spacing is only a
+rough guide to strength in a flat picture of a field that really spreads in three dimensions.
+</div>
+</Scenario>
+
+## Charged bob in an electric field
+
+<Scenario id="charged-pendulum">
+<div slot="intuition">
+A charged bob on a thread, in a field that pulls it sideways. There is an angle at which it could hang at rest,
+where the thread lines up against weight and electric force together. Let go from straight below and it does not
+stop there: it swings through and reaches exactly twice that angle, then comes back. It is a pendulum whose
+"down" has been tilted.
+</div>
+<div slot="maths">
+At rest, $T\sin\theta = qE$ and $T\cos\theta = mg$:
+
+$$
+\tan\theta = \frac{qE}{mg}, \qquad T = \sqrt{(mg)^2 + (qE)^2}.
+$$
+
+Weight and electric force together act like a single gravity of strength $g' = \sqrt{g^2 + (qE/m)^2}$ pointing
+along that angle, so small swings about it have the period $2\pi\sqrt{L/g'}$.
+</div>
+<div slot="engine">
+A uniform field that fills the plane has a potential energy, $-q\,\mathbf{E}\cdot\mathbf{r}$, so the ledger treats
+it exactly as it treats gravity. The furthest angle matches $2\theta$ to one part in ten thousand. Placed at
+$\theta$ and released, the bob does not move at all and the thread reads the tension above to nine figures.
+</div>
+</Scenario>
+
+## A charge fired between plates
+
+<Scenario id="charge-between-plates">
+<div slot="intuition">
+Between the plates the charge is pushed sideways at a steady rate while it carries on forward at a steady speed.
+That is a ball thrown level off a cliff, with the field in place of gravity, and the path is the same parabola.
+Past the plates nothing pushes it and it goes straight, to a spot on the screen. This is how an oscilloscope
+steers its beam. Make the charge negative and it bends the other way.
+</div>
+<div slot="maths">
+With $a = qE/m$ and a time $L/v$ between plates of length $L$:
+
+$$
+y = \frac{qEL^2}{2mv^2}, \qquad \tan\phi = \frac{qEL}{mv^2}.
+$$
+
+On a screen a distance $D$ beyond the plates the spot is at $y + D\tan\phi = \dfrac{qEL}{mv^2}\left(\dfrac{L}{2} + D\right)$.
+</div>
+<div slot="engine">
+The field exists only inside a rectangle. The charge crosses its edge part-way through a time step, so this
+scenario uses a step four times smaller than usual, and the deflection is right to three parts in a thousand. A
+field that stops dead at the edge of the plates has no potential energy, so the work it does is booked as coming
+from outside, from whatever keeps the plates charged.
+</div>
+</Scenario>
+
+## Balancing a charged drop
+
+<Scenario id="balanced-drop">
+<div slot="intuition">
+A charged drop in an upward field. Too little field and it falls, too much and it rises. Find the field at which
+it hangs still: there the electric force is exactly its weight, and if you know the field and the weight you know
+the charge. This is the idea of Millikan's experiment, which found that charge comes in whole numbers of one small
+amount.
+</div>
+<div slot="maths">
+Balance: $qE = mg$, so $E = mg/q$. Otherwise the drop accelerates upward at
+
+$$
+a = \frac{qE}{m} - g.
+$$
+</div>
+<div slot="engine">
+At the balancing field the drop's speed stays below a billionth of a metre per second for as long as you watch.
+Away from it the acceleration matches the formula to nine figures and the energy ledger closes exactly: both
+forces are uniform, and velocity Verlet is exact for constant acceleration.
+</div>
+</Scenario>
+
+## A dipole in a uniform field
+
+<Scenario id="dipole-in-field">
+<div slot="intuition">
+Equal and opposite charges on the ends of a light rod. The field pushes one end forward and the other back with
+equal forces, so the rod as a whole goes nowhere. But the two pushes do not line up, and together they twist it
+round towards the field. It swings through, overshoots and swings back, like a compass needle settling.
+</div>
+<div slot="maths">
+With dipole moment $p = qd$ at angle $\theta$ to the field:
+
+$$
+\tau = pE\sin\theta, \qquad U = -pE\cos\theta.
+$$
+
+For small angles the twist is proportional to the angle, so the motion is simple harmonic with
+
+$$
+T = 2\pi\sqrt{\frac{I}{pE}}, \qquad I = 2m\left(\frac{d}{2}\right)^2.
+$$
+</div>
+<div slot="engine">
+The dipole is two charged beads joined by a rod constraint; no torque is put in by hand. The middle of the rod
+stays where it is to a billionth of a metre, the period at a small angle matches the formula to two parts in a
+thousand, and the energy holds to a part in a million. Released at 30° the period is about 2 % longer than the
+small-angle formula, as a pendulum's would be.
+</div>
+</Scenario>
+
+## Gauss's law
+
+<Scenario id="gauss-law">
+<div slot="intuition">
+Draw any closed surface, a bag with no holes, and add up the electric field coming out through every patch of it.
+Gauss's law says the total depends on one thing only: how much charge is inside the bag. Drag the dashed surface
+over the positive charge and the flux jumps to that charge over ε₀. Stretch it round both charges and it reads
+their sum. Move it off to one side with nothing inside and it reads zero, though field lines are streaming through
+it: every line that goes in comes out again.
+</div>
+<div slot="maths">
+The flux through a small flat patch is $E\,\Delta A\cos\theta$. Over a whole closed surface
+
+$$
+\Phi = \oint \mathbf{E}\cdot d\mathbf{A} = \frac{q_\text{inside}}{\varepsilon_0}.
+$$
+
+The surface here is a sphere, of which the page shows the circle. Its size and position do not matter, only what
+it holds.
+</div>
+<div slot="engine">
+The measured flux is not worked out from the charge inside, which would only be the law quoted back. The engine
+cuts the sphere into forty thousand patches, works out the field at each from Coulomb's law, and adds up
+$\mathbf{E}\cdot\Delta\mathbf{A}$. That sum agrees with $q/\varepsilon_0$ to better than a part in a thousand,
+and falls to a thousandth of it for a surface with no charge inside. With a charge sitting almost on the surface
+the patches are too coarse and the sum is less exact.
+</div>
+</Scenario>
+
+## Circling a charged wire
+
+<Scenario id="charged-wire">
+<div slot="intuition">
+A long straight wire with charge all along it, seen end on, so it is the ringed plus in the middle. Its field lines
+spread out in a flat fan and not in all directions, so the field weakens as $1/r$ and not $1/r^2$. That gives an
+odd result. Move the bead further out: it circles at exactly the same speed as before, and only takes longer
+because the circle is bigger.
+</div>
+<div slot="maths">
+Take a cylinder of radius $r$ and length $L$ round the wire. The field crosses only its curved side, so
+$E \cdot 2\pi r L = \lambda L/\varepsilon_0$:
+
+$$
+E = \frac{\lambda}{2\pi\varepsilon_0 r}.
+$$
+
+For an opposite charge $q$ in a circle, $mv^2/r = qE$ and the $r$ cancels:
+
+$$
+v = \sqrt{\frac{q\lambda}{2\pi\varepsilon_0 m}}.
+$$
+</div>
+<div slot="engine">
+The wire is a fixed line of charge through the page. At radii of 0.5 m and 1.2 m the bead holds its circle and its
+speed to a part in ten thousand, and its energy to a part in a million. The potential of a wire has no zero at
+infinity; the engine puts it one metre from the wire.
+</div>
+</Scenario>
+
+## Beside a charged sheet
+
+<Scenario id="charged-sheet">
+<div slot="intuition">
+A large flat sheet of charge, seen edge on. Its field lines cannot spread at all: they leave straight out from both
+faces. So the field is the same one metre away as one centimetre away. Start the bead anywhere and it speeds up at
+the same steady rate. Now make the bead's charge negative. It is pulled to the sheet, passes through a small hole
+in it, is pulled back from the other side, and goes to and fro.
+</div>
+<div slot="maths">
+A pillbox through the sheet, with faces of area $A$, holds charge $\sigma A$ and has flux through its two faces:
+
+$$
+2EA = \frac{\sigma A}{\varepsilon_0} \quad\Longrightarrow\quad E = \frac{\sigma}{2\varepsilon_0}.
+$$
+
+The force on the bead, $q\sigma/2\varepsilon_0$, is constant, so the motion is that of a ball under gravity. An
+opposite charge let go at distance $d$ comes back after $4\sqrt{2d/a}$: steady acceleration all the way, so it is
+not simple harmonic.
+</div>
+<div slot="engine">
+The sheet goes on for ever in the model. A bead let go 0.3 m away and one let go 1.5 m away cover
+$\tfrac12 at^2$ with the same $a$ to a part in a million. For the opposite charge the force flips the instant it
+crosses, which no time step lands on exactly: after a whole trip it is back within a centimetre of where it
+started, and the energy holds to a part in a hundred over two trips.
+</div>
+</Scenario>
+
+## Inside a charged shell
+
+<Scenario id="charged-shell">
+<div slot="intuition">
+A hollow sphere with charge spread evenly over it. Inside there is no field anywhere, not just at the centre: the
+near part of the shell pushes harder, but there is more of the far part, and the two cancel exactly. Watch the bead
+cross the inside in a dead straight line at a steady speed, with the force reading zero. The moment it is out
+through the hole, it is pushed away as though all the shell's charge sat at the centre.
+</div>
+<div slot="maths">
+A spherical surface of radius $r$, concentric with the shell of radius $R$ and charge $Q$:
+
+$$
+E = 0 \quad (r < R), \qquad E = \frac{1}{4\pi\varepsilon_0}\frac{Q}{r^2} \quad (r > R).
+$$
+
+No field inside means the potential there is the same everywhere, $Q/4\pi\varepsilon_0 R$. So the bead leaves with
+
+$$
+\tfrac12 mv^2 = \tfrac12 mv_0^2 + \frac{qQ}{4\pi\varepsilon_0}\left(\frac1R - \frac1r\right).
+$$
+</div>
+<div slot="engine">
+Inside, the bead's velocity stays what it was to the last digit. It reaches the shell at the time a straight path
+at steady speed gives, and its speed afterwards matches the energy equation to a part in a thousand. Field lines
+are drawn for the shell alone, starting on its surface, without the bead's own.
+</div>
+</Scenario>

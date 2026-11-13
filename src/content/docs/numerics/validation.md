@@ -43,6 +43,27 @@ Every solver in the engine ships with tests that run in CI on every change. Thre
 | Glancing collision | right angle, momentum, energy; angle and speeds | round-off; 0.5°, 1 % |
 | Torque on a rod | angular speed and angle after two seconds | 1e-8, 1e-5 |
 | Vertical spring, springs in parallel and in series | period | 1e-5, 1e-5, 2e-3 |
+| Coulomb's law | force and acceleration at the start; speed at twice the distance; energy | round-off, 2e-3, 1e-7 |
+| Field of two charges | field and force at a test charge; zero potential on the midline | round-off |
+| Charged bob in a field | furthest angle; rest at the equilibrium angle, with its tension | 1e-4, 1e-9 |
+| Charge between plates | deflection on leaving and on the screen, either sign of charge | 3e-3 |
+| Balanced drop | stays still at the balancing field; acceleration away from it | 1e-9 |
+| Dipole in a field | centre does not move; small-swing period; energy | 1e-9 m, 2e-3, 1e-6 |
+| Closest approach | turning distance; energy | 1e-5, 1e-7 |
+| Accelerating voltage | leaving speed at two gaps; supply's work equals kinetic energy | 1e-3, 1e-6 |
+| Charge in a magnetic field | speed, radius, return to the start, zero work | round-off, 1e-5, two steps, exact |
+| Velocity selector | lands on the centre line at E/B; bent the right way either side | 1e-9 m |
+| Cyclotron | time per turn; supply's work equals kinetic energy; leaves near qBR/m | 3 %, 1e-4, within 20 % |
+| Two free charges | orbit each other: momentum, energy | 1e-15, 1e-6 |
+| Gauss's law | flux summed over a sphere round one charge, both, neither; part of a wire or a shell inside | 1e-3, 2e-3 |
+| Charged wire | circle and speed at two distances; energy | 1e-4, 1e-6 |
+| Charged sheet | same acceleration at two distances; an opposite charge returns to its start | 1e-6, 1 cm |
+| Charged shell | velocity unchanged inside; speed outside from the energy equation | 1e-12, 1e-3 |
+| Bar magnet | field on the axis and beside the middle against the formulas; ratio far away | round-off, 1e-3 |
+| Compass needle | small-swing period; fastest spin from 60°; centre does not move | 2e-3, 1e-4, 1e-9 m |
+| Neutral points | field at the predicted point, either way round | 1e-9 of the earth's |
+| Magnetic materials | force at the start, pushed or pulled the right way; energy | 1e-6, 1e-6 |
+| Free magnets and a magnetised bead | momentum, angular momentum, energy | 1e-15, 1e-12, 1e-6 |
 | Every catalogue scenario | builds, runs, round-trips through JSON | passes |
 
 ## Waves

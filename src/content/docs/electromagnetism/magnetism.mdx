@@ -1,0 +1,92 @@
+---
+title: Moving charges and magnetism
+description: A circle in a magnetic field, the velocity selector and the cyclotron.
+sidebar:
+  order: 3
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+On this page the magnetic field points out of the page, towards you, shown as dots. A positive charge moving in
+the page is then pushed to its own right, and turns clockwise.
+
+## A charge in a magnetic field
+
+<Scenario id="charge-in-magnetic-field">
+<div slot="intuition">
+A magnetic field pushes a moving charge sideways, always at right angles to the way it is going. A push like that
+can turn it but can never speed it up or slow it down, so the charge goes round in a circle at constant speed.
+Now double the speed: the circle is twice as big, and the charge takes exactly as long to go round it. Watch the
+"time for one turn" stay put while you move the speed slider.
+</div>
+<div slot="maths">
+The magnetic force $qvB$ supplies the centripetal force $mv^2/r$:
+
+$$
+r = \frac{mv}{qB}, \qquad T = \frac{2\pi r}{v} = \frac{2\pi m}{qB}.
+$$
+
+The speed has cancelled out of the period. The force does no work, since $\mathbf{F}\cdot\mathbf{v} = 0$ always.
+</div>
+<div slot="engine">
+The magnetic force depends on velocity, so the second half of each step is solved for the new velocity instead of
+using the old one. For a pure turn that rule rotates the velocity without changing its length: the speed is
+constant to the last digit, not just approximately. The radius is right to one part in a hundred thousand, and
+the ledger records zero work from the field.
+</div>
+</Scenario>
+
+## Velocity selector
+
+<Scenario id="velocity-selector">
+<div slot="intuition">
+Between these plates there are two fields at once. The electric field pushes the charge up with the same force
+whatever its speed. The magnetic field pushes it down, harder the faster it goes. At exactly one speed the two
+cancel and the charge goes straight through to the middle of the screen. Faster charges are bent down, slower ones
+up. Put a slit at the middle and only one speed gets through.
+</div>
+<div slot="maths">
+Straight through when $qE = qvB$:
+
+$$
+v = \frac{E}{B}.
+$$
+
+Neither the charge nor the mass appears: the selector picks a speed, whatever the particle.
+</div>
+<div slot="engine">
+Both fields are confined to the same rectangle. At $v = E/B$ the charge lands within a billionth of a metre of the
+centre line. One metre per second faster and it lands well below it, one slower and well above, as it should.
+</div>
+</Scenario>
+
+## Cyclotron
+
+<Scenario id="cyclotron">
+<div slot="intuition">
+A magnet bends the charge round and brings it back to a narrow gap twice in every turn. Across the gap there is a
+voltage that gives it a kick. The trick is in the last section: a turn takes the same time however fast the charge
+is going, so a voltage that simply alternates at that one fixed rate is pointing the right way every time the
+charge arrives. Each kick widens the orbit, and the charge spirals out until the magnet can no longer hold it.
+</div>
+<div slot="maths">
+The voltage must alternate at the cyclotron frequency
+
+$$
+f = \frac{qB}{2\pi m}.
+$$
+
+Each crossing adds at most $qV$ of kinetic energy. The largest orbit the magnet holds has radius $R$, so
+
+$$
+v_\text{max} = \frac{qBR}{m}, \qquad K_\text{max} = \frac{q^2B^2R^2}{2m}.
+$$
+</div>
+<div slot="engine">
+The field in the gap alternates as a cosine and has no potential, so every joule the charge gains is booked as
+work from the supply; the ledger's external work equals the kinetic energy to a part in ten thousand. Successive
+turns take the same time to within 3 %, the gap's width being the reason it is not exact. The magnet here is a
+square, and the charge leaves when its orbit outgrows it, a little before $qBR/m$: the playground shows that
+figure as the most the magnet can hold, with the measured speed beside it.
+</div>
+</Scenario>

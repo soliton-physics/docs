@@ -1,0 +1,151 @@
+---
+title: Electromagnetic waves
+description: Displacement current, the wave of electric and magnetic fields, standing radio waves, and the spectrum.
+sidebar:
+  order: 5
+---
+
+import Wave from '../../../components/Wave.astro';
+
+These four are in the Waves part of the playground, beside the class 11 waves, and work the same way: every
+curve is drawn from its formula, so any point can be clicked and read. The electric field is the graph. The
+magnetic field belongs at right angles to it, out of the page, and is drawn on a slanting axis the way a textbook
+draws depth.
+
+## Displacement current
+
+<Wave id="displacement-current" height={460}>
+<div slot="intuition">
+Charge flows along the wire onto one plate and off the other, but nothing crosses the gap. So is there a current
+there or not? Ampère's law needs an answer, because a magnetic field circles the wire and it would be strange for
+it to stop dead at the plates. Maxwell's answer: in the gap there is an electric field that is growing, and a
+growing electric field makes a magnetic field just as a current does. He called it the displacement current.
+
+Watch the two readings in the panel. The current in the wires and the displacement current in the gap are equal
+at every moment, falling together as the capacitor fills. The graph is one curve drawn twice.
+</div>
+<div slot="maths">
+Charging through a resistance $R$:
+
+$$
+q = CV\left(1 - e^{-t/RC}\right), \qquad i_c = \frac{dq}{dt} = \frac{V}{R}\,e^{-t/RC} .
+$$
+
+Between the plates $E = q/\varepsilon_0 A$, so
+
+$$
+i_d = \varepsilon_0\,\frac{d\Phi_E}{dt} = \varepsilon_0 A\,\frac{dE}{dt} = \frac{dq}{dt} = i_c ,
+$$
+
+and Ampère's law becomes
+
+$$
+\oint \mathbf{B}\cdot d\mathbf{l} = \mu_0\left(i_c + \varepsilon_0\frac{d\Phi_E}{dt}\right).
+$$
+</div>
+<div slot="try">
+- Click the graph early and late and compare the field between the plates with the current. The field is largest
+  when the current has nearly stopped: it is the rate of change of the field that counts, not the field.
+- Make the plates bigger. The capacitance and the time constant go up, and the magnetic field at the rim goes down,
+  because the same current is spread round a longer circle.
+- The magnetic field reads in picoteslas. That is why nobody noticed it before Maxwell predicted it.
+</div>
+</Wave>
+
+## An electromagnetic wave
+
+<Wave id="electromagnetic-wave">
+<div slot="intuition">
+Put the two halves together. A changing magnetic field makes an electric field: that is Faraday. A changing
+electric field makes a magnetic field: that is Maxwell's new term. So each can keep the other going, and the pair
+travels through empty space with nothing to carry it.
+
+The two fields are at right angles to each other and to the direction of travel, and they are in step: both
+largest at the same place and time, both zero together. Point your fingers along E, curl them towards B, and your
+thumb points the way the wave goes.
+</div>
+<div slot="maths">
+$$
+E_y = E_0\sin(kx - \omega t), \qquad B_z = B_0\sin(kx - \omega t), \qquad \frac{E_0}{B_0} = c .
+$$
+
+The speed comes out of two constants measured on a laboratory bench:
+
+$$
+c = \frac{1}{\sqrt{\mu_0\varepsilon_0}} = 3.00\times10^{8}\ \text{m/s}, \qquad v = \frac{1}{\sqrt{\mu\varepsilon}} = \frac{c}{n}\ \text{in a medium}.
+$$
+
+The wave carries energy $I = \tfrac12\varepsilon_0 c E_0^2$ across each square metre every second, and momentum
+$U/c$ with it.
+</div>
+<div slot="try">
+- Click a crest. The electric field reads 120 V/m and the magnetic field 400 nT. The second number looks tiny only
+  because of the units: the two carry equal energy.
+- Switch from empty space to glass. The frequency cannot change, so the wavelength shrinks to two thirds.
+- The clock says how much the wave has been slowed to be watched: three hundred million times.
+</div>
+</Wave>
+
+## Radio waves off a metal sheet
+
+<Wave id="electromagnetic-standing-wave">
+<div slot="intuition">
+This is how Hertz showed, in 1887, that Maxwell's waves are real. A metal sheet reflects the wave, and the wave
+going out and the wave coming back make a standing pattern. He walked a small wire loop along it and found places
+where it sparked and places where it did not. The dead places are half a wavelength apart, so a ruler gives the
+wavelength, and with the frequency of his circuit, the speed. It was the speed of light.
+
+At the metal the electric field has to be zero, because a conductor will not stand a field along its surface. The
+magnetic field is largest there. In a standing wave, unlike a travelling one, the two are out of step.
+</div>
+<div slot="maths">
+With the sheet at $x = L$:
+
+$$
+E_y = 2E_0\sin k(x - L)\cos\omega t, \qquad B_z = -\frac{2E_0}{c}\cos k(x - L)\sin\omega t .
+$$
+
+Nodes of $E$ at the sheet and every $\lambda/2$ from it, and $c = f\lambda = f\times 2\times(\text{node to node})$.
+</div>
+<div slot="try">
+- Click a node of the electric field, marked N. The magnetic field there swings through its largest values.
+- Watch one moment when the electric field is zero everywhere. The magnetic field is at its largest: the energy is
+  all magnetic then, and all electric a quarter of a period later.
+- Raise the frequency and count the nodes in the 12 m.
+</div>
+</Wave>
+
+## The electromagnetic spectrum
+
+<Wave id="electromagnetic-spectrum">
+<div slot="intuition">
+Radio, microwaves, the warmth of a fire, light, the rays that tan skin, X-rays and gamma rays are one kind of wave.
+They differ in frequency and in nothing else, and in empty space they all travel at the same speed. The slider
+runs through eighteen powers of ten. The wave on the graph always looks the same; it is the unit on the axis that
+changes, from kilometres to picometres. The strip underneath shows where you are. Visible light is the thin
+coloured sliver.
+</div>
+<div slot="maths">
+$$
+c = f\lambda, \qquad E_\text{photon} = hf .
+$$
+
+| Band | Wavelength | Made by |
+|---|---|---|
+| Radio | more than 0.1 m | charges driven along an aerial |
+| Microwaves | 0.1 m to 1 mm | klystrons, magnetrons |
+| Infrared | 1 mm to 700 nm | warm bodies, vibrating molecules |
+| Visible | 700 nm to 400 nm | electrons changing level in atoms |
+| Ultraviolet | 400 nm to 1 nm | very hot bodies, special lamps |
+| X-rays | 1 nm to 0.001 nm | fast electrons stopped by a target |
+| Gamma rays | less than 0.001 nm | nuclei |
+
+The edges are conventions and neighbouring bands overlap.
+</div>
+<div slot="try">
+- Find the frequency of a mobile phone, about 10⁹ Hz, and read the wavelength: about the size of the phone.
+- Slide through the visible band and watch the wavelength go from about 750 nm to 390 nm.
+- At what frequency is the wavelength the size of an atom, 0.1 nm? Which band is that, and why are those rays
+  used to study crystals?
+</div>
+</Wave>
