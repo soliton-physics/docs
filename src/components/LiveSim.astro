@@ -22,3 +22,23 @@ const title = scenario ?? preset ?? 'simulation';
     <a href={full} target="_blank" rel="noopener">Open in the playground with sliders and graphs ↗</a>
   </figcaption>
 </figure>
+
+<script is:inline>
+  // The simulation takes the theme of the page around it, and follows the reader's switch.
+  (() => {
+    const themed = (frame) => {
+      const url = new URL(frame.src);
+      const theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+      if (url.searchParams.get('theme') === theme) return;
+      url.searchParams.set('theme', theme);
+      frame.src = url.href;
+    };
+    const all = () => document.querySelectorAll('.live-sim iframe').forEach(themed);
+    all();
+    if (!window.liveSimThemed) {
+      window.liveSimThemed = true;
+      document.addEventListener('DOMContentLoaded', all);
+      new MutationObserver(all).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    }
+  })();
+</script>
