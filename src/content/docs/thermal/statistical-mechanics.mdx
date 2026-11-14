@@ -1,0 +1,138 @@
+---
+title: Monte Carlo and the Ising model
+description: Finding π by throwing darts, random walks and diffusion, the Ising model of a magnet, and its phase transition.
+sidebar:
+  order: 3
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+This page goes beyond the school syllabus, into the methods of a university course in statistical and
+computational physics. The four experiments have one thing in common: nothing in them is followed by Newton's
+laws. Each is run by chance, with random numbers, and the physics is in the averages. They are in the Thermal tab
+of the playground, after the gas.
+
+## Finding π by throwing darts
+
+<Scenario id="monte-carlo-pi" thermal>
+<div slot="intuition">
+Draw a square, and inside it a quarter of a circle that just fits. Throw points at the square without aiming. The
+chance that a point lands inside the curve is the ratio of the two areas, $\pi/4$. So count: four times the
+fraction inside is an estimate of $\pi$.
+
+Watch how it converges. It is close after a few hundred points and then improves painfully slowly. The dashed
+band on the graph is the error statistics predicts, and it narrows only as one over the square root of the
+number of points. A hundred times the work buys one more decimal place. That is the price of every Monte Carlo
+method, and its strength is that the price is the same for a problem in a hundred dimensions as in two.
+</div>
+<div slot="maths">
+With $N$ points and a fraction $p = \pi/4$ inside:
+
+$$
+\pi \approx 4\,\frac{N_\text{in}}{N}, \qquad \sigma = 4\sqrt{\frac{p(1-p)}{N}} \approx \frac{1.64}{\sqrt N} .
+$$
+</div>
+<div slot="engine">
+After 400 000 points the estimate is within three of those standard deviations of $\pi$. The random numbers come
+from a seeded generator, so a run can be repeated exactly.
+</div>
+</Scenario>
+
+## A crowd of random walkers
+
+<Scenario id="random-walk" thermal>
+<div slot="intuition">
+Two thousand walkers start together. At every tick each takes one step, north, south, east or west, chosen at
+random. Follow any one and it wanders aimlessly, as likely to come back as to go on. But the crowd as a whole
+spreads in a perfectly orderly way. The dashed circle is at a distance of the square root of the number of steps,
+and the crowd fills it. Four times as long to spread twice as far.
+
+This is what diffusion is: ink in water, heat along a rod, the Brownian grain on the kinetic theory page. Nothing
+drives the spreading. It is only that there are more ways to be spread out than bunched up.
+</div>
+<div slot="maths">
+After $N$ steps of unit length the displacement has zero mean and
+
+$$
+\langle r^2 \rangle = N, \qquad r_\text{rms} = \sqrt N .
+$$
+
+In time $t$ with steps of length $a$ every $\tau$ seconds this is $\langle r^2\rangle = 4Dt$ with
+$D = a^2/4\tau$, the diffusion law in two dimensions.
+</div>
+<div slot="engine">
+With 4000 walkers the root mean square distance is within 5 % of $\sqrt N$ at 100, 400 and 1600 steps, and the
+middle of the crowd stays where it began to within what that many walkers allow.
+</div>
+</Scenario>
+
+## The Ising model of a magnet
+
+<Scenario id="ising-model" thermal height={460}>
+<div slot="intuition">
+Each little square is the spin of one atom, pointing up or down. A spin has lower energy when it agrees with its
+four neighbours, so left to themselves they would all line up: a magnet. Heat works against that, flipping spins
+at random.
+
+Open the parameters and move the temperature. Well below 2.27 the lattice is nearly all one colour, with a few
+spins knocked out of line. Well above, it is a fine-grained flicker with no overall magnetisation. Close to 2.27
+it is neither: patches of every size, forming and dissolving, slow to make up its mind. That is a system at a
+critical point. Add a field and the spins favour its direction even when hot.
+</div>
+<div slot="maths">
+$$
+E = -J \sum_{\langle ij \rangle} s_i s_j - h \sum_i s_i, \qquad s_i = \pm 1 .
+$$
+
+Onsager solved the square lattice exactly in 1944, for no field:
+
+$$
+kT_c = \frac{2J}{\ln(1 + \sqrt 2)} = 2.269\,J, \qquad
+m = \left[1 - \sinh^{-4}\frac{2J}{kT}\right]^{1/8} \ (T < T_c) .
+$$
+
+The Metropolis rule: pick a spin and propose to flip it. If that lowers the energy, flip it. If it raises the
+energy by $\Delta E$, flip it with probability $e^{-\Delta E/kT}$. Repeated, this visits states in proportion to
+their Boltzmann weights.
+</div>
+<div slot="engine">
+At temperatures of 1.5, 2.0, 3.0 and 4.0 the averaged energy matches Onsager's to within 0.06 J and the
+magnetisation to within 0.04 below the critical temperature. Above it a lattice of 48 by 48 keeps a
+magnetisation of a few hundredths where an infinite one has none, and near it the two differ by more: a finite
+lattice has no sharp transition. Temperatures are in units of $J/k$.
+</div>
+</Scenario>
+
+## Cooling a magnet through its critical point
+
+<Scenario id="phase-transition" thermal height={460}>
+<div slot="intuition">
+Now the experiment a laboratory would do. The lattice starts hot and disordered and is cooled in 25 steps. At
+each temperature it is given time to settle and is then measured. Watch the graph fill in from the right.
+
+For a long while nothing happens: the magnetisation stays near zero. Then, over a narrow range of temperature, it
+rises steeply and levels off near one. The dashed curve is Onsager's exact answer, which turns on instantly at
+the critical temperature; the lattice follows it everywhere but in the rounded corner. Switch the graph to
+specific heat and there is a peak at the same place: just there, a little heat goes a long way in rearranging
+the spins.
+
+Nobody put a transition into the program. There are only spins, their neighbours, and a rule for flipping.
+</div>
+<div slot="maths">
+The specific heat and the susceptibility come from fluctuations, with $N$ spins:
+
+$$
+c = \frac{N}{kT^2}\left(\langle e^2 \rangle - \langle e \rangle^2\right), \qquad
+\chi = \frac{N}{kT}\left(\langle m^2 \rangle - \langle |m| \rangle^2\right) .
+$$
+
+Near $T_c$ the magnetisation of an infinite lattice vanishes as $(T_c - T)^{1/8}$, and the specific heat
+diverges logarithmically.
+</div>
+<div slot="engine">
+With 32 by 32 spins, 200 sweeps to settle and 400 to measure at each temperature, the specific heat peaks within
+0.2 of the critical temperature, and away from it every point is within 0.06 J of Onsager's energy. A larger
+lattice sharpens the corner and takes longer; near the critical point the Metropolis rule itself slows down, a
+real effect called critical slowing down.
+</div>
+</Scenario>

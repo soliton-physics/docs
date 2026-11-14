@@ -80,6 +80,24 @@ bench.rays()                                  # list of (N, 2) arrays of points,
 bench.images()                                # [{'base': (0.24, 0.0), 'tip': (0.24, -0.018), 'real': True}]
 optics.Bench.from_json(bench.to_json())       # scenes are data here too
 
+# Statistical mechanics
+from soliton import statmech
+run = statmech.scenario("ising-model", temperature=2.0, size=48)
+run.advance(2000)                             # sweeps
+run.spins()                                   # (48, 48) of +1 and -1
+run.answers(), run.measured()                 # Onsager's exact values; the averages found
+statmech.scenario("phase-transition").points()  # (n, 5): T, m, e, specific heat, susceptibility
+statmech.onsager_magnetisation(2.0), statmech.CRITICAL_TEMPERATURE
+
+# Circuits
+from soliton import circuits
+bridge = circuits.scenario("wheatstone-bridge", s=30)
+bridge.current("G"), bridge.voltage("P")      # amperes from a to b; volts, a above b
+rc = circuits.scenario("charging-capacitor")
+rc.advance(1.0)                               # seconds
+t, v, i = rc.series("C")
+V, I = circuits.scenario("series-lcr").phasor("R")   # complex amplitudes
+
 # Thermal physics
 from soliton import thermal
 gas = thermal.scenario("adiabatic-process", temperature=300)

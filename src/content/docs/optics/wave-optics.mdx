@@ -1,0 +1,115 @@
+---
+title: Wave optics
+description: Young's double slit, diffraction at a single slit, and polarisation with Malus's law.
+sidebar:
+  order: 4
+---
+
+import Wave from '../../../components/Wave.astro';
+
+Ray optics treats light as straight lines. That works until the light meets something about as small as its own
+wavelength; then it spreads, overlaps and cancels as only a wave can. These three are in the Waves part of the
+playground. Each is a steady pattern: the graph is the brightness across a screen, and the band under it is what
+the screen would look like, in the colour of the light chosen.
+
+## Young's double slit
+
+<Wave id="youngs-double-slit" height={440}>
+<div slot="intuition">
+Light from one source passes through two narrow slits close together, and the two beams spread and overlap on a
+distant screen. You might expect a brighter patch. What appears is a row of evenly spaced bright and dark
+stripes.
+
+At the centre of the screen the two paths are equal, the waves arrive crest on crest, and it is bright. A little
+to one side, one path is half a wavelength longer: crest meets trough, and there is no light at all. Further on
+the difference is a whole wavelength and it is bright again. Light plus light can give darkness. Nothing but a
+wave can do that, and in 1801 it settled the question of what light is.
+
+The broad hump over the stripes is the pattern of one slit alone. Narrow the slits and it widens.
+</div>
+<div slot="maths">
+At a point $y$ from the centre, with slits $d$ apart and the screen $D$ away, the paths differ by $yd/D$.
+
+$$
+\text{bright: } \frac{yd}{D} = n\lambda, \qquad \text{dark: } \frac{yd}{D} = \left(n + \tfrac12\right)\lambda, \qquad
+\beta = \frac{\lambda D}{d} .
+$$
+
+$$
+I = 4I_0\cos^2\frac{\varphi}{2}, \qquad \varphi = \frac{2\pi}{\lambda}\,\frac{yd}{D} .
+$$
+
+With yellow light of 590 nm, slits 0.25 mm apart and a screen 1.5 m away, the fringes are 3.54 mm wide.
+</div>
+<div slot="try">
+- Slide the wavelength from red to violet. The stripes close up: violet fringes are a little over half the width
+  of red ones.
+- Click a bright fringe and then a dark one beside it. The path difference changes by exactly half a wavelength.
+- Halve the distance between the slits. The fringes double in width. This is why the slits must be very close to
+  give fringes wide enough to see.
+</div>
+</Wave>
+
+## Diffraction at a single slit
+
+<Wave id="single-slit-diffraction" height={440}>
+<div slot="intuition">
+One slit, and still not a sharp-edged patch of light. The middle is a broad bright band, twice as wide as you
+would guess, with faint bands either side.
+
+Think of the slit as a row of tiny sources side by side, each sending out a wavelet. Straight ahead they all
+agree. At the angle where the wavelets from the two edges differ by one whole wavelength, each source in the top
+half has a partner in the bottom half exactly half a wavelength out of step with it, and they cancel pair by
+pair: a dark band.
+
+Now make the slit narrower. The bright band gets wider. Squeezing light makes it spread, and that is the limit
+on every lens, telescope and microscope.
+</div>
+<div slot="maths">
+$$
+a\sin\theta = n\lambda \ \ (n = \pm1, \pm2, \dots) \ \text{for dark bands}, \qquad
+\text{central width} = \frac{2\lambda D}{a} .
+$$
+
+$$
+I = I_0\left(\frac{\sin\alpha}{\alpha}\right)^2, \qquad \alpha = \frac{\pi a\sin\theta}{\lambda} .
+$$
+
+A beam of width $a$ stays a beam for about the Fresnel distance $a^2/\lambda$. Nearer than that, ray optics is a
+good description.
+</div>
+<div slot="try">
+- Read the Fresnel distance for a 0.1 mm slit: under two centimetres. For a 3 mm hole it is about 15 m, which is
+  why light through a window seems to travel in straight lines.
+- Click the first side band. It has under a twentieth of the brightness of the middle.
+- Compare with the double slit above: there, bright where the path difference is a whole wavelength; here, dark.
+  Work out why both are right.
+</div>
+</Wave>
+
+## Polarisation and Malus's law
+
+<Wave id="malus-law" height={440}>
+<div slot="intuition">
+Sound cannot be polarised and light can, because light vibrates across its direction of travel and sound along
+it. Ordinary light vibrates in all directions across its path at once. A polaroid passes only the vibration
+along one axis, so it lets half the light through and what comes out vibrates in one direction only.
+
+A second polaroid shows this. With its axis parallel to the first, all of that light passes. Turn it, and less
+gets through. At a right angle, none: two transparent sheets together are black. Drag the angle and watch the
+beam after the second polaroid thin out and vanish.
+</div>
+<div slot="maths">
+$$
+I_1 = \tfrac12 I_0, \qquad I_2 = I_1\cos^2\theta .
+$$
+
+Only the component $E\cos\theta$ of the vibration along the second axis passes, and brightness goes as its
+square.
+</div>
+<div slot="try">
+- Find the angle at which the second polaroid passes half of what it receives. It is 45°, not 60°.
+- At 90° nothing passes. A third polaroid slipped between the two at 45° would let light through again: an eighth
+  of the original. Check it with the formula, applied twice.
+</div>
+</Wave>

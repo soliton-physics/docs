@@ -1,0 +1,115 @@
+---
+title: Capacitors and inductors
+description: Charging and discharging a capacitor, capacitors in series and parallel, and the growth of current in an inductor.
+sidebar:
+  order: 2
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+These circuits change with time, so the engine follows them step by step from the moment they are switched on.
+Press play. The graph in the playground shows the voltages or the currents as they go.
+
+## Charging a capacitor
+
+<Scenario id="charging-capacitor" circuits height={440}>
+<div slot="intuition">
+At the first instant the capacitor is empty and offers no opposition, so the whole battery voltage is across the
+resistor and the current is as large as it will ever be. As charge collects on the plates the capacitor builds
+up a voltage of its own, against the battery. Less is left over for the resistor, the current falls, and the
+charging slows down. It never quite finishes. After a time $RC$ it is 63 % full, after five of them more than
+99 %.
+</div>
+<div slot="maths">
+$$
+q = CV\left(1 - e^{-t/RC}\right), \qquad i = \frac VR\,e^{-t/RC}, \qquad \tau = RC .
+$$
+
+With 10 kΩ and 100 μF, $\tau = 1$ s. The energy stored at the end is $\tfrac12CV^2$; an equal amount has been
+turned to heat in the resistor, whatever its resistance.
+</div>
+<div slot="engine">
+The capacitor's law $i = C\,dv/dt$ is applied over each small step with both sides averaged over the step. The
+voltage follows the exponential to within a few parts in a million of the battery's, and the time to reach
+63.2 % is $RC$ to three figures or better.
+</div>
+</Scenario>
+
+## Discharging a capacitor
+
+<Scenario id="discharging-capacitor" circuits height={440}>
+<div slot="intuition">
+A charged capacitor is a small, short-lived battery. Connected across a resistor it drives a current, which
+drains it, which lowers its voltage, which lowers the current. So it empties quickly at first and then more and
+more slowly. In each interval $RC$ the voltage falls to the same fraction, 36.8 %, of what it was.
+</div>
+<div slot="maths">
+$$
+v = V_0\,e^{-t/RC}, \qquad t_{1/2} = RC\ln 2 .
+$$
+</div>
+<div slot="engine">
+Both the time to fall to 36.8 % and the time to fall to half match their formulas to three figures or better.
+</div>
+</Scenario>
+
+## Capacitors in series
+
+<Scenario id="capacitors-in-series" circuits height={440}>
+<div slot="intuition">
+Look at the wire joining the two capacitors. It is connected to nothing else, so it cannot gain or lose charge.
+Whatever charge is pushed onto the first plate of C₁ drives an equal charge off its second plate, and that can
+only go to the facing plate of C₂. So both capacitors end with exactly the same charge. The smaller one needs a
+bigger voltage to hold it. Together they store less than either alone.
+</div>
+<div slot="maths">
+$$
+\frac1C = \frac1{C_1} + \frac1{C_2}, \qquad Q_1 = Q_2 = CV, \qquad V_k = \frac{Q}{C_k} .
+$$
+</div>
+<div slot="engine">
+A circuit of steady currents says nothing here, since no steady current flows. The engine charges the pair
+through a 1 kΩ resistor from empty and reads them once they have settled; equal charges then follow from the
+junction rule at every step, not from a formula.
+</div>
+</Scenario>
+
+## Capacitors in parallel
+
+<Scenario id="capacitors-in-parallel" circuits height={440}>
+<div slot="intuition">
+Each capacitor is connected straight across the battery and charges to the full voltage, as if the other were
+not there. The larger one takes more charge. Together they act as one capacitor with plates as big as both.
+</div>
+<div slot="maths">
+$$
+C = C_1 + C_2, \qquad Q_k = C_kV .
+$$
+</div>
+<div slot="engine">
+Again charged through a resistor and read at the end. Two capacitors wired directly side by side state the same
+fact twice at the starting instant, which the engine resolves by giving each plate a billionth of an ohm.
+</div>
+</Scenario>
+
+## Current growing in an inductor
+
+<Scenario id="lr-circuit" circuits height={440}>
+<div slot="intuition">
+A coil resists any change in the current through it, by setting up an EMF against the change. Switch on, and for
+an instant that back EMF equals the battery and no current flows at all. Then the current starts to grow. As it
+grows more slowly the coil objects less, and in the end the current is steady at $V/R$ and the coil is just a
+piece of wire. It is the mirror image of a capacitor charging: there the current starts large and dies; here it
+starts at nothing and builds.
+</div>
+<div slot="maths">
+$$
+i = \frac VR\left(1 - e^{-tR/L}\right), \qquad \tau = \frac LR, \qquad U = \tfrac12LI^2 .
+$$
+</div>
+<div slot="engine">
+The coil's law $v = L\,di/dt$ is averaged over each step as the capacitor's is. The largest voltage across the
+coil is the battery's, at the first instant, and the time to 63.2 % of the final current is $L/R$ to three
+figures or better.
+</div>
+</Scenario>

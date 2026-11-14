@@ -1,0 +1,132 @@
+---
+title: Alternating current
+description: A resistor, an inductor and a capacitor on AC, the series LCR circuit and resonance, and LC oscillations.
+sidebar:
+  order: 3
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+The source on this page swings its voltage back and forth as a sine wave. The first four circuits are shown in
+their steady state, slowed so that one cycle takes about four seconds. The playground's graph has two views:
+the voltage and current as waves, each drawn against its own peak so that the lag between them shows, and the
+same quantities as rotating arrows, phasors.
+
+## A resistor on alternating current
+
+<Scenario id="ac-resistor" circuits height={440}>
+<div slot="intuition">
+A resistor does not care which way the current goes. At every instant the current is the voltage divided by the
+resistance, so the two waves rise, fall and reverse together. Heat is produced whichever way the charge flows.
+The average power is half the peak power, which is why AC is quoted by its RMS values: a 220 V supply has a
+peak of 311 V and heats a resistor exactly as 220 V of direct current would.
+</div>
+<div slot="maths">
+$$
+v = V_0\sin\omega t, \quad i = \frac{V_0}{R}\sin\omega t, \qquad
+V_\text{rms} = \frac{V_0}{\sqrt2}, \qquad \bar P = V_\text{rms}I_\text{rms} = \tfrac12 V_0I_0 .
+$$
+</div>
+<div slot="engine">
+Solved with complex numbers: each voltage and current is a complex amplitude, and a resistor's are in the ratio
+$R$, a real number, so there is no phase between them.
+</div>
+</Scenario>
+
+## An inductor on alternating current
+
+<Scenario id="ac-inductor" circuits height={440}>
+<div slot="intuition">
+A coil's voltage depends on how fast the current is changing, not on how big it is. The current is changing
+fastest as it passes through zero, so that is when the voltage is at its peak. The current reaches its own peak
+a quarter of a cycle later. Over a cycle the coil takes energy in as its magnetic field builds and gives all of
+it back as the field collapses, so on average it uses no power at all. The faster the alternation, the more the
+coil opposes it.
+</div>
+<div slot="maths">
+$$
+X_L = \omega L = 2\pi fL, \qquad I_0 = \frac{V_0}{X_L}, \qquad \text{current lags voltage by } 90°, \qquad \bar P = 0 .
+$$
+</div>
+<div slot="engine">
+The inductor's amplitudes are in the ratio $i\omega L$, an imaginary number: that is the quarter cycle. The
+average power comes out zero to round-off.
+</div>
+</Scenario>
+
+## A capacitor on alternating current
+
+<Scenario id="ac-capacitor" circuits height={440}>
+<div slot="intuition">
+No charge crosses the gap in a capacitor, yet current flows in the wires all the time, as the plates are charged
+one way and then the other. The current is largest when the voltage is changing fastest, as it passes through
+zero, and is zero for an instant when the capacitor is full. So here the current reaches its peak a quarter of a
+cycle before the voltage. A capacitor blocks direct current completely and passes alternating current more
+easily the higher its frequency: the opposite of a coil.
+</div>
+<div slot="maths">
+$$
+X_C = \frac{1}{\omega C} = \frac{1}{2\pi fC}, \qquad I_0 = \frac{V_0}{X_C}, \qquad \text{current leads voltage by } 90°, \qquad \bar P = 0 .
+$$
+</div>
+<div slot="engine">
+The lag is reported as −90°: a negative lag is a lead.
+</div>
+</Scenario>
+
+## The series LCR circuit
+
+<Scenario id="series-lcr" circuits height={440}>
+<div slot="intuition">
+All three in one loop, carrying the same current. The coil's voltage is a quarter cycle ahead of that current
+and the capacitor's a quarter cycle behind, so the two are always opposite and partly cancel. Whichever is
+larger decides whether the current lags or leads the source.
+
+Now change the frequency. Raising it strengthens the coil's opposition and weakens the capacitor's. At one
+frequency the two are equal and cancel completely. The source then sees only the resistor, and the current is
+as large as it can be. Switch the graph to phasors there: the arrows for L and C are equal and opposite, and
+each may be several times longer than the source's. That is resonance. Tuning a radio is choosing which
+frequency a circuit like this resonates at.
+</div>
+<div slot="maths">
+$$
+Z = \sqrt{R^2 + (X_L - X_C)^2}, \qquad \tan\varphi = \frac{X_L - X_C}{R}, \qquad \bar P = V_\text{rms}I_\text{rms}\cos\varphi
+$$
+
+$$
+f_0 = \frac{1}{2\pi\sqrt{LC}}, \qquad Q = \frac{\omega_0L}{R} .
+$$
+
+With 20 Ω, 200 mH and 100 μF the resonant frequency is 35.6 Hz.
+</div>
+<div slot="engine">
+The square root in $Z$ is never worked out by the engine: it solves the complex equations and the impedance is
+what the source's voltage over the current comes to. It matches the formula to nine figures at 10, 50 and
+200 Hz. The same circuit switched on and followed step by step, until the start has died away, settles to the
+same amplitude to a part in ten thousand.
+</div>
+</Scenario>
+
+## LC oscillations
+
+<Scenario id="lc-oscillations" circuits height={440}>
+<div slot="intuition">
+A charged capacitor connected to a coil, and no resistance. The capacitor starts to empty through the coil. The
+coil resists the growing current, then, once the capacitor is empty, resists its dying away: it keeps the
+current going and charges the capacitor up the other way round. Then the whole thing runs back. Energy passes
+between the capacitor's electric field and the coil's magnetic field, exactly as it passes between a spring and
+a moving mass. With no resistance it would go on for ever.
+</div>
+<div slot="maths">
+$$
+T = 2\pi\sqrt{LC}, \qquad I_0 = V_0\sqrt{\frac CL}, \qquad \tfrac12CV^2 + \tfrac12LI^2 = \text{constant} .
+$$
+
+The charge on the capacitor plays the part of displacement, the current that of velocity, $L$ that of mass and
+$1/C$ that of the spring constant.
+</div>
+<div slot="engine">
+This one is followed in time, not solved with complex numbers. After five whole periods the energy is unchanged
+to nine figures and the capacitor is back at its starting voltage to a part in ten thousand.
+</div>
+</Scenario>

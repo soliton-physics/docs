@@ -31,6 +31,7 @@ export default defineConfig({
         { label: 'Waves, class 11', items: [{ autogenerate: { directory: 'waves' } }] },
         { label: 'Thermal physics, class 11', items: [{ autogenerate: { directory: 'thermal' } }] },
         { label: 'Electromagnetism, class 12', items: [{ autogenerate: { directory: 'electromagnetism' } }] },
+        { label: 'Circuits, class 12', items: [{ autogenerate: { directory: 'circuits' } }] },
         { label: 'Optics, class 12', items: [{ autogenerate: { directory: 'optics' } }] },
         { label: 'Solitons', items: [{ autogenerate: { directory: 'physics' } }] },
         { label: 'Numerics', items: [{ autogenerate: { directory: 'numerics' } }] },

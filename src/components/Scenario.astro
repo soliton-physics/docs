@@ -9,14 +9,18 @@ interface Props {
   optics?: boolean;
   /** A scenario of the thermal tab. */
   thermal?: boolean;
+  /** A scenario of the circuits tab. */
+  circuits?: boolean;
 }
 
-const { id, height = 420, optics = false, thermal = false } = Astro.props;
+const { id, height = 420, optics = false, thermal = false, circuits = false } = Astro.props;
 const caption = optics
   ? 'Live in your browser: every ray traced by the engine. Drag the knob.'
   : thermal
     ? 'Live in your browser: every molecule followed by the engine.'
-    : undefined;
+    : circuits
+      ? 'Live in your browser: solved by the engine from Kirchhoff’s laws. Press play to see the charges move.'
+      : undefined;
 ---
 
 <section class="scenario">
@@ -24,6 +28,7 @@ const caption = optics
     scenario={id}
     optics={optics}
     thermal={thermal}
+    circuits={circuits}
     height={height}
     caption={caption}
   />

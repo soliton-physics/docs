@@ -117,3 +117,44 @@ gas.free();
 | `series(q)`, `series_share(species)` | the record kept once a picosecond: `time`, `volume`, `pressure`, `temperature`, `work`, `heat`, `energy`; share of a gas in the left half |
 | `speed_histogram(species, bins, fastest)`, `ThermalGas.maxwell(mass, T, points, fastest)` | the molecules counted by speed, and Maxwell's curve, both as densities per m/s |
 | `scene_json()`, `ThermalGas.from_scene(json)` | the experiment as data, and one from data |
+
+## Circuits
+
+```js
+import init, { CircuitBench, circuits_catalogue } from '@soliton-physics/engine';
+
+await init();
+const bench = new CircuitBench('series-lcr', { frequency: 35.6 });
+bench.readings();                                     // voltage, current for each component, now
+bench.answers();                                      // [{ name, value, measured }]
+bench.free();
+```
+
+| Method | Returns |
+|---|---|
+| `analysis()`, `playback()`, `duration()`, `frequency()` | `steady`, `transient` or `alternating`, and its pace, length and frequency |
+| `advance(s)`, `time()`, `finished()` | move time on; a steady circuit only has its clock moved |
+| `readings()` | `voltage, current` per component: volts with its `a` above its `b`, amperes from `a` to `b` |
+| `phasors()` | `Re V, Im V, Re I, Im I` per component for an alternating circuit |
+| `series_time()`, `series(index, 'voltage' \| 'current')` | the history of a circuit followed in time |
+| `scene_json()`, `CircuitBench.from_scene(json)` | the circuit as data: junctions with places on the page, components, how it is solved |
+
+## Statistical mechanics
+
+```js
+import init, { StatRun, statmech_catalogue } from '@soliton-physics/engine';
+
+await init();
+const run = new StatRun('ising-model', { temperature: 2.0 });
+run.advance(100);                                     // sweeps
+run.spins();                                          // Int8Array, row by row
+run.free();
+```
+
+| Method | Returns |
+|---|---|
+| `kind()`, `playback()`, `advance(steps)`, `finished()` | `ising`, `sweep`, `darts` or `walk`; steps per second of watching |
+| `size()`, `spins()`, `darts()`, `walkers()` | what to draw, for whichever model it is |
+| `now()`, `history()`, `points()` | the present readings; a thinned record; the temperatures a sweep has measured |
+| `StatRun.onsager(from, to, n)`, `StatRun.critical_temperature()` | the exact results for an infinite lattice |
+| `answers()` | `[{ name, value, measured, within }]` |

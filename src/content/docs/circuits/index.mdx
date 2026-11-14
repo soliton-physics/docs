@@ -1,0 +1,51 @@
+---
+title: Circuits, class 12
+description: Current electricity, capacitors, inductors and alternating current, each circuit solved live from Kirchhoff's laws.
+sidebar:
+  order: 0
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+These pages cover the circuits of NCERT class 12: current electricity, the capacitor half of the chapter on
+potential, the inductor, and alternating current.
+
+The engine knows two things about a circuit and nothing more. What flows into a junction flows out of it. And
+each component ties the voltage across it to the current through it: $V = IR$ for a resistor, $I = C\,dV/dt$ for
+a capacitor, $V = L\,dI/dt$ for an inductor. It writes those down for whatever circuit it is given and solves
+them. The rules for series and parallel, the balance of a bridge, the time constant $RC$ and the impedance of an
+LCR circuit are not in the program. They are what the solution shows, and each is checked against its formula.
+
+<CardGrid>
+  <LinkCard title="Current electricity" description="Ohm's law, series and parallel, internal resistance, two cells, Kirchhoff's rules, the Wheatstone bridge, the metre bridge, the potentiometer." href="/circuits/current-electricity/" />
+  <LinkCard title="Capacitors and inductors" description="Charging and discharging through a resistance, capacitors in series and parallel, current growing in an inductor." href="/circuits/capacitors-and-inductors/" />
+  <LinkCard title="Alternating current" description="A resistor, an inductor and a capacitor on AC, the series LCR circuit and resonance, LC oscillations." href="/circuits/alternating-current/" />
+</CardGrid>
+
+## Reading a circuit
+
+The symbols are the textbook's: a zigzag for a resistor, a long thin plate and a short thick one for a cell (the
+long one is positive), two equal plates for a capacitor, a coil for an inductor, a circle with a wave for an
+alternating source, and circles lettered A, V and G for the ammeter, voltmeter and galvanometer.
+
+Press play and red dots drift round the wires. They move the way conventional current flows, from the positive
+terminal round to the negative, and faster where there is more of it. The side panel lists the voltage across and
+the current through every component at that moment.
+
+## Signs
+
+Every component has two ends. Its voltage is the first end above the second, and its current is counted from the
+first to the second through it. A resistor's two numbers therefore always have the same sign. A cell that is
+supplying current shows a **negative** current, because inside it the current runs from the negative plate to
+the positive. A cell being charged by a stronger one shows a positive current.
+
+## What is and is not here
+
+- **Meters are ideal.** The ammeter has no resistance and the voltmeter takes no current. The galvanometer has
+  50 Ω.
+- **Wires have no resistance,** except the wire of the metre bridge and the potentiometer, which is the point of
+  them.
+- **Alternating circuits are shown in their steady state,** found with complex numbers. The moment of switching
+  on is not shown for those.
+- **Not built yet:** the transformer, diodes and rectifiers, the temperature dependence of resistance, drift
+  velocity at the level of electrons, and a bench where you build a circuit of your own.

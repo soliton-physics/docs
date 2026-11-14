@@ -87,6 +87,36 @@ A few hundred molecules fluctuate, so these are tested within a stated tolerance
 | Carnot cycle | efficiency; work in each isothermal stroke; first law over the cycle | 10 %, 6 %, 1e-9 |
 | Every thermal scenario | builds, round-trips through JSON; an overfull box is refused | passes |
 
+## Statistical mechanics
+
+| What | Test | Error |
+|---|---|---|
+| Onsager's formulas | critical temperature; magnetisation at T = 1; energy at T = 0 and at the critical point | 1e-14, 1e-6, 1e-9, 1e-6 |
+| Ising lattice at absolute zero | stays ordered; energy −2 J, and −2.5 J in a field of 0.5 | exact |
+| Ising lattice when hot | no magnetisation; energy −2 tanh(1/T) | 0.06, 0.02 |
+| Metropolis against Onsager | energy and magnetisation at T = 1.5, 2, 3, 4 | 0.06 J; 0.04 below T꜀, 0.12 above |
+| Cooling through the transition | specific heat peaks at T꜀; every point away from it against Onsager | 0.2; 0.06 J |
+| Darts | π after 400 000 points, against its expected error | 3 σ |
+| Random walkers | rms distance against √N at 100, 400, 1600 steps | 5 % |
+| Reproducibility | the same seed gives the same run | exact |
+
+## Circuits
+
+| What | Test | Error |
+|---|---|---|
+| A cell and a resistor | current, terminal voltage, power supplied equals power taken | round-off |
+| Junction rule | currents into every junction of the Wheatstone bridge | 1e-12 A |
+| A loop of ideal cells; a battery across a wire | refused as having no answer | passes |
+| An open switch | the part cut off carries nothing; closing it restores the current | exact |
+| Charging capacitor | voltage against the exponential over three time constants | 1e-6 |
+| A switch thrown part way | charging starts then, from the state just before | 5e-3 |
+| LC circuit | energy and voltage after five periods | 1e-9, 1e-4 |
+| Series LCR | amplitude by complex numbers against the formula; against stepping in time | 1e-12, 1e-4 |
+| Bridges and potentiometer | zero at the balance point; opposite signs either side | 1e-9 mA |
+| Steady scenarios across their sliders | every measured answer | 1e-12 |
+| Series LCR at 10, 50, 200 Hz and at resonance | impedance, current, lag, voltages | 1e-9 |
+| Every circuit scenario | measured answers; round trip through JSON | 1e-3, passes |
+
 ## Ray optics
 
 | What | Test | Error |

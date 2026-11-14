@@ -1,0 +1,204 @@
+---
+title: Current electricity
+description: Ohm's law, combinations of resistors and cells, Kirchhoff's rules, the Wheatstone and metre bridges, the potentiometer.
+sidebar:
+  order: 1
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+## Ohm's law
+
+<Scenario id="ohms-law" circuits>
+<div slot="intuition">
+A battery keeps one of its terminals at a higher potential than the other, and charge flows round the circuit
+from high to low like water downhill. The resistor is the narrow part of the pipe. Push harder, with a bigger
+voltage, and more flows. Narrow the pipe, with a bigger resistance, and less does. The ammeter sits in the path
+and counts what goes through; the voltmeter is connected across the resistor and compares the potential at its
+two ends.
+</div>
+<div slot="maths">
+$$
+V = IR, \qquad P = VI = I^2R = \frac{V^2}{R} .
+$$
+
+Six volts across 12 Ω drives half an ampere and turns 3 W into heat.
+</div>
+<div slot="engine">
+One equation for the cell, one for the resistor, and the current into each junction set to zero. The ammeter is
+a wire that reports its current and the voltmeter a gap that reports its voltage.
+</div>
+</Scenario>
+
+## Resistors in series
+
+<Scenario id="resistors-in-series" circuits>
+<div slot="intuition">
+There is only one way round, so whatever current goes through the first resistor goes through all of them. Each
+takes a share of the battery's voltage to push that current through itself, and the largest resistance needs the
+largest share. Make one resistor much bigger than the others and it takes nearly all of the voltage.
+</div>
+<div slot="maths">
+$$
+R = R_1 + R_2 + R_3, \qquad I = \frac{V}{R}, \qquad V_k = IR_k .
+$$
+</div>
+<div slot="engine">
+Nobody adds the resistances. The three voltages are found separately and come out adding up to the battery's,
+to round-off.
+</div>
+</Scenario>
+
+## Resistors in parallel
+
+<Scenario id="resistors-in-parallel" circuits>
+<div slot="intuition">
+Now there are three ways round, and each resistor is connected straight across the battery, so each has the
+whole voltage. The current divides at the junction, most of it taking the easiest path. Watch the dots: they
+crowd down the smallest resistance. Adding a path always lets more current through in total, so the combination
+has less resistance than its smallest member.
+</div>
+<div slot="maths">
+$$
+\frac1R = \frac1{R_1} + \frac1{R_2} + \frac1{R_3}, \qquad I_k = \frac{V}{R_k}, \qquad I = I_1 + I_2 + I_3 .
+$$
+</div>
+<div slot="engine">
+The junction rule is the equation here: the ammeter's current equals the three branch currents added, to
+round-off.
+</div>
+</Scenario>
+
+## A cell with internal resistance
+
+<Scenario id="internal-resistance" circuits>
+<div slot="intuition">
+A real cell is not a perfect source. Charge has to get through the cell itself, and that costs some of the EMF.
+With nothing connected the voltmeter reads the full EMF. Connect a resistance and the reading drops; make the
+resistance small and it drops a lot, while the cell warms up. Lower the load in the parameters and watch the
+terminal voltage sag. The cell hands over the most power when the load equals its own internal resistance.
+</div>
+<div slot="maths">
+$$
+I = \frac{\varepsilon}{R + r}, \qquad V = \varepsilon - Ir, \qquad P_\text{max} = \frac{\varepsilon^2}{4r} \ \text{at}\ R = r .
+$$
+</div>
+<div slot="engine">
+The cell is an EMF in series with a resistance, as one component. Its current reads negative while it supplies,
+by the sign rule on the first of these pages.
+</div>
+</Scenario>
+
+## Two cells in parallel
+
+<Scenario id="cells-in-parallel" circuits>
+<div slot="intuition">
+Two different cells side by side feeding one resistance. Together they behave as a single cell, with an EMF
+between the two and a smaller internal resistance than either. Now make the first cell much weaker than the
+second. The strong cell pushes current backwards through the weak one: its dots reverse. That is charging, and it
+is why mismatched cells should not be left connected in parallel.
+</div>
+<div slot="maths">
+$$
+\varepsilon_\text{eq} = \frac{\varepsilon_1 r_2 + \varepsilon_2 r_1}{r_1 + r_2}, \qquad
+r_\text{eq} = \frac{r_1 r_2}{r_1 + r_2} .
+$$
+</div>
+<div slot="engine">
+With a 0.5 V cell beside a 6 V one the engine gives the weak cell a negative supplied current, as it should.
+</div>
+</Scenario>
+
+## Kirchhoff's rules
+
+<Scenario id="kirchhoff-rules" circuits>
+<div slot="intuition">
+Two cells in different branches. Try to call anything here "in series" or "in parallel" and it does not work.
+Two rules always do. At a junction, the currents in equal the currents out, because charge does not pile up.
+Round any closed loop, the rises in potential equal the falls, because you end where you began. Write one
+equation for the junction and one for each loop, and solve.
+</div>
+<div slot="maths">
+$$
+\sum I = 0 \ \text{at a junction}, \qquad \sum \Delta V = 0 \ \text{round a loop}.
+$$
+
+Calling the potential of the top junction $V$:
+
+$$
+\frac{\varepsilon_1 - V}{R_1} + \frac{\varepsilon_2 - V}{R_2} = \frac{V}{R_3} .
+$$
+</div>
+<div slot="engine">
+This is what the engine does for every circuit on these pages; here it is also the subject. If a current comes
+out negative, it flows against the direction it is named for: raise the right-hand cell and watch one reverse.
+</div>
+</Scenario>
+
+## The Wheatstone bridge
+
+<Scenario id="wheatstone-bridge" circuits>
+<div slot="intuition">
+Current from the battery splits at the left corner, goes two ways round the diamond, and joins again at the
+right. The galvanometer bridges the middle. If the top junction is at a higher potential than the bottom one,
+current flows down through it; if lower, up. Change S in the parameters until the galvanometer reads zero. At
+that point P/Q = R/S, and it stays zero whatever you do to the battery. That is what makes the bridge a precise
+way to compare resistances: it depends on a zero, not on a reading.
+</div>
+<div slot="maths">
+Balanced when
+
+$$
+\frac PQ = \frac RS \quad\Longrightarrow\quad S = \frac{QR}{P} .
+$$
+</div>
+<div slot="engine">
+At $S = QR/P$ the galvanometer's current is zero to round-off. Off balance it matches the full formula,
+found by treating the rest of the bridge as a cell behind a resistance.
+</div>
+</Scenario>
+
+## The metre bridge
+
+<Scenario id="meter-bridge" circuits>
+<div slot="intuition">
+The same bridge, built so that it can be balanced by hand. Two of its arms are the two parts of one metre of
+uniform wire, the thick line. Drag the jockey along it. To one side the galvanometer reads one way, to the other
+side the other way, and at one point it reads zero. The resistances of the two parts of the wire are in the ratio
+of their lengths, so a ruler gives the unknown resistance.
+</div>
+<div slot="maths">
+With the balance point $l$ cm from the end next to the known resistance $R$:
+
+$$
+\frac{R}{S} = \frac{l}{100 - l} \quad\Longrightarrow\quad S = R\,\frac{100 - l}{l} .
+$$
+</div>
+<div slot="engine">
+The wire is two resistors whose values follow the jockey. The reading is zero at $100R/(R+S)$ cm and of opposite
+signs either side of it.
+</div>
+</Scenario>
+
+## The potentiometer
+
+<Scenario id="potentiometer" circuits>
+<div slot="intuition">
+A voltmeter draws a little current, so it never quite reads a cell's true EMF. The potentiometer does. A steady
+current from the driver cell makes the potential fall evenly along the long wire. The cell being measured is
+connected so that it opposes that fall, through a galvanometer and the jockey. Slide the jockey until the fall
+along the wire up to it exactly matches the cell. Then no current flows through the cell at all, nothing is lost
+inside it, and the length of wire is a measure of its EMF.
+</div>
+<div slot="maths">
+With a fall of $k$ volts per centimetre along the wire, balance at length $l$ means
+
+$$
+\varepsilon = kl, \qquad \frac{\varepsilon_1}{\varepsilon_2} = \frac{l_1}{l_2} .
+$$
+</div>
+<div slot="engine">
+The test cell has an internal resistance of 1 Ω, and at balance it makes no difference: the reading is zero at
+$100\,\varepsilon/V$ cm to round-off. Off balance the current matches the formula.
+</div>
+</Scenario>

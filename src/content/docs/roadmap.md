@@ -50,8 +50,9 @@ scenario.
 - [ ] Heat conduction along a temperature gradient; mean free path and diffusion measured
 - [ ] Attraction between molecules: the van der Waals gas, condensation, the critical point
 - [ ] Diatomic molecules and the specific heats of gases
-- [ ] The Ising model, Monte Carlo methods and phase transitions
-- [ ] Random walks, percolation and other complex systems
+- [x] Monte Carlo methods: an area by random points, random walks and diffusion
+- [x] The Ising model with the Metropolis rule, checked against Onsager; its phase transition by cooling
+- [ ] Cluster algorithms and finite-size scaling; percolation; other complex systems
 - [ ] Fluids: flow past a cylinder, vortices
 
 ## Electromagnetism, class 12
@@ -71,12 +72,22 @@ scenario.
 - [x] Electromagnetic waves, from their formulas: displacement current, the travelling wave of E and B, standing
       waves off a metal sheet, the spectrum
 - [ ] Charges, magnets and fields in the sandbox
-- [ ] Capacitors and dielectrics; equipotentials
-- [ ] Current electricity: Ohm's law, Kirchhoff's rules, the Wheatstone bridge
+- [ ] Dielectrics; equipotentials
 - [ ] The magnetic field of a current, and the force between two wires
-- [ ] Induction, inductance, alternating current and the LCR circuit
 - [ ] Ferromagnets and hysteresis
 - [ ] A magnetic field in the plane acting on a moving charge (helical paths): needs the third dimension
+
+## Circuits, class 12
+
+- [x] Kirchhoff's laws for any circuit of cells, resistors, capacitors, inductors, switches and meters
+- [x] Three ways of solving: steady, step by step in time, and alternating with complex numbers
+- [x] Nineteen scenarios with textbook answers. Current electricity: Ohm's law, series, parallel, internal
+      resistance, two cells, Kirchhoff's rules, the Wheatstone bridge, the metre bridge, the potentiometer.
+      Capacitors and inductors: charging, discharging, series, parallel, the LR circuit. Alternating current: R,
+      L and C alone, the series LCR circuit, LC oscillations
+- [ ] The transformer; diodes and rectifiers
+- [ ] A bench of your own: place components and wire them up
+- [ ] Faraday's law with moving magnets and rods; the AC generator
 
 ## Optics, class 12
 
@@ -89,7 +100,8 @@ scenario.
 - [ ] A bench of your own: place and move mirrors, lenses and blocks
 - [ ] Dispersion: a refractive index that depends on colour, the spectrum from a prism, the rainbow
 - [ ] The eye and its defects; the simple microscope; reflecting telescopes
-- [ ] Wave optics: Huygens' principle, Young's double slit, diffraction, polarisation
+- [x] Wave optics, from the formulas: Young's double slit, diffraction at a single slit, polarisation and Malus's law
+- [ ] Huygens' wavelets shown building a wavefront; the diffraction grating; thin films
 
 ## Nonlinear waves
 
