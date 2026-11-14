@@ -1,0 +1,58 @@
+---
+title: Thermal physics, class 11
+description: Kinetic theory and thermodynamics from a gas of molecules you can watch, with nothing thermodynamic put in by hand.
+sidebar:
+  order: 0
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+These pages follow the NCERT class 11 chapters on thermodynamics and kinetic theory, and take the first steps
+into statistical mechanics beyond them. Everything on them comes from one thing: a few hundred molecules in a
+box, flying in straight lines and bouncing off the walls and off each other.
+
+Nothing thermodynamic is put in by hand.
+
+- **Temperature** is the mean kinetic energy of the molecules, $\tfrac32 kT$ each.
+- **Pressure** is counted from their blows on the walls.
+- **Work** is the energy a moving piston gives the molecules that hit it, one collision at a time.
+- **Heat** is what a wall held at a temperature hands to a molecule, or takes from it, when the molecule leaves
+  with a fresh speed for that temperature.
+
+The gas laws, Maxwell's distribution, the adiabatic law and the Carnot efficiency are then things you watch come
+out, not things the program was told.
+
+<CardGrid>
+  <LinkCard title="Kinetic theory" description="The pressure of a gas, Maxwell's distribution of speeds, light and heavy molecules sharing energy, Brownian motion." href="/thermal/kinetic-theory/" />
+  <LinkCard title="Thermodynamics" description="Isothermal and adiabatic compression, free expansion, two gases mixing, the Carnot cycle." href="/thermal/thermodynamics/" />
+</CardGrid>
+
+## The size of things
+
+The box is about 10 nanometres across and the clock runs in picoseconds: this is a real gas at its real size,
+slowed down some fifty thousand million times. The molecules are argon atoms unless a page says otherwise,
+moving at about 400 m/s at room temperature. With 300 of them in so small a box the pressure is several
+atmospheres.
+
+## A few hundred is not 10²³
+
+A real gas has so many molecules that its pressure and temperature are perfectly steady. Three hundred molecules
+are not like that, and it shows, honestly:
+
+- **Everything flickers.** The pressure wobbles by a few per cent from moment to moment, and so does the
+  temperature of a gas that is touching a heat reservoir. Measured values settle as they are averaged over time,
+  and each answer is marked as agreeing when it is within a stated few per cent.
+- **Heat is the noisiest number.** The energy the gas itself holds flickers by about 5 %, and whatever it happens
+  to hold at the start and end of a stroke shows up in the heat for that stroke. Work is much steadier.
+- **Molecules have a size.** They are small hard spheres, so at high density the pressure is a per cent or two
+  above $NkT/V$. That is the start of the van der Waals correction, and it is real.
+
+## What is and is not here
+
+- **The gas is monatomic.** Hard spheres cannot spin or vibrate, so $\gamma = 5/3$ and $C_V = \tfrac32 Nk$.
+  Diatomic gases, with $\gamma = 7/5$, are not modelled.
+- **No attraction between molecules,** so no liquid, no condensation and no critical point yet.
+- **Pistons move slowly but not infinitely slowly:** about a hundredth of the speed of the molecules. A faster
+  piston does visibly more work than the reversible formulas say, which is itself worth showing a class.
+- **Not built yet:** heat conduction along a temperature gradient, specific heats of solids, the Ising model and
+  Monte Carlo methods, phase transitions, and fluids. They are on the [roadmap](/roadmap/).

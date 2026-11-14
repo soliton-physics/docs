@@ -79,4 +79,14 @@ bench.measured()                              # the same, read off the traced ra
 bench.rays()                                  # list of (N, 2) arrays of points, metres
 bench.images()                                # [{'base': (0.24, 0.0), 'tip': (0.24, -0.018), 'real': True}]
 optics.Bench.from_json(bench.to_json())       # scenes are data here too
+
+# Thermal physics
+from soliton import thermal
+gas = thermal.scenario("adiabatic-process", temperature=300)
+while gas.stage < 2:
+    gas.advance(100)                          # picoseconds
+gas.temperature, gas.volume                   # K, nm³
+gas.answers(), gas.measured()                 # the formulas, and what the molecules gave
+gas.velocities()                              # (N, 3) in m/s; also positions() in nm and species()
+gas.series()["pressure"]                      # atm once a picosecond; also time, volume, temperature, work, heat, energy
 ```

@@ -7,17 +7,25 @@ interface Props {
   height?: number;
   /** A scenario of the optics bench. */
   optics?: boolean;
+  /** A scenario of the thermal tab. */
+  thermal?: boolean;
 }
 
-const { id, height = 420, optics = false } = Astro.props;
+const { id, height = 420, optics = false, thermal = false } = Astro.props;
+const caption = optics
+  ? 'Live in your browser: every ray traced by the engine. Drag the knob.'
+  : thermal
+    ? 'Live in your browser: every molecule followed by the engine.'
+    : undefined;
 ---
 
 <section class="scenario">
   <LiveSim
     scenario={id}
     optics={optics}
+    thermal={thermal}
     height={height}
-    caption={optics ? 'Live in your browser: every ray traced by the engine. Drag the knob.' : undefined}
+    caption={caption}
   />
   <Tabs>
     <TabItem label="Intuition" icon="star">

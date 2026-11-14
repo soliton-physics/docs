@@ -40,6 +40,20 @@ scenario.
 - [ ] The Doppler effect
 - [ ] Waves in two dimensions: ripples and two-source interference
 
+## Thermal physics, class 11 and beyond
+
+- [x] A gas of hard-sphere molecules in three dimensions, in real units, with exact energy conservation
+- [x] Pressure counted from blows on the walls; a piston that does work; walls held at a temperature that give heat
+- [x] Experiments in stages, with the first law's ledger kept for each
+- [x] Nine scenarios with textbook answers: the gas law, Maxwell's distribution, a mixture and equipartition,
+      Brownian motion, isothermal and adiabatic compression, free expansion, mixing, the Carnot cycle
+- [ ] Heat conduction along a temperature gradient; mean free path and diffusion measured
+- [ ] Attraction between molecules: the van der Waals gas, condensation, the critical point
+- [ ] Diatomic molecules and the specific heats of gases
+- [ ] The Ising model, Monte Carlo methods and phase transitions
+- [ ] Random walks, percolation and other complex systems
+- [ ] Fluids: flow past a cylinder, vortices
+
 ## Electromagnetism, class 12
 
 - [x] Charge on a body; Coulomb's law between charges, fixed or free

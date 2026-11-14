@@ -93,3 +93,27 @@ A bench is traced once, when it is made; change a number by making another.
 | `marks()`, `axis()`, `view()`, `title()` | named points, the principal axis, a suggested frame |
 | `index_at(x, y)` | the refractive index at a point |
 | `scene_json()`, `OpticsBench.from_scene(json)` | the bench as data, and a bench from data |
+
+## Thermal physics
+
+```js
+import init, { ThermalGas, thermal_catalogue } from '@soliton-physics/engine';
+
+await init();
+const gas = new ThermalGas('carnot-cycle', { hot: 450, cold: 300 });
+gas.advance(25);                                      // picoseconds
+gas.now();                                            // { time, temperature, pressure, volume, energy, work, heat }
+gas.answers();                                        // [{ name, value, measured, tolerance }]
+gas.free();
+```
+
+| Method | Returns |
+|---|---|
+| `advance(ps)`, `finished()`, `playback()` | run the gas on; whether its last stage has ended; picoseconds to show per second |
+| `molecules()`, `size()`, `groups()` | `x, y, z, radius, species` for each molecule in nm; the box now; the kinds of molecule |
+| `walls()`, `partition()`, `piston()` | each wall's temperature (`NaN` if insulated); where the partition is; which way the piston is moving |
+| `stage()`, `stage_label()`, `stage_count()` | where the experiment has got to |
+| `now()`, `ideal_pressure()` | the state at this moment; `NkT/V` for comparison, atm |
+| `series(q)`, `series_share(species)` | the record kept once a picosecond: `time`, `volume`, `pressure`, `temperature`, `work`, `heat`, `energy`; share of a gas in the left half |
+| `speed_histogram(species, bins, fastest)`, `ThermalGas.maxwell(mass, T, points, fastest)` | the molecules counted by speed, and Maxwell's curve, both as densities per m/s |
+| `scene_json()`, `ThermalGas.from_scene(json)` | the experiment as data, and one from data |

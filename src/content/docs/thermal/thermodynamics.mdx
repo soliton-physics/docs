@@ -1,0 +1,152 @@
+---
+title: Thermodynamics
+description: Isothermal and adiabatic processes, free expansion, mixing, and the Carnot cycle.
+sidebar:
+  order: 2
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+On this page the right-hand wall of the box is a piston, and the walls are either insulated (grey) or held at a
+temperature (coloured). The side panel keeps the first law's three numbers: the internal energy of the gas, the
+work done on it, and the heat given to it. At every moment $\Delta U = Q + W$ exactly.
+
+## Compressing a gas slowly, at a fixed temperature
+
+<Scenario id="isothermal-process" thermal height={440}>
+<div slot="intuition">
+A molecule that bounces off an advancing piston comes away faster than it arrived, as a ball does off a moving
+bat. That is how pushing a piston gives a gas energy. Here the walls are held at 300 K, so each molecule that has
+been speeded up soon hits a wall and leaves with an ordinary speed again. The gas ends no hotter than it began.
+All the work that went in has come out as heat. On the P–V graph the gas climbs the dashed curve $PV = NkT$.
+</div>
+<div slot="maths">
+At fixed temperature $PV$ is constant and $\Delta U = 0$, so
+
+$$
+W_\text{on gas} = NkT\ln\frac{V_1}{V_2}, \qquad Q = -W .
+$$
+
+Halving the volume of 250 atoms at 300 K takes $250 \times kT \times \ln 2 = 718 \times 10^{-21}$ J.
+</div>
+<div slot="engine">
+The work is added up collision by collision at the piston and comes within 6 % of the formula. The heat is much
+noisier. A gas of 250 molecules touching a reservoir holds an energy that flickers by about 5 %, and whatever it
+holds at the two ends of the stroke is counted in the heat: expect it within 15 to 30 %. The temperature averaged
+afterwards is within 3 % of the walls'.
+</div>
+</Scenario>
+
+## Compressing a gas with no heat allowed out
+
+<Scenario id="adiabatic-process" thermal height={440}>
+<div slot="intuition">
+The same piston and the same squeeze, but now the walls are insulated: a molecule bounces off them with the speed
+it came with. The energy the piston gives has nowhere to go. The gas gets hotter, and because it is hotter its
+pressure rises faster than it did at a fixed temperature. The path on the P–V graph is steeper. A bicycle pump
+getting warm is this.
+</div>
+<div slot="maths">
+With $\gamma = C_P/C_V = 5/3$ for a gas of single atoms:
+
+$$
+PV^\gamma = \text{constant}, \qquad TV^{\gamma-1} = \text{constant}, \qquad W_\text{on gas} = \Delta U = \tfrac32 Nk\,(T_2 - T_1) .
+$$
+
+Halving the volume from 300 K gives $300 \times 2^{2/3} = 476$ K.
+</div>
+<div slot="engine">
+Nobody told the engine the value of $\gamma$. The final temperature comes out within 3 % of the adiabatic law and
+the heat is exactly zero. The work is a few per cent above the formula, because the piston moves at 4 m/s and not
+infinitely slowly: it meets the molecules a little harder than a reversible piston would. Set the lengths the
+other way round and the gas cools as it expands by the same law.
+</div>
+</Scenario>
+
+## Free expansion
+
+<Scenario id="free-expansion" thermal>
+<div slot="intuition">
+The gas starts in half the box. Then the wall holding it is whipped away, faster than any molecule can follow, so
+nothing ever pushes on it. The gas spreads into the empty half and fills the whole box.
+
+It did no work and no heat passed, so its energy is what it was, and so is its temperature. Its pressure has
+halved. Now watch for it to go back into the left half. It never will. Nothing forbids it: each molecule would
+only have to be in the left half at the same moment. With 300 molecules the chance is one in $2^{300}$.
+</div>
+<div slot="maths">
+$$
+W = 0, \quad Q = 0 \quad\Longrightarrow\quad \Delta U = 0, \quad T_2 = T_1, \quad P_2 = \tfrac12 P_1 .
+$$
+
+The process cannot be run backwards, and the measure of that is the entropy gained:
+
+$$
+\Delta S = Nk\ln\frac{V_2}{V_1} = Nk\ln 2 .
+$$
+</div>
+<div slot="engine">
+The temperature afterwards equals the temperature before to twelve figures, and the work is exactly zero. The
+pressures before and after match $NkT/V$ within 6 %. The graph shows the share of the molecules in the left half
+falling from one to a half and staying there.
+</div>
+</Scenario>
+
+## Two gases mixing
+
+<Scenario id="mixing" thermal>
+<div slot="intuition">
+Neon on the left and argon on the right, at the same temperature and pressure, with a wall between. Take the wall
+away. Nothing pushes either gas anywhere, the pressure is the same on both sides, and yet within a few hundred
+picoseconds they are thoroughly mixed. They will not sort themselves out again. This is diffusion, and like free
+expansion it only goes one way.
+</div>
+<div slot="maths">
+Each gas has in effect expanded freely into twice its volume, so
+
+$$
+\Delta S = 2Nk\ln 2, \qquad \Delta U = 0, \qquad T \text{ unchanged}.
+$$
+</div>
+<div slot="engine">
+After 400 ps the share of each gas in the left half, averaged, is within 8 % of one half, and the temperature is
+exactly what it was. The graph shows the two shares starting at one and at zero and meeting in the middle.
+</div>
+</Scenario>
+
+## The Carnot cycle
+
+<Scenario id="carnot-cycle" thermal height={460}>
+<div slot="intuition">
+An engine takes heat from something hot, turns part of it into work, and has to throw the rest away to something
+cold. Carnot asked how large that part can be, and found the best possible engine: four slow strokes.
+
+1. The gas expands touching the hot reservoir. It does work, and takes in exactly that much heat.
+2. Insulated, it goes on expanding. Now the work comes out of its own energy and it cools, down to the cold
+   reservoir's temperature.
+3. Touching the cold reservoir, it is compressed. Work goes in and leaves as heat.
+4. Insulated, it is compressed until it is hot again, back where it began.
+
+On the P–V graph the path is a closed loop between the two dashed curves, and the area inside it is the work the
+engine gives.
+</div>
+<div slot="maths">
+$$
+Q_h = NkT_h \ln\frac{V_2}{V_1}, \qquad Q_c = NkT_c \ln\frac{V_3}{V_4}, \qquad \frac{V_2}{V_1} = \frac{V_3}{V_4}
+$$
+
+$$
+\eta = \frac{W}{Q_h} = 1 - \frac{Q_c}{Q_h} = 1 - \frac{T_c}{T_h} .
+$$
+
+Between 450 K and 300 K no engine can turn more than one third of the heat it takes in into work.
+</div>
+<div slot="engine">
+The work in each of the two fixed-temperature strokes is within 6 % of its formula. The efficiency shown is one
+minus the work put in at the cold reservoir over the work got out at the hot one, and it comes within 10 % of
+$1 - T_c/T_h$. It is taken from those two works, and not from the measured heats, for the reason given on the
+first of these pages: with 400 molecules the heats carry the flicker of the gas's own energy, which is tens of per
+cent of the heat of a stroke. For the same reason the two insulated strokes do not cancel exactly in any single cycle, as
+they would for a real gas. The whole cycle is some nine nanoseconds, shown at three hundred picoseconds a second.
+</div>
+</Scenario>

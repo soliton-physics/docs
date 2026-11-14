@@ -1,0 +1,119 @@
+---
+title: Kinetic theory
+description: The pressure of a gas, Maxwell's distribution of speeds, equipartition in a mixture, and Brownian motion.
+sidebar:
+  order: 1
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+## The pressure of a gas
+
+<Scenario id="ideal-gas" thermal>
+<div slot="intuition">
+A gas pushes on its container because its molecules keep hitting the walls. Each blow is tiny, but there are a
+great many of them, and together they make a steady push. Open the parameters and change one thing at a time.
+Twice as many molecules, twice as many blows. A hotter gas has faster molecules, which hit harder and more often.
+A smaller box, and each molecule comes round to a wall sooner.
+</div>
+<div slot="maths">
+A molecule of mass $m$ bouncing off a wall changes its momentum by $2mv_x$. Adding up the blows of $N$ molecules
+on a wall gives
+
+$$
+P = \frac13 \frac{N}{V}\, m\,\overline{v^2}, \qquad \tfrac12 m\,\overline{v^2} = \tfrac32 kT
+\quad\Longrightarrow\quad PV = NkT .
+$$
+
+With 300 argon atoms at 300 K in a box 12 nm across, $P = 7.1$ atm and $v_\text{rms} = \sqrt{3kT/m} = 433$ m/s.
+</div>
+<div slot="engine">
+The pressure shown is not worked out from the temperature. The engine adds up the momentum the molecules hand to
+the six walls and divides by the time and the area. Averaged over a nanosecond it agrees with $NkT/V$ to within
+4 % for every combination tested, a per cent or two of which is real: the molecules have a size. The temperature
+of an insulated gas does not change at all, to twelve figures, because every collision conserves energy exactly.
+</div>
+</Scenario>
+
+## The Maxwell distribution of speeds
+
+<Scenario id="maxwell-distribution" thermal>
+<div slot="intuition">
+At the start every molecule has exactly the same speed, in a random direction: the bars are a single spike. Watch
+what a few collisions do. A glancing blow leaves one molecule faster and the other slower, and soon there are
+molecules at every speed. The bars settle onto the curve and stay there.
+
+Nothing steers them to it. The curve is simply the way of sharing out the energy that can be done in the most
+ways, so it is the one you almost always find.
+</div>
+<div slot="maths">
+$$
+f(v) = 4\pi \left(\frac{m}{2\pi kT}\right)^{3/2} v^2\, e^{-mv^2/2kT}
+$$
+
+$$
+v_\text{most probable} = \sqrt{\frac{2kT}{m}}, \qquad \bar v = \sqrt{\frac{8kT}{\pi m}}, \qquad v_\text{rms} = \sqrt{\frac{3kT}{m}} .
+$$
+
+The three are in the ratio $1 : 1.13 : 1.22$. Heavier molecules, or a colder gas, and the whole curve moves to the
+left and grows taller.
+</div>
+<div slot="engine">
+The root mean square speed cannot change, because the total energy cannot. The mean speed starts equal to it and
+falls to $0.921$ of it as the distribution forms; the measured value matches $\sqrt{8kT/\pi m}$ to within 2 %.
+The bars are smoothed over about a second of watching, because 400 molecules sorted into 28 bins are a rough
+sample.
+</div>
+</Scenario>
+
+## Light and heavy molecules together
+
+<Scenario id="gas-mixture" thermal>
+<div slot="intuition">
+Neon at 600 K and xenon at 200 K, mixed in one box. The neon atoms are light and fast, the xenon heavy and slow.
+In each collision a little energy passes from the more energetic to the less, and the two graphs of temperature
+close in on each other. They meet when a neon atom and a xenon atom have the same kinetic energy on average. That
+is what "the same temperature" means. It is not the same speed: xenon is six and a half times heavier, and ends
+up moving about two and a half times more slowly.
+</div>
+<div slot="maths">
+Equipartition: each kind of molecule has $\tfrac12 m\,\overline{v^2} = \tfrac32 kT$, so
+
+$$
+\frac{v_\text{rms, light}}{v_\text{rms, heavy}} = \sqrt{\frac{m_\text{heavy}}{m_\text{light}}} .
+$$
+
+With equal numbers of each, the temperature they settle at is the average of the two they began with.
+</div>
+<div slot="engine">
+The final temperature of the whole mixture is exact, since no energy leaves. The temperature of each gas alone,
+averaged after 600 ps, is within 6 % of it, and each root mean square speed within 4 %.
+</div>
+</Scenario>
+
+## Brownian motion
+
+<Scenario id="brownian-motion" thermal>
+<div slot="intuition">
+The big blue sphere is a grain fifty times heavier than the atoms around it. At any instant it is being hit from
+all sides, and the blows very nearly cancel. Not quite: now a few more from the left, now from below. So it
+jitters and wanders, and the line shows where it has been.
+
+Robert Brown saw pollen grains doing this in water in 1827 and nobody could explain it. Einstein's explanation in
+1905, and Perrin's measurements, are what finally convinced physicists that atoms are real.
+</div>
+<div slot="maths">
+The grain is one more particle in the gas and has the same share of energy as any atom:
+
+$$
+\tfrac12 M\,\overline{V^2} = \tfrac32 kT, \qquad V_\text{rms} = \sqrt{\frac{3kT}{M}} .
+$$
+
+A grain of 2000 u at 300 K moves at about 61 m/s, against 433 m/s for the argon.
+</div>
+<div slot="engine">
+The grain starts at rest and is brought to the temperature of the gas by collisions alone. One particle is a very
+small sample, so its measured temperature settles slowly and is counted as agreeing within 25 %. Leave it running:
+the average creeps towards the temperature of the gas.
+</div>
+</Scenario>

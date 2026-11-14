@@ -66,6 +66,27 @@ Every solver in the engine ships with tests that run in CI on every change. Thre
 | Free magnets and a magnetised bead | momentum, angular momentum, energy | 1e-15, 1e-12, 1e-6 |
 | Every catalogue scenario | builds, runs, round-trips through JSON | passes |
 
+## Thermal physics
+
+A few hundred molecules fluctuate, so these are tested within a stated tolerance, on a fixed random seed.
+
+| What | Test | Error |
+|---|---|---|
+| Energy of an insulated gas | 300 molecules, 20 000 steps, over a thousand collisions | 1e-12 |
+| First law | piston moving and walls at a temperature: ΔU = Q + W | 1e-9 |
+| Reproducibility | the same seed gives the same gas, molecule for molecule | exact |
+| A wall at a temperature | brings the gas to that temperature | 3 % |
+| Gas law | pressure from wall blows against NkT/V, four combinations of N, T, V | 4 % |
+| Maxwell's distribution | mean and root mean square speed after relaxing from equal speeds | 2 %, 1 % |
+| Mixture | each gas alone reaches the common temperature; rms speeds | 6 %, 4 % |
+| Isothermal compression | work; final pressure; mean temperature | 6 %, 5 %, 3 % |
+| Adiabatic compression and expansion | final temperature and pressure; work; zero heat | 3 %, 5 %, 7 %, exact |
+| Free expansion | temperature unchanged; zero work; pressure halves | 1e-12, exact, 6 % |
+| Mixing | share of each gas in each half | 8 % |
+| Brownian grain | its mean temperature and rms speed | 25 %, 15 % |
+| Carnot cycle | efficiency; work in each isothermal stroke; first law over the cycle | 10 %, 6 %, 1e-9 |
+| Every thermal scenario | builds, round-trips through JSON; an overfull box is refused | passes |
+
 ## Ray optics
 
 | What | Test | Error |
