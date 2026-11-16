@@ -85,8 +85,11 @@ scenario.
       resistance, two cells, Kirchhoff's rules, the Wheatstone bridge, the metre bridge, the potentiometer.
       Capacitors and inductors: charging, discharging, series, parallel, the LR circuit. Alternating current: R,
       L and C alone, the series LCR circuit, LC oscillations
-- [ ] The transformer; diodes and rectifiers
-- [ ] A bench of your own: place components and wire them up
+- [x] Semiconductors: the junction diode by Shockley's equation, half-wave and full-wave rectifiers, smoothing,
+      the Zener regulator, OR and AND gates from diodes
+- [ ] The transformer; the transistor, and with it NOT, NAND and NOR
+- [x] A bench of your own: place cells, resistors, capacitors, inductors, sources, switches, diodes and meters on
+      a grid, wire them up, and have the circuit solved as it is built; any scenario can be taken onto the bench
 - [ ] Faraday's law with moving magnets and rods; the AC generator
 
 ## Optics, class 12
@@ -98,7 +101,7 @@ scenario.
       slab, apparent depth, total internal reflection, an optical fibre, a curved surface, convex and concave
       lenses, the lens maker's formula, lenses in contact, the prism, the telescope, the compound microscope
 - [ ] A bench of your own: place and move mirrors, lenses and blocks
-- [ ] Dispersion: a refractive index that depends on colour, the spectrum from a prism, the rainbow
+- [x] Dispersion: a refractive index that depends on colour, the spectrum from a prism, the rainbow and the second bow
 - [ ] The eye and its defects; the simple microscope; reflecting telescopes
 - [x] Wave optics, from the formulas: Young's double slit, diffraction at a single slit, polarisation and Malus's law
 - [ ] Huygens' wavelets shown building a wavefront; the diffraction grating; thin films

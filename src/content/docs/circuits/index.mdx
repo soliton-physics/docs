@@ -20,7 +20,30 @@ LCR circuit are not in the program. They are what the solution shows, and each i
   <LinkCard title="Current electricity" description="Ohm's law, series and parallel, internal resistance, two cells, Kirchhoff's rules, the Wheatstone bridge, the metre bridge, the potentiometer." href="/circuits/current-electricity/" />
   <LinkCard title="Capacitors and inductors" description="Charging and discharging through a resistance, capacitors in series and parallel, current growing in an inductor." href="/circuits/capacitors-and-inductors/" />
   <LinkCard title="Alternating current" description="A resistor, an inductor and a capacitor on AC, the series LCR circuit and resonance, LC oscillations." href="/circuits/alternating-current/" />
+  <LinkCard title="Semiconductor electronics" description="The junction diode and its curve, rectifiers, smoothing, the Zener regulator, OR and AND gates." href="/circuits/semiconductors/" />
 </CardGrid>
+
+## Build your own
+
+The playground has a bench for circuits of your own: open the
+[circuit builder](https://soliton-playground.vercel.app/?mode=circuits&sandbox), or choose **Build on this** on
+any scenario to take that circuit onto the bench and change it.
+
+- **Place a part.** Pick it from the rail on the left and drag from one dot of the grid to another. A cell's
+  positive end, and the way a diode conducts, follow the direction of the drag.
+- **Join parts** with the wire tool. Parts that end on the same dot are joined there.
+- **Set a value.** With the arrow tool, click a part. Its settings appear at the head of the readings: resistance,
+  EMF, capacitance and so on, a switch to open or close, a button to turn a part round.
+- **Move things.** Drag a junction and every part joined to it follows.
+- **The circuit is solved after every change,** and the table shows the voltage across and current through each
+  part. Put in a capacitor or an inductor and it is followed in time, with a graph. Put in an alternating source
+  and it is solved as alternating current. Press play to see the charges move.
+- **A circuit with no answer says why.** A wire straight across an ideal cell, for instance, has no current
+  Kirchhoff's laws can give, and the bench tells you so instead of showing a number.
+- **Share** copies a link that opens the same circuit for anyone. The bench also remembers what was on it last.
+
+The parts are ideal: a cell has no internal resistance unless you give it one, and wires have none at all. A real
+bench is kinder to mistakes than this one, which is part of what it teaches.
 
 ## Reading a circuit
 
@@ -47,5 +70,5 @@ the positive. A cell being charged by a stronger one shows a positive current.
   them.
 - **Alternating circuits are shown in their steady state,** found with complex numbers. The moment of switching
   on is not shown for those.
-- **Not built yet:** the transformer, diodes and rectifiers, the temperature dependence of resistance, drift
-  velocity at the level of electrons, and a bench where you build a circuit of your own.
+- **Not built yet:** the transformer, the transistor, the temperature dependence of resistance, drift
+  velocity at the level of electrons.

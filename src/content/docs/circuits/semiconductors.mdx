@@ -1,0 +1,242 @@
+---
+title: Semiconductor electronics
+description: The p–n junction diode and its characteristic, half-wave and full-wave rectifiers, smoothing, the Zener regulator, and logic gates from diodes.
+sidebar:
+  order: 4
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+Every component so far obeyed a straight-line law: double the voltage and the current doubles. A diode does
+not. It conducts one way and blocks the other, and that single fact is enough to turn alternating current into
+direct, to hold a voltage steady, and to compute with.
+
+These circuits are in the Circuits part of the playground. They are solved from Kirchhoff's laws like the rest,
+with the diode's own law in place of Ohm's.
+
+## The p–n junction diode
+
+<Scenario id="pn-junction" circuits>
+<div slot="intuition">
+A diode is a crystal of silicon made in two halves: one doped to have spare electrons (n-type), the other to
+have spare gaps for them, called holes (p-type). Where they meet, electrons and holes cancel and leave a thin
+layer with no carriers and a small voltage across it, a barrier.
+
+Connect the battery so that it pushes against that barrier, positive to the p side. This is forward bias. Raise
+the battery from zero and almost nothing happens until the diode has about 0.6 V across it. Then the current
+shoots up. Past that point the diode's voltage hardly moves: whatever more the battery supplies is dropped
+across the resistor.
+
+Now make the battery negative, which turns it round. This is reverse bias. The barrier grows, and the current
+is a thousand-millionth of a milliampere: the diode is as good as an open switch.
+
+The graph is the diode's characteristic curve, and the dot is where this circuit sits on it. Switch the
+material to germanium and the knee moves down to about 0.2 V.
+</div>
+<div slot="maths">
+The current through a junction with voltage $V$ across it is given by Shockley's equation:
+
+$$
+I = I_s\left(e^{V/V_T} - 1\right), \qquad V_T = \frac{kT}{e} \approx 26\ \text{mV at room temperature} .
+$$
+
+$I_s$ is the tiny reverse current, about $10^{-12}$ A for a small silicon diode. The exponential is so steep
+that the current grows tenfold for every 60 mV, which is why the textbook can say "0.7 V" and be nearly right
+over a wide range of currents.
+
+In the circuit, the diode's voltage is where its curve meets the resistor's line, $I = (\mathcal{E} - V)/R$.
+</div>
+<div slot="engine">
+The diode's law is not a straight line, so the equations cannot be solved in one step. The engine guesses the
+diode's voltage, replaces its curve by the tangent there, solves the circuit, and improves the guess: Newton's
+method. It stops when the voltage no longer changes in the tenth decimal place.
+
+Tested: across forward and reverse voltages, for silicon and germanium, the voltage and current agree to one
+part in a million with a separate calculation that finds the same crossing point by halving an interval.
+
+The model has no breakdown in reverse, no capacitance, and no dependence on temperature.
+</div>
+</Scenario>
+
+## A half-wave rectifier
+
+<Scenario id="half-wave-rectifier" circuits>
+<div slot="intuition">
+The mains pushes current one way for a hundredth of a second and the other way for the next. Most electronics
+needs current that goes one way only. A diode in series is the simplest fix.
+
+Press play. During the half-cycles when the supply forward-biases the diode, it conducts, and the load sees
+the supply's voltage less the diode's 0.7 V. During the other half-cycles it blocks, and the load sees nothing.
+The amber curve on the graph is the result: humps with gaps between them. It is direct current in that it never
+reverses, but it is far from steady.
+</div>
+<div slot="maths">
+With a supply $V_m\sin\omega t$, the output is $V_m\sin\omega t - V_D$ while that is positive and zero otherwise.
+Ignoring the diode's drop, its average over a cycle is
+
+$$
+V_\text{dc} = \frac{V_m}{\pi} .
+$$
+
+There is one pulse for each cycle of the supply, 50 a second.
+</div>
+<div slot="engine">
+The circuit is stepped through three cycles in 1200 steps, solving for the diode at each. The peak across the
+load agrees to one part in a thousand with the exact crossing of the diode's curve and the load's line at the
+peak of the supply. The load's voltage is never negative, and it is zero for half the time.
+</div>
+</Scenario>
+
+## A full-wave rectifier
+
+<Scenario id="full-wave-rectifier" circuits>
+<div slot="intuition">
+The half-wave rectifier throws away half of every cycle. This one uses both.
+
+The supply is a transformer whose secondary winding has a connection at its middle, the centre tap. Seen from
+the tap, the two ends swing opposite ways: when the upper end is positive the lower is negative. Each end has
+its own diode, and both diodes lead to the same side of the load. Whichever end is positive at the moment, its
+diode conducts and the other blocks. Current goes through the load in the same direction in both half-cycles.
+
+Watch the moving charges: they take the upper path for one half-cycle and the lower path for the next, and
+always cross the load the same way. The gaps are gone, and there are twice as many humps.
+</div>
+<div slot="maths">
+$$
+V_\text{dc} = \frac{2V_m}{\pi}, \qquad \text{pulses a second} = 2f = 100 .
+$$
+
+Each diode must withstand twice the peak voltage in reverse while the other conducts.
+</div>
+<div slot="engine">
+The transformer is modelled as two equal sources joined at the tap. Tested: the average output is twice that of
+the half-wave rectifier to within 2 %, and the output is never negative.
+</div>
+</Scenario>
+
+## Smoothing with a capacitor
+
+<Scenario id="rectifier-filter" circuits>
+<div slot="intuition">
+Humps are still not the steady voltage a battery gives. A capacitor across the load fixes most of that.
+
+As the supply rises to its peak, the diode conducts and charges the capacitor. As the supply falls away, the
+capacitor is left at a higher voltage than the supply, so the diode is reverse-biased and switches off. The
+load now runs from the capacitor alone, which slowly empties. Before it has lost much, the next peak arrives
+and tops it up.
+
+The amber curve no longer falls to zero. It sags a little between peaks and is restored. That remaining wobble
+is called ripple. Open the parameters and try a larger capacitor: less sag. Try a smaller load resistance, which
+draws more current: more sag.
+</div>
+<div slot="maths">
+Between peaks, a time of about $1/2f$, the capacitor supplies the load current $I \approx V/R$ and loses charge
+$I/2f$. So the ripple is roughly
+
+$$
+\Delta V \approx \frac{I}{2fC} = \frac{V}{2fRC} .
+$$
+
+It is small when $RC$ is much longer than the 10 ms between peaks.
+</div>
+<div slot="engine">
+Stepped through five cycles with the trapezoidal rule for the capacitor and Newton's method for each diode.
+Tested: with 100 µF and 1 kΩ the ripple is between 0.6 V and 0.95 V, against the estimate of 0.93 V, which is
+always a little high because the diode conducts for part of the time. Four times the capacitance gives a
+quarter of the ripple.
+</div>
+</Scenario>
+
+## A Zener diode as a voltage regulator
+
+<Scenario id="zener-regulator" circuits>
+<div slot="intuition">
+An ordinary diode blocks in reverse. A Zener diode is made so that, at one chosen reverse voltage, it stops
+blocking and conducts freely, and it is not harmed by doing so. Beyond that point its voltage barely changes,
+however much current it carries.
+
+That makes it a regulator. It is connected backwards across the load, with a resistor between the pair and the
+supply. Open the parameters and raise the input from 9 V to 20 V. The voltage across the load stays near 5.1 V.
+The extra voltage is dropped across the series resistor, and the extra current that causes goes through the
+Zener, not the load.
+
+Lower the input, or make the load very small, until the Zener has nothing left to give up. Regulation stops,
+and the output is only what a potential divider would give.
+</div>
+<div slot="maths">
+While it regulates, the load has $V_Z$ across it:
+
+$$
+I_S = \frac{V_\text{in} - V_Z}{R_S}, \qquad I_L = \frac{V_Z}{R_L}, \qquad I_Z = I_S - I_L .
+$$
+
+It regulates as long as $I_Z > 0$, which needs $V_\text{in}\,R_L/(R_S + R_L) > V_Z$.
+</div>
+<div slot="engine">
+The Zener is a junction with a second, mirrored exponential in reverse, placed so that it carries 5 mA at its
+rated voltage. Its voltage therefore rises by about 60 mV for each tenfold increase in current, as a real
+Zener's does by some similar amount.
+
+Tested: as the input goes from 9 V to 20 V the output moves by less than a tenth of a volt, and likewise as the
+load goes from 500 Ω to 5 kΩ. With too little input, the output is the potential divider's to a part in a
+thousand.
+</div>
+</Scenario>
+
+## Logic gates from diodes
+
+A logic gate takes inputs that are each high (1) or low (0) and gives an output that is high or low by a fixed
+rule. Here high is 5 V and low is 0 V. Set the inputs in the parameters and read the output on the voltmeter.
+
+<Scenario id="or-gate" circuits>
+<div slot="intuition">
+The output of an OR gate is high if either input is high.
+
+Each input reaches the output through its own diode, and a resistor ties the output to ground. If an input is
+high, its diode conducts and pulls the output up to 5 V less a diode's drop, about 4.5 V, which counts as high.
+An input that is low has its diode reverse-biased and plays no part. Only when both are low is nothing pulling
+the output up, and the resistor holds it at zero.
+
+Try all four combinations and write down the truth table.
+</div>
+<div slot="maths">
+| A | B | Y = A + B |
+|---|---|---|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 1 |
+</div>
+<div slot="engine">
+Solved as a steady circuit with two diodes. The output voltage agrees with an independent calculation to one
+part in a million for all four inputs.
+</div>
+</Scenario>
+
+<Scenario id="and-gate" circuits>
+<div slot="intuition">
+The output of an AND gate is high only if both inputs are high.
+
+Here the diodes face the other way, and the resistor ties the output up to the 5 V supply. Any input that is low
+pulls the output down through its diode, to about 0.5 V, which counts as low. Only when both inputs are high do
+both diodes have nothing to conduct into, and the resistor is left to hold the output at 5 V.
+</div>
+<div slot="maths">
+| A | B | Y = A · B |
+|---|---|---|
+| 0 | 0 | 0 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
+</div>
+<div slot="engine">
+The same check as for the OR gate. A real logic family would follow each gate with a transistor to restore the
+levels to a clean 0 V and 5 V; gates made of diodes alone lose a little at each stage, which is why they cannot
+be chained far.
+</div>
+</Scenario>
+
+## Not here yet
+
+The NOT gate, and with it NAND and NOR, need a transistor, which the engine does not have. Nor does it have the
+light-emitting diode, the photodiode or the solar cell as separate components.

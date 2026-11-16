@@ -130,6 +130,11 @@ A few hundred molecules fluctuate, so these are tested within a stated tolerance
 | Series LCR | amplitude by complex numbers against the formula; against stepping in time | 1e-12, 1e-4 |
 | Bridges and potentiometer | zero at the balance point; opposite signs either side | 1e-9 mA |
 | Steady scenarios across their sliders | every measured answer | 1e-12 |
+| Junction diode | Shockley's law; circuit against an independent root-finder, silicon and germanium, both ways round | 1e-6 |
+| Rectifiers | never negative; full-wave average twice half-wave; half-wave idle half the time | 2 %, 6 % |
+| Smoothing capacitor | ripple against I/(2fC); a quarter with four times the capacitance | 0.6–0.95 V of 0.93 V; 15 % |
+| Zener regulator | output from 9 V to 20 V in, and 500 Ω to 5 kΩ load | 0.1 V |
+| Diode gates | truth tables of OR and AND; output voltages | exact; 1e-6 |
 | Series LCR at 10, 50, 200 Hz and at resonance | impedance, current, lag, voltages | 1e-9 |
 | Every circuit scenario | measured answers; round trip through JSON | 1e-3, passes |
 
@@ -146,6 +151,8 @@ A few hundred molecules fluctuate, so these are tested within a stated tolerance
 | Lens formula, convex and concave | the same; no image reported with the object at the focus | 1e-6 |
 | Flat surface, slab, apparent depth, curved surface | traced angles and image against the formulas | 1e-9, 1e-6 |
 | Prism | deviation at four angles; least at the predicted angle and larger either side | 1e-9 |
+| Dispersion | red and violet through a prism at three angles; violet turned more | 1e-6 |
+| Rainbow | red and violet through a drop at five heights; bows at 42.4°, 40.7° and, with two reflections, 50.5° | 1e-6; 0.3°, 0.5° |
 | Optical fibre | only total reflections inside the acceptance angle; leaks 5° outside it | exact |
 | Lens maker's formula | a real lens 8 mm thick against the thin-lens focus; marginal focus short of it | 2 % |
 | Lenses in contact, telescope, microscope | focal length and magnifying power | 1e-4, 1e-9, 1e-6 |

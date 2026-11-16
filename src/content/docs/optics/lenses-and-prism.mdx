@@ -150,3 +150,88 @@ degrees either side. If the ray inside meets the second face beyond the critical
 and leaves by the base; the answers then say it does not come out of the second face.
 </div>
 </Scenario>
+
+## Dispersion: a prism splits white light
+
+<Scenario id="dispersion" optics>
+<div slot="intuition">
+White light is every colour together. Send it into a prism and it comes out as a fan: red turned least, violet
+most, and the rest in order between.
+
+The reason is that glass slows violet light a little more than red, so its refractive index is slightly larger
+for violet. Snell's law then bends violet more at the first face. A glass slab would undo this at its second
+face, which is parallel to the first, and the colours would leave side by side going the same way. In a prism
+the second face turns the light the same way again, and the small difference grows.
+
+Open the parameters and raise the difference between the two indices. The fan widens. This is the difference
+between crown glass, which spreads colours a little, and flint glass, which spreads them twice as much.
+</div>
+<div slot="maths">
+Each colour obeys the prism formulas with its own index:
+
+$$
+\sin i = n_\lambda \sin r_1, \qquad r_1 + r_2 = A, \qquad n_\lambda \sin r_2 = \sin e, \qquad
+\delta_\lambda = i + e - A .
+$$
+
+For a thin prism, $\delta = (n - 1)A$, so the angle between violet and red is $(n_v - n_r)A$.
+
+The index is modelled by Cauchy's formula, $n = a + b/\lambda^2$, which fits ordinary glasses well across the
+visible.
+</div>
+<div slot="engine">
+White light is seven rays, from 700 nm to 410 nm. Each is traced through the prism with the index the glass has
+for that wavelength, and its deviation is read from the direction it leaves in.
+
+Tested: with an index of 1.62 for yellow and 0.04 between violet and red, each colour's traced deviation agrees
+with the formula above to one part in a million at 45°, 55° and 70°. Violet is turned through nearly 4° more
+than red.
+</div>
+</Scenario>
+
+## The rainbow
+
+<Scenario id="rainbow" optics>
+<div slot="intuition">
+A rainbow is sunlight sent back by raindrops. Follow the bright ray into the drop. It bends as it enters, crosses
+the drop, and meets the back. Most of it leaves there, but some is reflected. That part crosses again and bends
+once more as it comes out, heading back roughly the way it came.
+
+Each colour is bent by its own amount going in and coming out, so red and violet leave in slightly different
+directions.
+
+That explains the colours but not the bow. For that, look at the faint rays. Sunlight strikes the drop at every
+height, and most of it comes back spread over a wide range of angles, too thin to notice. Slide the height. Near
+0.86 of the radius the outgoing direction stops changing: rays a little higher and a little lower all come out
+together. Light is concentrated there, at 42° from the point opposite the Sun for red and 41° for violet. Every
+drop at that angle from your eye sends you that colour, and the drops at that angle form a circle.
+
+Set the reflections to two for the second, fainter bow. It is higher, near 51°, and its colours are the other
+way round.
+</div>
+<div slot="maths">
+A ray striking at angle of incidence $i$, refracted at $r$ and reflected $k$ times inside, is turned through
+
+$$
+D = 2(i - r) + k(180^\circ - 2r), \qquad \sin i = n \sin r .
+$$
+
+The bow is where $D$ is least, $dD/di = 0$:
+
+$$
+\cos^2 i = \frac{n^2 - 1}{k(k + 2)} .
+$$
+
+For water, $n = 1.330$ for red and $1.343$ for violet. With $k = 1$ the rays return at $42.5^\circ$ and
+$40.7^\circ$ to the incoming light. With $k = 2$ they return at $50.2^\circ$ and $53.4^\circ$.
+</div>
+<div slot="engine">
+The drop is a circle of water a millimetre in radius. Each ray is refracted in by Snell's law, reflected at the
+back the stated number of times, and refracted out. The angle it is turned through agrees with the formula to
+one part in a million at five heights, for one reflection and for two.
+
+Two things are left out. The reflection inside is partial: most of the light leaves at the back, and the engine
+follows only the part that stays in. And it does not say how bright each direction is; the crowding of the faint
+rays is what shows it.
+</div>
+</Scenario>
