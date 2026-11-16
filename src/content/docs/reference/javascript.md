@@ -158,3 +158,23 @@ run.free();
 | `now()`, `history()`, `points()` | the present readings; a thinned record; the temperatures a sweep has measured |
 | `StatRun.onsager(from, to, n)`, `StatRun.critical_temperature()` | the exact results for an infinite lattice |
 | `answers()` | `[{ name, value, measured, within }]` |
+
+## Modern physics
+
+```js
+import init, { ModernRun, modern_catalogue } from '@soliton-physics/engine';
+
+await init();
+const run = new ModernRun('rutherford-scattering', { energy: 7.7 });
+run.advance(1 / 60);                                  // seconds of watching
+run.picture();                                        // { kind: 'scattering', tracks, ... }
+run.free();
+```
+
+| Method | Returns |
+|---|---|
+| `advance(seconds)`, `finished()`, `still()`, `clock()` | `still()` is true for a lesson with nothing to play |
+| `picture()` | what is on the stage, `{ kind, ... }`: `tube`, `wave`, `crystal`, `scattering`, `orbits`, `spectrum`, `sample` or `chart` |
+| `readings()` | `[{ label, value, unit, text }]` |
+| `plots()` | `[{ title, x_label, y_label, curves, marker }]` |
+| `answers()` | `[{ name, value, measured, within }]` |

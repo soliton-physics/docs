@@ -1,0 +1,88 @@
+---
+title: Nuclei
+description: Radioactive decay as a game of chance, the half-life, and the binding energy curve behind fission and fusion.
+sidebar:
+  order: 3
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+## Radioactive decay
+
+<Scenario id="radioactive-decay" modern height={480}>
+<div slot="intuition">
+Each dot is an unstable nucleus. Press play and they begin to decay, here and there, with no pattern. You
+cannot tell which will go next, and neither can anyone else: a nucleus that has lasted a long time is no more
+likely to decay in the next second than one made a moment ago.
+
+Yet look at the graph. The number left follows the dashed curve closely, halving in each half-life: 900, then
+450, then 225. The certainty comes from the numbers. One nucleus is a coin toss. A million million of them are a
+law.
+
+Set the sample to 100 nuclei and run it a few times. Now the curve is ragged, and the count after one half-life
+might be 43 or 56. Set it to 2500 and it is smooth. Real samples hold far more, which is why half-lives can be
+measured to many figures.
+</div>
+<div slot="maths">
+If each nucleus has a chance $\lambda\,dt$ of decaying in a short time $dt$:
+
+$$
+\frac{dN}{dt} = -\lambda N, \qquad N = N_0 e^{-\lambda t}, \qquad
+T_{1/2} = \frac{\ln 2}{\lambda}, \qquad \tau = \frac{1}{\lambda} = \frac{T_{1/2}}{0.693} .
+$$
+
+The activity is $R = \lambda N$, in becquerel: decays a second.
+</div>
+<div slot="engine">
+There is no exponential in the program's rule. In each short step every surviving nucleus is given the same
+small chance of decaying, with a seeded random number generator so that a run can be repeated.
+
+Tested with 2500 nuclei: the number left after one and two half-lives is within three standard deviations of
+$N_0/2$ and $N_0/4$, and the mean age at decay is within 0.4 s of $T/\ln 2$ for a half-life of 4 s.
+
+The answers on the stage show what this sample did beside what the law says, with a tick when they agree to
+within the scatter chance allows.
+</div>
+</Scenario>
+
+## The binding energy curve
+
+<Scenario id="binding-energy" modern height={460}>
+<div slot="intuition">
+A nucleus weighs less than the protons and neutrons it is made of. The missing mass is the energy that was given
+out when it formed, and that must be put back to pull it apart: its binding energy. Divide by the number of
+nucleons and you have a measure of how tightly each is held.
+
+The curve rises steeply for light nuclei, with helium-4 standing well above its neighbours. It peaks near
+iron and nickel at about 8.8 MeV, and then slopes gently down to uranium at 7.6.
+
+Everything about nuclear energy is in that shape. Move the marker to a heavy nucleus: split it in two and both
+halves are higher up the curve, so energy comes out. That is fission, and for uranium it is about 200 MeV a
+nucleus. Move it to a light one: join two and the result is higher up, so energy comes out again. That is
+fusion, which powers the Sun. Near iron neither pays, which is why iron is where stars stop.
+</div>
+<div slot="maths">
+$$
+\Delta m = Z m_p + (A - Z) m_n - M, \qquad E_b = \Delta m\,c^2, \qquad 1\ \text{u} = 931.5\ \text{MeV}/c^2 .
+$$
+
+The liquid-drop formula treats the nucleus as a drop of charged liquid:
+
+$$
+E_b = a_V A - a_S A^{2/3} - a_C \frac{Z(Z-1)}{A^{1/3}} - a_A \frac{(A - 2Z)^2}{A} \pm \delta ,
+$$
+
+a term for every nucleon's neighbours, less for those at the surface, less for the protons' repulsion, less for
+an imbalance of protons and neutrons, and a little more when they are paired.
+</div>
+<div slot="engine">
+The dots are measured values from the atomic mass tables for thirty nuclei. The line is the liquid-drop formula
+with $a_V = 15.75$, $a_S = 17.8$, $a_C = 0.711$, $a_A = 23.7$ and $\delta = 11.18/\sqrt A$ MeV, at the number of
+protons that binds each mass number most tightly.
+
+Tested: the formula gives 26 protons as the most stable for 56 nucleons, and is within 0.12 MeV per nucleon of
+every measured value from calcium upward. From the measured values, deuterium and tritium fusing to helium-4
+and a neutron release 17.59 MeV. The readings for splitting and fusing use the formula, so they are rough
+estimates, and unreliable below about mass number 20.
+</div>
+</Scenario>

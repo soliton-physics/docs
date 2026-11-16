@@ -80,6 +80,15 @@ bench.rays()                                  # list of (N, 2) arrays of points,
 bench.images()                                # [{'base': (0.24, 0.0), 'tip': (0.24, -0.018), 'real': True}]
 optics.Bench.from_json(bench.to_json())       # scenes are data here too
 
+# Modern physics
+from soliton import modern
+modern.electron_wavelength(54)                # 0.167 nm
+modern.line_wavelength(3, 2)                  # 656 nm
+modern.alpha_deflection(5.5, 79, 30)          # degrees, by integrating the path
+run = modern.scenario("radioactive-decay", half_life=4, nuclei=2500)
+run.advance(10)                               # seconds
+run.readings(), run.answers(), run.measured()
+
 # Statistical mechanics
 from soliton import statmech
 run = statmech.scenario("ising-model", temperature=2.0, size=48)

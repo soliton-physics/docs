@@ -1,0 +1,116 @@
+---
+title: Dual nature of radiation and matter
+description: The photoelectric effect and Einstein's equation, the wavelength of an electron, and the Davisson–Germer experiment.
+sidebar:
+  order: 1
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+Light behaves as a wave when it interferes and as a stream of particles when it hits a metal. An electron is a
+particle when it is counted and a wave when it meets a crystal. This chapter is the evidence for both.
+
+## The photoelectric effect
+
+<Scenario id="photoelectric-effect" modern height={460}>
+<div slot="intuition">
+Light falls on a metal plate in a vacuum tube. Electrons come out of the plate and cross to a collector, and a
+meter counts them. Press play, then open the parameters and try three things.
+
+**Make the light brighter.** More electrons arrive each second. They are no faster.
+
+**Make the wavelength shorter.** The electrons leave with more energy. Their number does not change.
+
+**Make the wavelength longer than about 580 nm.** The electrons stop altogether, and no amount of brightness
+brings them back.
+
+A wave cannot do this. A brighter wave should shake electrons harder, and a dim one should free them given time.
+Einstein's answer was that light arrives in packets, photons, each with energy $hf$. One photon frees one
+electron. Brighter light is more photons, so more electrons. Bluer light is bigger photons, so faster electrons.
+And if one photon has less energy than it takes to get an electron out of the metal, nothing happens, however
+many photons there are.
+
+Now make the collector negative. It pushes electrons back, and fewer arrive. At one voltage, the stopping
+potential, even the fastest are turned round. That voltage measures their greatest energy.
+</div>
+<div slot="maths">
+$$
+K_\text{max} = hf - \varphi = \frac{hc}{\lambda} - \varphi, \qquad eV_0 = K_\text{max}, \qquad
+\lambda_0 = \frac{hc}{\varphi} .
+$$
+
+A handy number: $hc = 1240\ \text{eV nm}$. For caesium, $\varphi = 2.14$ eV, so the threshold is 579 nm. Light of
+400 nm has photons of 3.10 eV and frees electrons of up to 0.96 eV, stopped by 0.96 V.
+
+Work functions, in eV: caesium 2.14, potassium 2.30, sodium 2.75, calcium 3.20, aluminium 4.28, copper 4.65,
+silver 4.70, platinum 5.65.
+</div>
+<div slot="engine">
+Photons arrive at random moments, at a rate set by the brightness. Each that lands frees one electron if
+$hf > \varphi$, with an energy drawn evenly between zero and $K_\text{max}$. The electron is then moved across
+the tube under the collector's voltage, and counted if it arrives.
+
+Tested: with full brightness the count is 40 a second at any positive voltage, half that at half the stopping
+potential, and none beyond it, each within the scatter of a random count. Below the threshold the count is
+exactly zero.
+</div>
+</Scenario>
+
+## The wavelength of an electron
+
+<Scenario id="de-broglie-wavelength" modern height={420}>
+<div slot="intuition">
+If light, a wave, can act as particles, de Broglie asked in 1924, can particles act as waves? He proposed that
+anything with momentum $p$ has a wavelength $h/p$.
+
+The picture draws that wavelength to scale above a row of atoms in a crystal. For an electron sped up through
+100 volts it is 0.12 nm, about the gap between the atoms. That is the condition for diffraction, and it is why
+a crystal can do to electrons what a grating does to light.
+
+Raise the voltage and the wave shortens: a faster electron has more momentum. The readings also give the
+wavelength of a cricket ball. It is some $10^{-34}$ m, smaller than a nucleus by twenty powers of ten, which is
+why nobody has seen a ball diffract.
+</div>
+<div slot="maths">
+$$
+\lambda = \frac{h}{p} = \frac{h}{\sqrt{2meV}} = \frac{1.227}{\sqrt{V}}\ \text{nm}
+$$
+
+for an electron accelerated from rest through $V$ volts, while it is much slower than light.
+</div>
+<div slot="engine">
+This lesson is the formula, evaluated with the measured constants. At 100 V it gives 0.1226 nm, and the
+textbook's shortcut $1.227/\sqrt V$ agrees to four figures. At 1000 V the electron moves at 6 % of the speed of
+light and relativity would shorten the wavelength by about 0.05 %; the engine does not include that.
+</div>
+</Scenario>
+
+## The Davisson–Germer experiment
+
+<Scenario id="davisson-germer" modern height={460}>
+<div slot="intuition">
+In 1927 Davisson and Germer fired electrons at a crystal of nickel and counted how many bounced off at each
+angle. If electrons were only particles, the count would fall off smoothly. It did not. At 54 volts there was a
+clear hump at 50 degrees.
+
+The rows of atoms on the face of the crystal are 0.215 nm apart. Waves scattered from neighbouring rows arrive
+in step in the direction where their paths differ by one wavelength. Put de Broglie's 0.167 nm into that
+condition and the angle comes out at 51 degrees. The electrons were diffracting.
+
+Change the voltage. The hump moves: faster electrons have shorter waves and are thrown through smaller angles.
+Lower it far enough and the wavelength is longer than the spacing, and there is no hump at all.
+</div>
+<div slot="maths">
+$$
+d\sin\theta = n\lambda, \qquad \lambda = \frac{1.227}{\sqrt V}\ \text{nm} .
+$$
+
+With $d = 0.215$ nm, $V = 54$ V and $n = 1$: $\sin\theta = 0.167/0.215$, so $\theta = 50.9^\circ$.
+</div>
+<div slot="engine">
+The angle is fixed by the two lengths. The shape drawn round it is that of a grating of six rows on a background
+that fades towards grazing angles, which is a model and not a calculation of nickel. The engine reads the
+strongest angle off the pattern as a detector would and it agrees with $\sin\theta = \lambda/d$ to within 1.5
+degrees.
+</div>
+</Scenario>

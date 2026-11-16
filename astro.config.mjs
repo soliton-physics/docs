@@ -33,6 +33,7 @@ export default defineConfig({
         { label: 'Electromagnetism, class 12', items: [{ autogenerate: { directory: 'electromagnetism' } }] },
         { label: 'Circuits, class 12', items: [{ autogenerate: { directory: 'circuits' } }] },
         { label: 'Optics, class 12', items: [{ autogenerate: { directory: 'optics' } }] },
+        { label: 'Modern physics, class 12', items: [{ autogenerate: { directory: 'modern' } }] },
         { label: 'Solitons', items: [{ autogenerate: { directory: 'physics' } }] },
         { label: 'Numerics', items: [{ autogenerate: { directory: 'numerics' } }] },
         { label: 'Reference', items: [{ autogenerate: { directory: 'reference' } }] },

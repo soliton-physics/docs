@@ -103,6 +103,14 @@ scenario.
 - [x] Wave optics, from the formulas: Young's double slit, diffraction at a single slit, polarisation and Malus's law
 - [ ] Huygens' wavelets shown building a wavefront; the diffraction grating; thin films
 
+## Modern physics, class 12
+
+- [x] Dual nature: the photoelectric effect with photons and electrons counted, de Broglie's wavelength, Davisson–Germer
+- [x] Atoms: alpha particles integrated past a nucleus, Bohr's model, the hydrogen spectrum
+- [x] Nuclei: decay by chance against the exponential law, the binding energy curve with fission and fusion estimates
+- [ ] X-rays; alpha, beta and gamma decay; chain reactions
+- [ ] Semiconductors: the p–n junction, rectifiers, logic gates
+
 ## Nonlinear waves
 
 - [x] Korteweg–de Vries

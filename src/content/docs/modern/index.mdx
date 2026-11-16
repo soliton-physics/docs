@@ -1,0 +1,50 @@
+---
+title: Modern physics, class 12
+description: The photoelectric effect, matter waves, the Bohr atom, radioactive decay and binding energy, each run by the engine.
+sidebar:
+  order: 0
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+These pages cover three chapters of NCERT class 12: dual nature of radiation and matter, atoms, and nuclei. They
+are in the Modern part of the playground.
+
+Around 1900 three things would not fit the physics of Newton and Maxwell. Light knocked electrons out of metals
+in a way no wave could. Atoms gave out light of sharp, fixed colours. And some atoms fell apart at random. The
+answers, that light comes in quanta, that particles have wavelengths, and that atoms have a tiny nucleus with
+allowed orbits round it, are the subject here.
+
+<CardGrid>
+  <LinkCard title="Dual nature of radiation and matter" description="The photoelectric effect and Einstein's equation, de Broglie's wavelength, the Davisson–Germer experiment." href="/modern/dual-nature/" />
+  <LinkCard title="Atoms" description="Rutherford's alpha scattering, Bohr's model of hydrogen, the line spectrum and its series." href="/modern/atoms/" />
+  <LinkCard title="Nuclei" description="Radioactive decay and the half-life, the binding energy curve, fission and fusion." href="/modern/nuclei/" />
+</CardGrid>
+
+## What is computed and what is a formula
+
+Where there is something to follow, the engine follows it:
+
+- **Alpha particles** are integrated past a nucleus with Newton's second law and Coulomb's force. Rutherford's
+  formula for the angle is not used to draw them. It is what their paths are compared with.
+- **Nuclei** decay one at a time by chance, each with the same probability in each instant. The exponential law
+  is what a crowd of them does.
+- **Photoelectrons** leave the plate one for each photon and are counted as they reach the collector.
+
+The rest is the formulas of Einstein, de Broglie and Bohr evaluated exactly: energies of levels, wavelengths of
+lines, the wavelength of an electron.
+
+## Limits
+
+- **Bohr's model is the textbook's.** It gives the right energies for one-electron atoms and is wrong about much
+  else: real electrons do not move in circles. The orbits drawn are Bohr's, not nature's.
+- **The phototube is a sketch.** Electrons are given every energy up to the maximum equally often, and travel
+  straight across. Real ones leave in all directions with a spread set by the metal. Einstein's equation, the
+  stopping potential and the threshold do not depend on this.
+- **The diffraction pattern is a model.** The angle of the hump comes from de Broglie's wavelength and the
+  spacing of the atoms. Its height and width are a simple grating of a few rows, not a calculation of a real
+  nickel surface.
+- **The binding energy curve is the liquid-drop formula**, a good fit from about calcium upward and poor for the
+  lightest nuclei, where the measured values are shown instead.
+- **Not built yet:** X-rays, the nuclear force and nuclear radii, alpha, beta and gamma decay as separate
+  processes, chain reactions, and semiconductors.

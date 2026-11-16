@@ -1,0 +1,125 @@
+---
+title: Atoms
+description: Rutherford's alpha scattering, Bohr's model of the hydrogen atom, and the line spectrum of hydrogen.
+sidebar:
+  order: 2
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+## Rutherford's alpha scattering
+
+<Scenario id="rutherford-scattering" modern height={480}>
+<div slot="intuition">
+In 1911 the atom was thought to be a ball of positive charge with electrons dotted through it. Geiger and
+Marsden fired alpha particles at a thin gold foil to test that. Nearly all went straight through. About one in
+eight thousand came back.
+
+Press play. Each line is an alpha particle, coming in from the left past one gold nucleus. Those that pass far
+from it are barely turned. The closer ones swing through large angles, and the one aimed straight at it stops
+and returns the way it came. The dashed circle is as near as that one gets.
+
+For that to happen, all the positive charge and nearly all the mass must be in something far smaller than the
+atom. The stage here is 840 femtometres across. On this scale the whole atom would be more than a hundred of these
+stages wide.
+
+Change the impact parameter of the amber alpha, how far off-centre it is aimed, and watch its angle.
+</div>
+<div slot="maths">
+A head-on alpha stops where its kinetic energy has all become potential energy:
+
+$$
+d = \frac{1}{4\pi\varepsilon_0}\,\frac{2Ze^2}{E} .
+$$
+
+One aimed to miss by $b$, the impact parameter, is turned through
+
+$$
+\theta = 2\arctan\frac{d}{2b} .
+$$
+
+A handy number: $e^2/4\pi\varepsilon_0 = 1.44$ MeV fm. For a 7.7 MeV alpha and gold, $Z = 79$:
+$d = 2 \times 79 \times 1.44 / 7.7 = 30$ fm.
+</div>
+<div slot="engine">
+Each alpha is integrated with Newton's second law under Coulomb's force from a fixed nucleus, from 40 000 fm
+away to 40 000 fm away, with shorter steps where the path bends. The formula for the angle is not used.
+
+Tested: the head-on alpha at 7.7 MeV turns back at 29.5 fm, the textbook's value. At impact parameters of 10,
+30, 80 and 200 fm the angle agrees with Rutherford's formula to within 0.15 degrees.
+
+The nucleus is held still. A real gold nucleus recoils a little, which changes the angle by about 2 %.
+</div>
+</Scenario>
+
+## Bohr's model of the hydrogen atom
+
+<Scenario id="bohr-model" modern height={480}>
+<div slot="intuition">
+Rutherford's atom had a problem. An electron circling a nucleus is accelerating, so it should radiate, lose
+energy, and spiral into the nucleus in far less than a billionth of a second. Atoms do not collapse.
+
+Bohr's way out, in 1913, was to say that only certain orbits are allowed, and in those the electron does not
+radiate. Each has a definite energy. Light is given out only when the electron drops from one allowed orbit to a
+lower one, and the energy lost leaves as a single photon.
+
+Press play. The electron circles in the upper orbit, drops, and a photon leaves in the colour its energy gives
+it. The ladder on the right is the same story in energy. Choose other levels: a fall to $n = 2$ gives visible
+light, a fall to $n = 1$ ultraviolet, and to $n = 3$ infrared.
+
+The orbits are drawn to scale, their radii as 1, 4, 9, 16. Set the charge of the nucleus to 2 for a helium atom
+that has lost one electron: every energy is four times as large.
+</div>
+<div slot="maths">
+The allowed orbits have angular momentum $n\,h/2\pi$. With Coulomb's force as the centripetal force:
+
+$$
+r_n = 0.0529\,\frac{n^2}{Z}\ \text{nm}, \qquad E_n = -13.6\,\frac{Z^2}{n^2}\ \text{eV}, \qquad
+v_n = \frac{c}{137}\,\frac{Z}{n} .
+$$
+
+$$
+hf = E_{n_2} - E_{n_1}, \qquad \frac{1}{\lambda} = R\,Z^2\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right), \qquad
+R = 1.097 \times 10^7\ \text{m}^{-1} .
+$$
+</div>
+<div slot="engine">
+The energies, radii and wavelengths are Bohr's formulas with the measured constants. The red line from 3 to 2
+comes out at 656.1 nm and the first Lyman line at 121.5 nm. The electron is drawn turning with a period that
+goes as $n^3$, as it does in the model, slowed by a factor of some $10^{15}$ so that it can be seen.
+
+The model is right about these energies and wrong about the picture. It fails for atoms with more than one
+electron, and quantum mechanics replaced the orbits with clouds of probability. It is in the syllabus because it
+was the first step, and because its energies are exactly right for hydrogen.
+</div>
+</Scenario>
+
+## The line spectrum of hydrogen
+
+<Scenario id="hydrogen-spectrum" modern height={420}>
+<div slot="intuition">
+Pass a current through hydrogen and look at its glow through a prism. There is no rainbow, only a few sharp
+lines: red, blue-green, and violets crowding together. Balmer found a formula for their wavelengths in 1885
+without knowing why it worked. Bohr's model is the why.
+
+Each series is all the falls that end on one level. The Balmer series ends on $n = 2$ and is the only one the
+eye can see. Lyman ends on $n = 1$ and is in the ultraviolet. Paschen, Brackett and Pfund end on 3, 4 and 5, in
+the infrared.
+
+Step through the lines of a series. They get closer and closer and stop at a limit, the wavelength for an
+electron falling in from far away. The scale along the bottom is one of ratios, so that all five series fit.
+</div>
+<div slot="maths">
+$$
+\frac{1}{\lambda} = R\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right), \qquad n_2 = n_1 + 1,\ n_1 + 2,\ \dots
+$$
+
+The longest wavelength of a series has $n_2 = n_1 + 1$. The series limit has $n_2 \to \infty$:
+$\lambda = n_1^2/R$, which is 91.1 nm for Lyman and 364.5 nm for Balmer.
+</div>
+<div slot="engine">
+Every line is computed from the energy levels. The Balmer lines come out at 656.1, 486.0, 433.9 and 410.1 nm,
+against measured values in air of 656.3, 486.1, 434.0 and 410.2: the small difference is the motion of the
+proton and the air, which the simple formula leaves out.
+</div>
+</Scenario>

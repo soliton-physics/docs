@@ -87,6 +87,22 @@ A few hundred molecules fluctuate, so these are tested within a stated tolerance
 | Carnot cycle | efficiency; work in each isothermal stroke; first law over the cycle | 10 %, 6 %, 1e-9 |
 | Every thermal scenario | builds, round-trips through JSON; an overfull box is refused | passes |
 
+## Modern physics
+
+| What | Test | Error |
+|---|---|---|
+| Einstein's equation | caesium: threshold 579 nm; 400 nm light gives 0.96 eV | 1e-3 eV |
+| Photoelectrons counted | at +1 V, 0 V, half the stopping potential and beyond it | 2.5 of 40 a second |
+| Below the threshold | no electrons at full brightness | exact |
+| de Broglie wavelength | 100 V and 54 V | 1e-4 nm |
+| Davisson–Germer | hump for 54 V on nickel at 50.9°; read off the pattern | 0.2°, 1.5° |
+| Alpha, head on | 7.7 MeV on gold turns back at 29.5 fm | 0.1 fm |
+| Alpha, integrated path against Rutherford's formula | impact parameters 10, 30, 80, 200 fm | 0.15° |
+| Bohr atom | −13.6 eV, 0.0529 nm, 656.3 nm, 121.5 nm, Balmer limit 364.5 nm | 0.5 nm or better |
+| Radioactive decay, 2500 nuclei | left after one and two half-lives; mean life | 3 σ; 0.4 s |
+| Liquid-drop formula | iron-56 and uranium-238; every measured value from calcium up | 0.1; 0.12 MeV per nucleon |
+| D + T fusion | from measured binding energies | 17.59 ± 0.02 MeV |
+
 ## Statistical mechanics
 
 | What | Test | Error |
