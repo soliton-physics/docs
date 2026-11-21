@@ -87,6 +87,22 @@ A few hundred molecules fluctuate, so these are tested within a stated tolerance
 | Carnot cycle | efficiency; work in each isothermal stroke; first law over the cycle | 10 %, 6 %, 1e-9 |
 | Every thermal scenario | builds, round-trips through JSON; an overfull box is refused | passes |
 
+## Currents and magnetism
+
+| What | Test | Error |
+|---|---|---|
+| Straight wire | Biot–Savart summed along the wire against μ₀I/2πr: 5 A at 5 cm is 20 µT | 0.01 % |
+| Coil | on the axis against the formula; a dipole's field far away; reversed outside the coil in its plane | 0.1 % |
+| Solenoid | μ₀nI at the centre, the same 10 cm off centre, half at the end, summed over 500 turns | 0.5 % |
+| Parallel wires | 1 A in each, 1 m apart: 2 × 10⁻⁷ N on each metre; opposite currents repel | 0.1 % |
+| Galvanometer | settles at NIAB/k; half the current gives half the deflection | 1 % |
+| Magnet through a coil | peak emf from the change of flux; twice the speed doubles it and leaves the charge alone | 0.5 % |
+| Rod on rails | terminal speed FR/B²l²; the pull's work against heat and kinetic energy | 0.2 % |
+| Falling loop | heat in the loop against the energy the fall lost; free fall with no field | 1 %; 1e-9 |
+| Generator | peak emf against NBAω | 0.2 % |
+| Inductance | L I/T while the current rises; the work against it against ½LI²; MωI₀ | 0.2 % |
+| Every scenario | runs at its defaults and at the lowest and highest values that may be typed | passes |
+
 ## Properties of matter
 
 | What | Test | Error |

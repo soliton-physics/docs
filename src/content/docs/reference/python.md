@@ -87,6 +87,14 @@ while not run.finished:
     run.advance(0.02)                         # seconds
 run.readings(), run.answers(), run.measured()
 
+# Currents and magnetism
+from soliton import magnetism
+magnetism.scenario("straight-wire-field", current=5, distance=5).measured()   # 20 µT, from Biot–Savart
+run = magnetism.scenario("motional-emf", pull=0.1)
+while not run.finished:
+    run.advance(0.02)
+run.answers(), run.measured()                 # terminal speed FR/B²l², both ways
+
 # Modern physics
 from soliton import modern
 modern.electron_wavelength(54)                # 0.167 nm

@@ -82,9 +82,19 @@ scenario.
       waves off a metal sheet, the spectrum
 - [ ] Charges, magnets and fields in the sandbox
 - [ ] Dielectrics; equipotentials
-- [ ] The magnetic field of a current, and the force between two wires
 - [ ] Ferromagnets and hysteresis
 - [ ] A magnetic field in the plane acting on a moving charge (helical paths): needs the third dimension
+
+## Currents and magnetism, class 12
+
+- [x] The field of a current from the Biot–Savart law, summed along the wire: a straight wire, a coil on and
+      off its axis, a solenoid with its ends
+- [x] The force between two parallel currents, the force on a wire in a field, the moving-coil galvanometer
+- [x] Electromagnetic induction, the emf taken from the change of flux: a magnet through a coil, a rod on
+      rails, a loop falling through a field, the AC generator, self and mutual inductance
+- [x] The transformer and the loss in a power line
+- [ ] The toroid and Ampere's law round a loop of your choosing; a motor with a commutator; eddy currents in a
+      plate
 
 ## Circuits, class 12
 
@@ -96,7 +106,7 @@ scenario.
       L and C alone, the series LCR circuit, LC oscillations
 - [x] Semiconductors: the junction diode by Shockley's equation, half-wave and full-wave rectifiers, smoothing,
       the Zener regulator, OR and AND gates from diodes
-- [ ] The transformer; the transistor, and with it NOT, NAND and NOR
+- [ ] The transistor, and with it NOT, NAND and NOR
 - [x] A bench of your own: place cells, resistors, capacitors, inductors, sources, switches, diodes and meters on
       a grid, wire them up, and have the circuit solved as it is built; any scenario can be taken onto the bench
 - [ ] Faraday's law with moving magnets and rods; the AC generator

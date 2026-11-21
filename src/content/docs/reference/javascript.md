@@ -194,3 +194,18 @@ while (!run.finished()) run.advance(1 / 60);
 run.answers();                                        // [{ name, value, measured, within }]
 run.free();
 ```
+
+## Currents and magnetism
+
+`MagnetismRun` and `magnetism_catalogue` have the same methods again. The kinds of picture are `field`,
+`conductor`, `meter`, `coil`, `rails`, `frame`, `generator`, `solenoid`, `transformer` and `chart`.
+
+```js
+import init, { MagnetismRun } from '@soliton-physics/engine';
+
+await init();
+const run = new MagnetismRun('motional-emf', { pull: 0.1 });
+while (!run.finished()) run.advance(1 / 60);
+run.answers();                                        // terminal speed, with what the run measured
+run.free();
+```
