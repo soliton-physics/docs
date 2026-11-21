@@ -1,0 +1,216 @@
+---
+title: Electromagnetic induction
+description: Faraday's and Lenz's laws, motional emf, the AC generator, self and mutual inductance, and the transformer.
+sidebar:
+  order: 2
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+A current makes a magnetic field. Faraday found the other half: a magnetic field makes a current, but only while
+it is changing. What counts is the flux through the circuit, the field times the area it passes through.
+
+$$
+\mathcal{E} = -N\,\frac{d\Phi}{dt} , \qquad \Phi = BA\cos\theta .
+$$
+
+The minus sign is Lenz's law: the current that flows always opposes the change that caused it.
+
+## A magnet through a coil
+
+<Scenario id="faradays-law" magnetism>
+<div slot="intuition">
+Press play. As the magnet comes up to the coil the flux through the coil grows, and the gauge swings one way. At
+the middle the flux is as large as it gets, but for a moment it is not changing, and the emf is zero. As the
+magnet leaves, the flux falls and the gauge swings the other way.
+
+Double the speed. The emf doubles, because the flux changes twice as fast, but it lasts half as long. The charge
+that flows round is the same either way: it depends only on how much the flux changed.
+
+The coil always resists. It pushes the magnet back as it arrives and pulls it back as it leaves.
+</div>
+<div slot="maths">
+A small magnet of moment $m$ on the axis, a distance $z$ from a coil of radius $R$, sends through each turn
+
+$$
+\Phi = \frac{\mu_0 m R^2}{2\,(R^2+z^2)^{3/2}} .
+$$
+
+Moving at speed $v$, the emf is greatest at $z = R/2$, where
+
+$$
+\mathcal{E}_{\max} = \frac{24}{25\sqrt5}\,\frac{\mu_0 N m v}{R^2} .
+$$
+
+The charge that flows while the flux rises from nothing to its greatest is $Q = N\Phi_{\max}/R_{\text{circuit}}$,
+with no speed in it.
+</div>
+<div slot="engine">
+The engine moves the magnet in 4000 small steps, works out the flux before and after each, and divides the
+change by the time. The largest emf found that way is compared with the formula, and the current is added up to
+give the charge.
+</div>
+</Scenario>
+
+## A rod on rails
+
+<Scenario id="motional-emf" magnetism>
+<div slot="intuition">
+A rod is pulled along two rails by a steady force. The rails are joined through a resistance, and a magnetic
+field passes through the circuit. As the rod moves the circuit's area grows, so its flux grows, so a current
+flows.
+
+That current, in the field, is pushed backwards. The faster the rod goes, the bigger the current and the harder
+it is held back. Soon the braking equals the pull and the rod goes no faster.
+
+Watch the second graph. At first most of the pull's work speeds the rod up. At the end all of it becomes heat in
+the resistance. Nothing is lost: the answer chip keeps count.
+</div>
+<div slot="maths">
+$$
+\mathcal{E} = Blv , \qquad I = \frac{Blv}{R} , \qquad F_{\text{brake}} = BIl = \frac{B^2l^2v}{R} ,
+$$
+
+$$
+v_{\text{terminal}} = \frac{FR}{B^2l^2} , \qquad \tau = \frac{mR}{B^2l^2} .
+$$
+
+At the terminal speed the power of the pull, $Fv$, equals the heating, $I^2R$.
+</div>
+<div slot="engine">
+The rod is stepped forward by fourth-order Runge–Kutta for seven time constants. The distance and the heat are
+added up along the way, and the work done by the pull is compared with the heat plus the rod's kinetic energy.
+</div>
+</Scenario>
+
+## A loop falling through a field
+
+<Scenario id="falling-loop" magnetism>
+<div slot="intuition">
+A square loop of wire is dropped through a band of magnetic field. There are three stages.
+
+**Going in.** Only the bottom edge is in the field. The flux through the loop is growing, a current flows, and
+the loop is braked. The graph of speed bends away from the dashed line of free fall.
+
+**Wholly inside.** The flux is large but steady. No current flows and the loop falls freely again. This is the
+part people get wrong: a strong field does nothing by being strong.
+
+**Coming out.** The flux falls, the current flows the other way, and the loop is braked again.
+
+Set the field to zero and it falls freely all the way. This braking with no touching is how the brakes on some
+trains and roller coasters work.
+</div>
+<div slot="maths">
+While one edge of length $l$ cuts the field,
+
+$$
+I = \frac{Blv}{R} , \qquad m\frac{dv}{dt} = mg - \frac{B^2l^2}{R}\,v ,
+\qquad v \to \frac{mgR}{B^2l^2} .
+$$
+
+Energy is conserved throughout: the heat $\int I^2R\,dt$ equals the potential energy lost less the kinetic
+energy gained.
+</div>
+<div slot="engine">
+The loop falls freely unless exactly one of its horizontal edges is inside the band. While braked, its speed
+closes on the terminal speed exponentially, and the engine takes that step exactly, so even a very strong field
+causes no numerical trouble. The heat is compared with the energy the fall has lost.
+</div>
+</Scenario>
+
+## The AC generator
+
+<Scenario id="ac-generator" magnetism>
+<div slot="intuition">
+The coil is seen along its axle, as a line, turning between the poles. The dashed arrow is its normal.
+
+When the coil faces the field, the flux through it is greatest, but its sides are moving along the field and cut
+nothing: the emf is zero. A quarter turn later the coil lies along the field, the flux is zero, the sides cut
+straight across it, and the emf is at its peak. Half a turn on, the sides have changed places and the emf is
+reversed.
+
+Turn it faster and the peak rises in proportion.
+</div>
+<div slot="maths">
+$$
+\Phi = NBA\cos\omega t \quad\Longrightarrow\quad
+\mathcal{E} = NBA\omega\,\sin\omega t , \qquad \mathcal{E}_0 = NBA\omega , \qquad
+\mathcal{E}_{\text{rms}} = \frac{\mathcal{E}_0}{\sqrt2} .
+$$
+</div>
+<div slot="engine">
+The flux is evaluated 2000 times in each turn and the emf taken from its change. The largest value in a full
+turn is compared with $NBA\omega$.
+</div>
+</Scenario>
+
+## Self-inductance
+
+<Scenario id="self-inductance" magnetism>
+<div slot="intuition">
+A coil's own field passes through its own turns. Change the current and that flux changes, so the coil induces
+an emf in itself, always against the change.
+
+Press play. While the current rises the emf opposes it. While the current is steady there is no emf at all.
+While the current falls the emf turns round and tries to keep it going. That reluctance to change is inductance,
+and it is to a current what mass is to a velocity.
+</div>
+<div slot="maths">
+For a solenoid of $N$ turns, length $l$ and cross-section $A$:
+
+$$
+L = \frac{\mu_0 N^2 A}{l} , \qquad \mathcal{E} = -L\,\frac{dI}{dt} , \qquad U = \tfrac12 L I^2 .
+$$
+</div>
+<div slot="engine">
+The emf is taken from the change in the flux through all the turns. While the current rises, the work done
+pushing it against that emf is added up and compared with $\tfrac12LI^2$.
+</div>
+</Scenario>
+
+## Mutual inductance
+
+<Scenario id="mutual-inductance" magnetism>
+<div slot="intuition">
+A second coil is wound round the first. No wire joins them, but the first coil's field passes through the
+second. An alternating current in the first makes an alternating emf in the second.
+
+Compare the two gauges. The emf is greatest when the current is passing through zero, because that is when it is
+changing fastest, and zero when the current is at its peak.
+</div>
+<div slot="maths">
+For a short coil of $N_2$ turns round a long solenoid of $N_1$ turns, length $l$ and cross-section $A$:
+
+$$
+M = \frac{\mu_0 N_1 N_2 A}{l} , \qquad \mathcal{E}_2 = -M\,\frac{dI_1}{dt} ,
+\qquad I_1 = I_0\sin\omega t \ \Longrightarrow\ \mathcal{E}_2 = -M\omega I_0\cos\omega t .
+$$
+</div>
+<div slot="engine">
+The flux of the first coil through the second is evaluated 2000 times a cycle. The largest emf is compared with
+$M\omega I_0$.
+</div>
+</Scenario>
+
+## The transformer
+
+<Scenario id="transformer" magnetism>
+<div slot="intuition">
+Put both coils on one iron core and nearly all the flux of one passes through the other. Every turn of either
+coil then has the same emf in it, so the voltages are in the ratio of the turns.
+
+A transformer does not make power. Ten times the voltage comes with a tenth of the current. That is the point:
+the heat wasted in a power line depends on the current squared, so sending the same power at ten times the
+voltage wastes a hundredth as much. Lower the secondary turns until the line loses most of what is sent.
+</div>
+<div slot="maths">
+$$
+\frac{V_s}{V_p} = \frac{N_s}{N_p} , \qquad V_pI_p = V_sI_s , \qquad
+P_{\text{lost}} = I^2R_{\text{line}} = \left(\frac{P}{V}\right)^2 R_{\text{line}} .
+$$
+</div>
+<div slot="engine">
+These are the ideal transformer's laws evaluated. Sending 800 kW at 4000 V down a 15 Ω line would waste 600 kW;
+stepped up to 40 kV it wastes 6 kW.
+</div>
+</Scenario>

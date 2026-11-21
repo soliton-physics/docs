@@ -32,6 +32,7 @@ export default defineConfig({
         { label: 'Properties of matter, class 11', items: [{ autogenerate: { directory: 'matter' } }] },
         { label: 'Thermal physics, class 11', items: [{ autogenerate: { directory: 'thermal' } }] },
         { label: 'Electromagnetism, class 12', items: [{ autogenerate: { directory: 'electromagnetism' } }] },
+        { label: 'Currents and magnetism, class 12', items: [{ autogenerate: { directory: 'magnetism' } }] },
         { label: 'Circuits, class 12', items: [{ autogenerate: { directory: 'circuits' } }] },
         { label: 'Optics, class 12', items: [{ autogenerate: { directory: 'optics' } }] },
         { label: 'Modern physics, class 12', items: [{ autogenerate: { directory: 'modern' } }] },

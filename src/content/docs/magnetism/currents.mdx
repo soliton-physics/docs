@@ -1,0 +1,171 @@
+---
+title: The field of a current
+description: The Biot–Savart law for a straight wire, a coil and a solenoid, the force between currents, and the galvanometer.
+sidebar:
+  order: 1
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+A current makes a magnetic field, and a magnetic field pushes on a current. In the pictures a wire that cuts the
+page is a circle: a dot in it means the current comes towards you, a cross means it goes away. The small needles
+are compasses, red end along the field, fainter where the field is weaker.
+
+## A straight wire
+
+<Scenario id="straight-wire-field" magnetism>
+<div slot="intuition">
+The field goes round the wire in circles. Grip the wire with your right hand, thumb along the current, and your
+fingers curl the way the field points.
+
+Open the parameters and move the point away. At twice the distance the field is half as strong. Even 5 A at
+5 cm gives only half the earth's field, which is why a compass has to be close to a wire to notice it.
+</div>
+<div slot="maths">
+The Biot–Savart law gives the field of a short piece of wire $d\boldsymbol{l}$:
+
+$$
+d\boldsymbol{B} = \frac{\mu_0}{4\pi}\,\frac{I\,d\boldsymbol{l}\times\boldsymbol{r}}{r^3} .
+$$
+
+Added up along a long straight wire, or found in one line from Ampere's law,
+
+$$
+B = \frac{\mu_0 I}{2\pi r} , \qquad \mu_0 = 4\pi\times10^{-7}\ \text{T·m/A} .
+$$
+</div>
+<div slot="engine">
+The engine cuts a wire 400 times as long as the distance into 40 000 pieces and adds up the Biot–Savart field of
+each. The answer chip shows the formula and, beside it, that sum. They agree to about one part in 100 000; what
+is missing is the part of an endless wire beyond the ends.
+</div>
+</Scenario>
+
+## A circular coil
+
+<Scenario id="circular-loop-field" magnetism>
+<div slot="intuition">
+The coil is seen edge on. Its current comes out of the page at the top and goes in at the bottom. Each side
+makes circles of field round itself, and through the middle the two agree, so the field there is strong and
+straight.
+
+Follow the needles round: out through one face, back round the outside, in at the other. That is the pattern of
+a short bar magnet, and from far away a coil is one, with moment $NIA$.
+</div>
+<div slot="maths">
+On the axis, a distance $x$ from the centre of a coil of $N$ turns and radius $R$:
+
+$$
+B = \frac{\mu_0 N I R^2}{2\,(R^2+x^2)^{3/2}} , \qquad
+B_{\text{centre}} = \frac{\mu_0 N I}{2R} , \qquad
+B \to \frac{\mu_0}{4\pi}\,\frac{2m}{x^3}\ \ (x \gg R),\quad m = NIA .
+$$
+</div>
+<div slot="engine">
+One turn is 720 straight pieces. The field on the axis is their sum, compared with the formula. The needles off
+the axis come from the same sum with 48 pieces, since no simple formula exists there.
+</div>
+</Scenario>
+
+## The solenoid
+
+<Scenario id="solenoid-field" magnetism>
+<div slot="intuition">
+Wind many turns side by side. Inside, every turn adds to the same straight field. Outside, the near and far
+sides of the winding nearly cancel. The result is an even field inside and almost none outside.
+
+Slide the point to the end of the solenoid (100 %). The field there is half of what it is deep inside, because
+only the turns on one side are left. Make the solenoid longer and thinner and the middle gets closer to the
+ideal $\mu_0 n I$.
+</div>
+<div slot="maths">
+With $n$ turns in each metre:
+
+$$
+B = \mu_0 n I \quad\text{(deep inside a long solenoid)} , \qquad
+B(x) = \tfrac12\mu_0 n I\,(\cos\theta_1 + \cos\theta_2) ,
+$$
+
+where $\theta_1$ and $\theta_2$ are the angles at which the two rims are seen from the point on the axis. At an
+end one of them is 90° and the other nearly 0°, which gives half.
+</div>
+<div slot="engine">
+The field of every turn is added, using the formula for a coil's axis. That sum is compared with the formula for
+a solenoid of this length. The picture stands 24 loops for the winding and sums their Biot–Savart fields for the
+needles.
+</div>
+</Scenario>
+
+## Two parallel wires
+
+<Scenario id="parallel-currents" magnetism>
+<div slot="intuition">
+Each wire sits in the other's field and is pushed by it. Currents in the same direction attract. Make the second
+current negative and they repel.
+
+Look at the needles between the wires. With like currents the two fields oppose there and nearly cancel; with
+unlike currents they add. Field lines act a little like stretched elastic that also push apart sideways, and
+that picture gives the right answer in both cases.
+</div>
+<div slot="maths">
+The first wire makes $B = \mu_0 I_1/2\pi d$ at the second, which feels $F = I_2 L B$:
+
+$$
+\frac{F}{L} = \frac{\mu_0 I_1 I_2}{2\pi d} .
+$$
+
+Until 2019 this defined the ampere: the current which, in each of two long wires 1 m apart, gives
+$2\times10^{-7}$ N on each metre.
+</div>
+<div slot="engine">
+The field of the first wire at the second is the Biot–Savart sum, multiplied by the second current.
+</div>
+</Scenario>
+
+## Force on a wire in a field
+
+<Scenario id="force-on-a-wire" magnetism>
+<div slot="intuition">
+The field runs left to right. A wire across it is pushed out of the page or into it, never along the field and
+never along itself. Turn the wire towards the field and the push fades; along the field it is gone.
+
+This sideways push on a current is what turns every electric motor and moves the cone of every loudspeaker.
+</div>
+<div slot="maths">
+$$
+\boldsymbol{F} = I\,\boldsymbol{L}\times\boldsymbol{B} , \qquad F = ILB\sin\theta .
+$$
+
+Fleming's left-hand rule gives the direction: first finger along the field, second along the current, thumb
+along the force.
+</div>
+<div slot="engine">
+This is the law evaluated. It is the same force as $q\boldsymbol{v}\times\boldsymbol{B}$ on each moving charge,
+which the [mechanics scenarios](/electromagnetism/magnetism/) follow one charge at a time.
+</div>
+</Scenario>
+
+## The moving-coil galvanometer
+
+<Scenario id="moving-coil-galvanometer" magnetism>
+<div slot="intuition">
+A coil hangs between the poles of a magnet, on a fine spring. Press play: a current is let in, the two sides of
+the coil are pushed opposite ways, and it turns until the spring holds it. The pointer overshoots once and
+settles.
+
+Twice the current gives twice the deflection. That even scale is the reason for the curved pole pieces: they
+keep the field in the plane of the coil however far it has turned.
+</div>
+<div slot="maths">
+$$
+\tau = NIAB , \qquad k\phi = NIAB \quad\Longrightarrow\quad \phi = \frac{NAB}{k}\,I .
+$$
+
+$NAB/k$ is the current sensitivity. A shunt across the coil makes an ammeter of it; a large resistance in series
+makes a voltmeter.
+</div>
+<div slot="engine">
+The coil is stepped forward under the torque, the spring and some damping. Its period (1.2 s) and damping are
+chosen so the settling can be watched; where it settles does not depend on them, and is compared with $NIAB/k$.
+</div>
+</Scenario>

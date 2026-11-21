@@ -1,0 +1,42 @@
+---
+title: Currents and magnetism, class 12
+description: The magnetic field of a current, the force on a current, and electromagnetic induction, each lesson run by the engine.
+sidebar:
+  order: 0
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+These pages cover the second half of the NCERT class 12 chapter on moving charges and magnetism, the chapter on
+electromagnetic induction, and the transformer. They are in the Magnetism part of the playground.
+
+[Electromagnetism](/electromagnetism/) dealt with charges moving in a field that was simply given. These pages
+are about where a magnetic field comes from, which is a current, and about what a changing field does, which is
+to drive a current. Between them those two facts are the motor, the generator and the transformer.
+
+<CardGrid>
+  <LinkCard title="The field of a current" description="A straight wire, a coil, a solenoid, two parallel wires, the force on a wire, the galvanometer." href="/magnetism/currents/" />
+  <LinkCard title="Electromagnetic induction" description="Faraday's and Lenz's laws, a rod on rails, a falling loop, the generator, inductance, the transformer." href="/magnetism/induction/" />
+</CardGrid>
+
+## What is computed and what is a formula
+
+The textbook gives a formula for each case. The engine gets the same number another way, and shows both.
+
+- **Fields are summed from the Biot–Savart law.** The wire is cut into thousands of short pieces and the field
+  of each is added up. The compass needles in the pictures come from the same sum, so they are right off the
+  axis too, where the textbook has no formula.
+- **Every emf is taken from the change of flux.** The engine works out the flux through the circuit at one
+  moment and at the next, and divides the change by the time. That is Faraday's law used directly.
+- **Energy is counted.** For the rod on rails and the falling loop, the heat made in the resistance is added up
+  and compared with the work done or the energy lost.
+
+The force on a wire and the transformer are laws evaluated, with a picture.
+
+## Limits
+
+- **Wires are long and thin, and coils are flat.** The solenoid's ends are counted in its field, but not in its
+  inductance.
+- **The magnet in Faraday's law is a point dipole.** A real bar magnet gives a wider, flatter pulse.
+- **The transformer is ideal.** It has no losses of its own; only the power line wastes anything.
+- **Not built yet:** the toroid, a motor with a commutator, and eddy currents in a solid plate.
