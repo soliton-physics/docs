@@ -87,6 +87,24 @@ A few hundred molecules fluctuate, so these are tested within a stated tolerance
 | Carnot cycle | efficiency; work in each isothermal stroke; first law over the cycle | 10 %, 6 %, 1e-9 |
 | Every thermal scenario | builds, round-trips through JSON; an overfull box is refused | passes |
 
+## Properties of matter
+
+| What | Test | Error |
+|---|---|---|
+| Hooke's law | 10 kg on 1 mm of steel 2 m long stretches 1.248 mm; doubles with the load | 2e-6 m |
+| Shear and bulk | the textbook's lead block; water at 3 km | 1e-6 m; 0.02 % |
+| Hydraulic lift | rise of the large piston; work in equals work out | 1e-9 |
+| Floating and sinking | share under the surface, or apparent weight, for five pairs of densities | 0.1 % |
+| Venturi tube | a tracer timed through the throat against continuity | 2 % |
+| Draining tank | time to empty for three tanks | 1 % |
+| Stokes | terminal speed of a steel ball in glycerine | 1e-3 |
+| Capillary rise | water in a 0.5 mm tube; halves in one twice as wide; mercury depressed | 0.1 mm |
+| Calorimetry | final temperature of aluminium in water | 0.02 K |
+| Heating ice | times to warm, melt, heat and boil | 1e-6 |
+| Conduction | junction temperature and heat current, two metals either way round | 1 K; 2 % |
+| Newton's cooling | time for the excess to halve | 1e-3 |
+| Planck's curve | its peak against Wien, its area against Stefan, 500 K to 10 000 K | 0.2 % |
+
 ## Modern physics
 
 | What | Test | Error |

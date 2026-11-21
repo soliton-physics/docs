@@ -40,6 +40,15 @@ scenario.
 - [ ] The Doppler effect
 - [ ] Waves in two dimensions: ripples and two-source interference
 
+## Properties of matter, class 11
+
+- [x] Solids: stress and strain with Hooke's law and the elastic limit, shear, bulk compression
+- [x] Fluids: pressure and depth, Pascal's law, a block that floats or sinks by Archimedes, a Venturi tube with
+      tracers, a tank draining by Torricelli, terminal velocity by Stokes, capillary rise
+- [x] Heat: expansion, calorimetry, ice heated to steam, conduction along two metals, Newton's cooling, Planck's
+      curve with Wien's and Stefan's laws
+- [ ] Streamlines and lift on a wing; Poiseuille flow; convection; thermal stress
+
 ## Thermal physics, class 11 and beyond
 
 - [x] A gas of hard-sphere molecules in three dimensions, in real units, with exact energy conservation

@@ -80,6 +80,13 @@ bench.rays()                                  # list of (N, 2) arrays of points,
 bench.images()                                # [{'base': (0.24, 0.0), 'tip': (0.24, -0.018), 'real': True}]
 optics.Bench.from_json(bench.to_json())       # scenes are data here too
 
+# Properties of matter
+from soliton import matter
+run = matter.scenario("buoyancy", block=920, liquid=1030)   # ice in sea water
+while not run.finished:
+    run.advance(0.02)                         # seconds
+run.readings(), run.answers(), run.measured()
+
 # Modern physics
 from soliton import modern
 modern.electron_wavelength(54)                # 0.167 nm

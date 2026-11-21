@@ -178,3 +178,19 @@ run.free();
 | `readings()` | `[{ label, value, unit, text }]` |
 | `plots()` | `[{ title, x_label, y_label, curves, marker }]` |
 | `answers()` | `[{ name, value, measured, within }]` |
+
+## Properties of matter
+
+`MatterRun` and `matter_catalogue` have the same methods as `ModernRun` above. The kinds of picture are `wire`,
+`shear`, `squeeze`, `tank`, `lift`, `float`, `venturi`, `drain`, `column`, `capillary`, `rod`, `mixing`,
+`beaker`, `bar`, `cup` and `chart`.
+
+```js
+import init, { MatterRun } from '@soliton-physics/engine';
+
+await init();
+const run = new MatterRun('torricelli', { level: 1.5 });
+while (!run.finished()) run.advance(1 / 60);
+run.answers();                                        // [{ name, value, measured, within }]
+run.free();
+```
