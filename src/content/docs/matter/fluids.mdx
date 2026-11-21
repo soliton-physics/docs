@@ -1,0 +1,203 @@
+---
+title: Fluids
+description: Pressure and depth, Pascal's law, Archimedes' principle, Bernoulli's principle, Torricelli's law, viscosity and surface tension.
+sidebar:
+  order: 2
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+A fluid is anything that flows: a liquid or a gas. It cannot push sideways on a surface the way a solid can, so
+at rest it pushes only at right angles, and that push on each unit of area is its pressure.
+
+## Pressure and depth
+
+<Scenario id="pressure-depth" matter>
+<div slot="intuition">
+The water at any depth is holding up all the water above it. So the pressure grows as you go down, by the same
+amount for every metre. The arrows on the gauge show the other thing about pressure: at any one point it is the
+same in every direction.
+
+Ten metres of water adds about one atmosphere. Change the liquid to mercury, at 13 600 kg/m³, and three quarters
+of a metre is enough, which is how a barometer works.
+</div>
+<div slot="maths">
+$$
+P = P_0 + \rho g h .
+$$
+
+$P_0$ is the pressure on the surface, here one atmosphere, $1.013 \times 10^5$ Pa. The part $\rho g h$ is the
+gauge pressure.
+</div>
+<div slot="engine">
+The formula evaluated, with $g = 9.8$ m/s². At 10 m in water the gauge pressure is 98 kPa and the total 199 kPa.
+</div>
+</Scenario>
+
+## Pascal's law and the hydraulic lift
+
+<Scenario id="hydraulic-lift" matter>
+<div slot="intuition">
+Push on a liquid that has nowhere to go and the extra pressure is felt everywhere in it at once. That is
+Pascal's law.
+
+Join a narrow cylinder to a wide one. A small force on the narrow piston makes a pressure, and that same
+pressure acts on every square centimetre of the wide piston. There are many more of them, so the force there is
+much larger. Press play and watch what it costs: the small piston goes down a long way and the large one rises
+only a little. The work put in equals the work got out.
+</div>
+<div slot="maths">
+$$
+\frac{F_1}{A_1} = \frac{F_2}{A_2} \quad\Longrightarrow\quad F_2 = F_1\frac{A_2}{A_1}, \qquad
+A_1 d_1 = A_2 d_2 .
+$$
+</div>
+<div slot="engine">
+The liquid is taken as incompressible, so the volume leaving one cylinder enters the other. With pistons 2 cm
+and 20 cm across, 100 N becomes 10 000 N, and a push of 20 cm raises the load by 2 mm.
+</div>
+</Scenario>
+
+## Archimedes' principle: floating and sinking
+
+<Scenario id="buoyancy" matter>
+<div slot="intuition">
+Press play. The block drops into the liquid, bobs, and settles. What decides where?
+
+The liquid pushes up on the block with a force equal to the weight of the liquid the block has pushed out of the
+way. As the block sinks in, that force grows. A block less dense than the liquid reaches a depth where the
+upthrust equals its weight, and stays there with part of it above the surface. The share under the surface is
+simply the ratio of the two densities: ice, at 920, floats in sea water, at 1030, with nine tenths of it hidden.
+
+A block denser than the liquid is never held up enough, even fully under, and goes to the bottom. There it
+presses down with less than its weight, the difference being the upthrust.
+</div>
+<div slot="maths">
+$$
+F_\text{up} = \rho_\text{liquid}\,V_\text{under}\,g, \qquad
+\frac{V_\text{under}}{V} = \frac{\rho_\text{block}}{\rho_\text{liquid}} \ \text{when floating} .
+$$
+
+Apparent weight when wholly under: $(\rho_\text{block} - \rho_\text{liquid})Vg$.
+</div>
+<div slot="engine">
+The cube is moved by Newton's second law under its weight, the upthrust on the part of it that is under, and a
+drag from the liquid, until it stops. The share under the surface is then measured. Tested for five pairs of
+densities, floating and sinking: it agrees with the ratio of densities to a tenth of a percent.
+
+The surface is taken to stay level, as in a wide tank.
+</div>
+</Scenario>
+
+## Bernoulli's principle in a Venturi tube
+
+<Scenario id="bernoulli" matter>
+<div slot="intuition">
+Water flows steadily through a pipe with a narrow middle. As much water must pass through the narrow part each
+second as through the wide part, so there it has to go faster. Press play and follow one speck: it races through
+the throat and slows again.
+
+Now look at the two gauges. Each is an open tube in which the water stands as high as the pressure below will
+hold it. Over the throat it stands lower. Where the water goes faster, its pressure is less.
+
+That is Bernoulli's principle, and it is only the conservation of energy. To speed up, the water must be pushed
+from behind harder than it is held back in front. So the pressure behind, in the wide part, must be the greater.
+</div>
+<div slot="maths">
+$$
+A_1 v_1 = A_2 v_2, \qquad P + \tfrac12\rho v^2 + \rho g h = \text{constant along a streamline} .
+$$
+
+For a level pipe: $P_1 - P_2 = \tfrac12\rho\,(v_2^2 - v_1^2)$.
+</div>
+<div slot="engine">
+The specks are carried along at the speed continuity gives for the bore where they are, and one of them is
+timed through the throat. Its speed agrees with $v_1 A_1/A_2$ to within 2 %. The flow is shown slowed so that it
+can be followed. The water is taken to have no viscosity and to flow without turbulence.
+</div>
+</Scenario>
+
+## Torricelli's law: a tank emptying
+
+<Scenario id="torricelli" matter>
+<div slot="intuition">
+Water leaves a hole in the side of a tank at the speed it would have if it had fallen freely from the surface
+down to the hole. This is Bernoulli's principle again, applied between the surface and the hole.
+
+Press play. The jet starts strong and lands far out. As the level falls, the jet weakens and its landing point
+creeps back toward the tank. The level itself falls fast at first and ever more slowly: the last few centimetres
+take as long as the first half.
+</div>
+<div slot="maths">
+$$
+v = \sqrt{2gh}, \qquad \text{range} = v\sqrt{\frac{2H}{g}} = 2\sqrt{hH} .
+$$
+
+With a hole of area $a$ in a tank of area $A$, the level obeys $dh/dt = -(a/A)\sqrt{2gh}$, which gives
+
+$$
+h = h_0\left(1 - \frac{t}{T}\right)^2, \qquad T = \frac{A}{a}\sqrt{\frac{2h_0}{g}} .
+$$
+</div>
+<div slot="engine">
+The level is stepped down at the rate the hole carries water away. The time it takes to empty agrees with $T$ to
+within 1 % for three tanks. With 1 m of water over a hole 1 m above the ground, the jet starts at 4.43 m/s and
+lands 2 m out. The run is shown speeded up; the clock is in real seconds.
+</div>
+</Scenario>
+
+## Viscosity and terminal velocity
+
+<Scenario id="stokes-law" matter>
+<div slot="intuition">
+Drop a steel ball into glycerine. It does not keep accelerating as it would in air. Within a few hundredths of a
+second it is moving at a steady speed and stays at it all the way down.
+
+Three forces act: its weight down, the upthrust up, and the drag of the liquid, also up. The drag is larger the
+faster the ball moves. So the ball speeds up until the drag has grown enough to make the three balance, and
+after that there is no net force and no more acceleration.
+
+The graph shows the first few milliseconds, where the speed climbs to its terminal value. A ball twice the size
+falls four times as fast.
+</div>
+<div slot="maths">
+Stokes's law for the drag on a sphere moving slowly: $F = 6\pi\eta r v$. Setting weight equal to upthrust plus
+drag:
+
+$$
+v_t = \frac{2r^2(\rho - \sigma)g}{9\eta} .
+$$
+</div>
+<div slot="engine">
+The ball is integrated under the three forces. For a 2 mm steel ball in glycerine its speed settles at
+68.6 mm/s, agreeing with the formula to a part in a thousand.
+
+Stokes's law holds only for smooth flow round the ball, at a Reynolds number below about one. The readings give
+that number and warn when the law is being stretched.
+</div>
+</Scenario>
+
+## Surface tension and capillary rise
+
+<Scenario id="capillary-rise" matter>
+<div slot="intuition">
+The surface of a liquid behaves like a stretched skin. Where water meets glass, which it wets, that skin pulls
+the water up the glass. In a fine tube the pull round the rim is enough to hold up a column of water, and the
+finer the tube the taller the column, because a thinner column weighs less for each millimetre of rim.
+
+Set the angle of contact past 90° and the density to mercury's. Mercury does not wet glass, the surface curves
+the other way, and the liquid in the tube is pushed down below the level outside.
+</div>
+<div slot="maths">
+$$
+h = \frac{2S\cos\theta}{\rho g r} .
+$$
+
+The same surface tension makes the pressure inside a drop greater than outside by $2S/r$, and inside a soap
+bubble, which has two surfaces, by $4S/r$.
+</div>
+<div slot="engine">
+The formula evaluated. Water, with $S = 0.073$ N/m, rises 30 mm in a tube of radius 0.5 mm and half as far in
+one twice as wide.
+</div>
+</Scenario>

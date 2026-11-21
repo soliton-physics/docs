@@ -1,0 +1,182 @@
+---
+title: Heat
+description: Thermal expansion, calorimetry, change of state and latent heat, conduction, Newton's law of cooling, and radiation.
+sidebar:
+  order: 3
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+Temperature says how hot something is. Heat is energy on the move from something hotter to something cooler.
+This chapter is about what heat does when it arrives: it makes things expand, warms them, melts and boils them,
+and then moves on.
+
+## Thermal expansion
+
+<Scenario id="thermal-expansion" matter>
+<div slot="intuition">
+Heat a rod and it grows. The growth is tiny, about a hundredth of a millimetre for each metre and each degree,
+but it is relentless. A ten-metre steel rail warmed by fifty degrees is six millimetres longer, which is why
+rails are laid with gaps and bridges sit on rollers.
+
+If the rod is not allowed to grow, it pushes. The last reading gives the stress in a steel rod held rigidly at
+both ends: over a hundred megapascals, enough to buckle a track.
+
+A plate grows in both its directions, so its area gains twice the fraction. A block gains three times in volume.
+</div>
+<div slot="maths">
+$$
+\Delta L = \alpha L\,\Delta T, \qquad \Delta A = 2\alpha A\,\Delta T, \qquad \Delta V = 3\alpha V\,\Delta T .
+$$
+
+Coefficient of linear expansion, in $10^{-6}$ per kelvin: aluminium 25, brass 18, copper 17, iron and steel 12,
+glass 9, Pyrex 3.2.
+</div>
+<div slot="engine">
+The formula evaluated. The growth in the picture is magnified two hundred times.
+</div>
+</Scenario>
+
+## Calorimetry: a hot block in cool water
+
+<Scenario id="calorimetry" matter>
+<div slot="intuition">
+Drop a hot block of aluminium into cool water, in a vessel that lets no heat out. Press play. The block cools,
+the water warms, and they meet.
+
+They do not meet in the middle. The water warms by ten degrees while the block cools by seventy. Water has an
+unusually large specific heat: it takes a great deal of heat to change its temperature. What is equal on the two
+sides is not the change in temperature but the heat, as the two readings show.
+</div>
+<div slot="maths">
+$$
+m_1 c_1 (T_1 - T) = m_2 c_2 (T - T_2) \quad\Longrightarrow\quad
+T = \frac{m_1 c_1 T_1 + m_2 c_2 T_2}{m_1 c_1 + m_2 c_2} .
+$$
+
+Specific heat, in J/(kg K): water 4186, ice 2100, aluminium 900, copper 385, lead 128.
+</div>
+<div slot="engine">
+Heat is passed from the hotter to the cooler at a rate in proportion to the difference between them, until the
+difference is under a hundredth of a degree. For 200 g of aluminium at 100 °C in 300 g of water at 20 °C they
+meet at 30.0 °C. If the answer would be above 100 °C the water would boil, and the page says so.
+</div>
+</Scenario>
+
+## Change of state: heating ice to steam
+
+<Scenario id="heating-curve" matter>
+<div slot="intuition">
+A heater of steady power under a beaker of ice. Press play and watch the graph.
+
+The temperature rises to 0 °C and stops. The heater is still on, but the heat is going into breaking the ice
+apart into water, not into making anything hotter. Only when all the ice has gone does the temperature rise
+again. At 100 °C it stops once more, for much longer, while the water turns to steam.
+
+Compare the two flat parts. Boiling the water away takes nearly seven times the heat of melting the ice, and
+more than five times the heat of warming the water all the way from 0 to 100 °C. That is why a burn from steam
+is so much worse than one from boiling water.
+</div>
+<div slot="maths">
+$$
+Q = mc\,\Delta T \ \text{(warming)}, \qquad Q = mL \ \text{(changing state)} .
+$$
+
+For water: latent heat of fusion $3.34 \times 10^5$ J/kg, of vaporisation $2.26 \times 10^6$ J/kg.
+</div>
+<div slot="engine">
+Heat is added at the heater's power and the temperature and the shares of ice, water and steam are found from
+the total. For 100 g of ice at −20 °C and a 500 W heater: 8.4 s to reach 0 °C, 66.8 s to melt, 83.7 s to reach
+100 °C and 452 s to boil away. No heat is lost and the steam is kept, at atmospheric pressure.
+</div>
+</Scenario>
+
+## Conduction along a rod
+
+<Scenario id="heat-conduction" matter>
+<div slot="intuition">
+A rod has one end in boiling water and the other in ice. Press play. Heat moves in from the hot end, slice by
+slice, and after a while the temperature at every point stops changing. Heat is still flowing, steadily, but as
+much enters each slice as leaves it.
+
+This rod is two metals joined: copper, a good conductor, then steel, a poor one. The same heat has to get
+through both. To push it through the steel takes a steep fall in temperature; through the copper, a gentle one.
+So the join sits at 88 °C, close to the hot end.
+
+Swap the two conductivities and the join drops to 12 °C. It is exactly like two resistors in series sharing a
+voltage.
+</div>
+<div slot="maths">
+$$
+H = \frac{KA\,(T_1 - T_2)}{L} .
+$$
+
+For two lengths in series the same $H$ crosses both:
+
+$$
+H = \frac{A\,(T_1 - T_2)}{L_1/K_1 + L_2/K_2}, \qquad T_\text{join} = \frac{K_1 T_1 + K_2 T_2}{K_1 + K_2} \ \text{for equal lengths} .
+$$
+
+Thermal conductivity, in W/(m K): silver 406, copper 385, aluminium 205, steel 50, glass 0.8, air 0.024.
+</div>
+<div slot="engine">
+The rod is cut into forty slices and heat is passed between neighbours by Fourier's law in short steps of time.
+Once it has settled, the temperature at the join agrees with the formula to within a degree and the heat
+flowing to within 2 %, for the metals either way round and for a rod of one metal.
+
+The rod is lagged, so no heat leaves through its sides. Its settling is shown speeded up: the real thing takes
+hours.
+</div>
+</Scenario>
+
+## Newton's law of cooling
+
+<Scenario id="newtons-cooling" matter>
+<div slot="intuition">
+A cup of tea cools fast while it is very hot and slowly once it is only warm. The rate at which it loses heat is
+in proportion to how much hotter it is than the room.
+
+So the gap between the cup and the room shrinks by the same fraction in each equal interval. If it halves in
+seven minutes, it halves again in the next seven. It gets ever closer to the room's temperature and never quite
+arrives.
+</div>
+<div slot="maths">
+$$
+\frac{dT}{dt} = -k\,(T - T_s) \quad\Longrightarrow\quad T = T_s + (T_0 - T_s)\,e^{-kt} .
+$$
+
+The excess over the room halves in a time $\ln 2 / k$.
+</div>
+<div slot="engine">
+The law is integrated step by step, and the moment at which the excess has halved is caught and compared with
+$\ln 2/k$: they agree to a thousandth. The law itself is an approximation, good when the difference in
+temperature is small.
+</div>
+</Scenario>
+
+## Radiation: Wien's and Stefan's laws
+
+<Scenario id="blackbody-radiation" matter>
+<div slot="intuition">
+Everything gives out radiation because of its temperature. At room temperature it is all infrared and invisible.
+Heat a piece of iron and it glows dull red, then orange, then white.
+
+The curve shows how much power is sent out at each wavelength. Raise the temperature and two things happen. The
+peak moves to shorter wavelengths: that is Wien's law, and it is how the temperature of a star is read from its
+colour. And the whole curve rises steeply: the total power goes as the fourth power of the temperature, which is
+Stefan's law. The Sun's surface, at 5800 K, peaks at 500 nm, in the green of the visible.
+</div>
+<div slot="maths">
+$$
+\lambda_\text{max}\,T = 2.898 \times 10^{-3}\ \text{m K}, \qquad
+\frac{P}{A} = \sigma T^4, \quad \sigma = 5.67 \times 10^{-8}\ \text{W m}^{-2}\,\text{K}^{-4} .
+$$
+
+A real surface gives out a fraction $e$ of this, its emissivity.
+</div>
+<div slot="engine">
+The curve is Planck's law. The engine finds its peak by search and its area by adding it up over every
+wavelength, and compares them with Wien's and Stefan's laws, which are consequences of Planck's. They agree to
+two parts in a thousand from 500 K to 10 000 K.
+</div>
+</Scenario>

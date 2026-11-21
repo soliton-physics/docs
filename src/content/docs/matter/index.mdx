@@ -1,0 +1,51 @@
+---
+title: Properties of matter, class 11
+description: Solids under stress, fluids at rest and in flow, and heat and temperature, each lesson run by the engine.
+sidebar:
+  order: 0
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+These pages cover three chapters of NCERT class 11: mechanical properties of solids, mechanical properties of
+fluids, and thermal properties of matter. They are in the Matter part of the playground.
+
+Mechanics treated every body as rigid and every fluid as absent. These chapters put back what was left out: a
+wire stretches, water presses and pushes up, a flowing liquid trades pressure for speed, and things grow, melt
+and cool.
+
+<CardGrid>
+  <LinkCard title="Solids" description="Stretching a wire and Hooke's law, shearing a block, squeezing from all sides." href="/matter/solids/" />
+  <LinkCard title="Fluids" description="Pressure and depth, the hydraulic lift, floating and sinking, Bernoulli, Torricelli, viscosity, capillary rise." href="/matter/fluids/" />
+  <LinkCard title="Heat" description="Expansion, calorimetry, melting and boiling, conduction, Newton's law of cooling, radiation." href="/matter/heat/" />
+</CardGrid>
+
+## What is followed and what is a formula
+
+Where something happens in time, the engine steps it forward and the textbook result is what it is compared
+with:
+
+- **A floating block** is let go and bobs under its weight, the upthrust and the liquid's drag until it comes to
+  rest. The share of it under the surface is then read off.
+- **A draining tank** has its level stepped down at the rate the hole carries water away.
+- **A falling ball** is integrated under weight, upthrust and Stokes's drag until its speed stops changing.
+- **A speck in a pipe** is carried along at the local speed and timed through the throat.
+- **Heat along a rod** is passed from slice to slice by Fourier's law until the temperatures stop changing.
+- **A hot block in water, heated ice and a cooling cup** are each stepped forward in time.
+- **A glowing body's** peak wavelength and total power are found from Planck's curve by search and by summing.
+
+The rest are laws evaluated with a picture: Hooke's law, pressure at a depth, Pascal's law, capillary rise,
+thermal expansion.
+
+## Limits
+
+- **Changes in solids are magnified to be seen.** A steel wire stretches by a thousandth of its length. Each
+  picture says by how much it exaggerates; the numbers beside it do not.
+- **The curve beyond the elastic limit is a sketch.** It has the right shape for a ductile metal, with round
+  figures, and is not the measured curve of any one alloy.
+- **Fluids are ideal where the textbook's are:** no viscosity in the Venturi tube or the draining tank, no
+  turbulence anywhere. Stokes's law is used only where it holds, and the page warns when the Reynolds number
+  says it does not.
+- **No heat is lost** to the surroundings in calorimetry or along the rod.
+- **Not built yet:** the streamlines round a wing, Poiseuille flow in a pipe, convection, and thermal stress in
+  a structure.

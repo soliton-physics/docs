@@ -29,6 +29,7 @@ export default defineConfig({
         },
         { label: 'Mechanics, class 11', items: [{ autogenerate: { directory: 'mechanics' } }] },
         { label: 'Waves, class 11', items: [{ autogenerate: { directory: 'waves' } }] },
+        { label: 'Properties of matter, class 11', items: [{ autogenerate: { directory: 'matter' } }] },
         { label: 'Thermal physics, class 11', items: [{ autogenerate: { directory: 'thermal' } }] },
         { label: 'Electromagnetism, class 12', items: [{ autogenerate: { directory: 'electromagnetism' } }] },
         { label: 'Circuits, class 12', items: [{ autogenerate: { directory: 'circuits' } }] },

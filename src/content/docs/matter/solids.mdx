@@ -1,0 +1,97 @@
+---
+title: Solids
+description: Stress and strain, Hooke's law and Young's modulus, shear and bulk moduli.
+sidebar:
+  order: 1
+---
+
+import Scenario from '../../../components/Scenario.astro';
+
+A solid resists being stretched, twisted and squeezed. How much it resists is measured by a modulus: the stress
+put on it divided by the strain that results. Stress is force on each unit of area. Strain is the change in
+size as a fraction of the size, and has no units.
+
+## Stretching a wire
+
+<Scenario id="stress-strain" matter>
+<div slot="intuition">
+Hang a weight on a wire and it gets longer. Double the weight and it gets longer by twice as much. Take the
+weight off and it goes back. That is Hooke's law, and a material obeying it is called elastic.
+
+Open the parameters and raise the load. The dot climbs the straight part of the graph. Keep going and it reaches
+the elastic limit. Past that, the wire stretches far more for each extra kilogram, and it no longer returns to
+its old length when unloaded: it has been permanently deformed. A little further and it breaks.
+
+Try a thicker wire. The same load gives less stress, because it is shared over more area. That is why stress,
+not force, is the thing to compare.
+</div>
+<div slot="maths">
+$$
+\text{stress} = \frac{F}{A}, \qquad \text{strain} = \frac{\Delta L}{L}, \qquad
+Y = \frac{\text{stress}}{\text{strain}} \quad\Longrightarrow\quad \Delta L = \frac{FL}{AY} .
+$$
+
+The energy stored in the stretched wire is $\tfrac12 F\,\Delta L$.
+
+Young's modulus, in GPa: steel 200, copper 110, brass 100, aluminium 70.
+</div>
+<div slot="engine">
+In the elastic region this is Hooke's law evaluated. A 10 kg load on a steel wire 1 mm across and 2 m long gives
+a stress of 125 MPa and an extension of 1.25 mm.
+
+Beyond the elastic limit the wire is taken to yield forty times more easily and to break at 1.6 times the limit.
+Those are round figures that give the curve the shape a ductile metal has. The stretch in the picture is
+magnified sixty times.
+</div>
+</Scenario>
+
+## Shearing a block
+
+<Scenario id="shear-modulus" matter>
+<div slot="intuition">
+Hold the bottom of a block still and push its top face sideways. The block does not get longer or shorter. It
+leans, like a pack of cards pushed from the top. This is shear.
+
+The stress is the force divided by the area of the face it acts along, not the face it pushes against. The
+strain is how far the top has moved, divided by the height of the block.
+
+Solids resist shear about a third as strongly as they resist stretching. Liquids do not resist it at all, which
+is the difference between a solid and a liquid.
+</div>
+<div slot="maths">
+$$
+G = \frac{F/A}{\Delta x/h} \quad\Longrightarrow\quad \Delta x = \frac{Fh}{AG} .
+$$
+
+Shear modulus, in GPa: steel 84, copper 42, aluminium 25, lead 5.6.
+</div>
+<div slot="engine">
+The default is the textbook's example: a force of 90 kN along a face of 0.05 m² on a lead block half a metre
+tall moves the top by 0.16 mm. The lean in the picture is magnified five hundred times.
+</div>
+</Scenario>
+
+## Squeezing from all sides
+
+<Scenario id="bulk-modulus" matter>
+<div slot="intuition">
+Take a block down into the sea. The water presses on it equally from every side, and it gets a little smaller
+without changing shape. The bulk modulus says how much pressure it takes.
+
+Water itself can be squeezed, though not much: three kilometres down, where the pressure is three hundred
+atmospheres, a litre of water has lost fourteen millilitres. Set the modulus to that of steel, 160 GPa, and the
+change is seventy times smaller again. Gases are at the other extreme, which is why they are called
+compressible and liquids are not.
+</div>
+<div slot="maths">
+$$
+B = -\frac{p}{\Delta V/V} \quad\Longrightarrow\quad \frac{\Delta V}{V} = -\frac{p}{B}, \qquad p = \rho g h .
+$$
+
+Bulk modulus, in GPa: steel 160, copper 140, glass 37, water 2.2.
+</div>
+<div slot="engine">
+The pressure is that of sea water of density 1030 kg/m³. At 3000 m it is 30 MPa, and water of bulk modulus
+2.2 GPa loses 1.4 % of its volume. The shrinking in the picture is magnified ten times.
+</div>
+</Scenario>
