@@ -13,16 +13,18 @@ interface Props {
   circuits?: boolean;
   /** A scenario of the modern physics tab. */
   modern?: boolean;
+  /** A scenario of the properties-of-matter tab. */
+  matter?: boolean;
 }
 
-const { id, height = 420, optics = false, thermal = false, circuits = false, modern = false } = Astro.props;
+const { id, height = 420, optics = false, thermal = false, circuits = false, modern = false, matter = false } = Astro.props;
 const caption = optics
   ? 'Live in your browser: every ray traced by the engine. Drag the knob.'
   : thermal
     ? 'Live in your browser: every molecule followed by the engine.'
     : circuits
       ? 'Live in your browser: solved by the engine from Kirchhoff’s laws. Press play to see the charges move.'
-      : modern
+      : modern || matter
         ? 'Live in your browser, computed by the engine. Press play where there is something to watch.'
         : undefined;
 ---
@@ -34,6 +36,7 @@ const caption = optics
     thermal={thermal}
     circuits={circuits}
     modern={modern}
+    matter={matter}
     height={height}
     caption={caption}
   />
