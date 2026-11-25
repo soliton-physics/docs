@@ -5,7 +5,7 @@ description: Run the engine in the browser, or in Python.
 
 ## Browser
 
-Nothing to install. Open the [playground](https://solitonplay.com/). It always runs the latest engine,
+Nothing to install. Open the [playground](https://solitonplay.com/play). It always runs the latest engine,
 and every live simulation in these docs is the playground embedded in the page.
 
 ## Packages

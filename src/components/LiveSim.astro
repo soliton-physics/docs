@@ -20,7 +20,7 @@ interface Props {
 }
 
 const { preset, scenario, optics = false, thermal = false, circuits = false, modern = false, matter = false, magnetism = false, height = 460, caption = 'Live in your browser, computed by the engine.' } = Astro.props;
-const playground = `${(import.meta.env.PUBLIC_PLAYGROUND_URL ?? 'https://solitonplay.com').replace(/\/$/, '')}/`;
+const playground = `${(import.meta.env.PUBLIC_PLAYGROUND_URL ?? 'https://solitonplay.com').replace(/\/$/, '')}/play`;
 const query = scenario ? `?mode=${optics ? 'optics' : thermal ? 'thermal' : circuits ? 'circuits' : modern ? 'modern' : matter ? 'matter' : magnetism ? 'magnetism' : 'mechanics'}&scenario=${scenario}` : `?mode=waves&preset=${preset}`;
 const src = `${playground}${query}&embed`;
 const full = `${playground}${query}`;
