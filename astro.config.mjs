@@ -4,7 +4,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
-  site: process.env.PUBLIC_SITE_URL ?? 'https://soliton-docs.vercel.app',
+  site: process.env.PUBLIC_SITE_URL ?? 'https://docs.solitonplay.com',
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],

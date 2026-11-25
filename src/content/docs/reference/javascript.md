@@ -6,7 +6,7 @@ sidebar:
 ---
 
 Published on npm as `@soliton-physics/engine`, the same engine the
-[playground](https://soliton-playground.vercel.app/) runs.
+[playground](https://solitonplay.com/) runs.
 
 ```sh
 npm install @soliton-physics/engine

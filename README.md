@@ -6,7 +6,7 @@
 
 <p align="center">Documentation for Soliton Physics. Intuition, mathematics and numerics side by side, with live simulations.</p>
 
-Live at [soliton-docs.vercel.app](https://soliton-docs.vercel.app/).
+Live at [docs.solitonplay.com](https://docs.solitonplay.com/).
 
 ## Structure
 
