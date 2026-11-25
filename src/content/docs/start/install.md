@@ -10,8 +10,8 @@ and every live simulation in these docs is the playground embedded in the page.
 
 ## Packages
 
-The engine was published on npm and PyPI up to version 0.8.0. Those releases still install and work, but they no
-longer change: new physics, new scenarios and fixes go to the playground, not to the packages.
+The engine is published on npm and PyPI as compiled packages. They are free to use, including commercially; see
+the licence that ships with each package. Versions 0.8.0 and earlier are under MIT OR Apache-2.0.
 
 ### JavaScript
 

@@ -5,8 +5,8 @@ sidebar:
   order: 3
 ---
 
-Published on npm as `@soliton-physics/engine` up to version 0.8.0, the last public release. The
-[playground](https://soliton-playground.vercel.app/) runs newer versions of the engine.
+Published on npm as `@soliton-physics/engine`, the same engine the
+[playground](https://soliton-playground.vercel.app/) runs.
 
 ```sh
 npm install @soliton-physics/engine
