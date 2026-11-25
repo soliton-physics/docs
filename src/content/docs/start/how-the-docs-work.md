@@ -18,7 +18,6 @@ written to be read rather than skimmed.
 ### Layer 3: The numerics
 
 How the engine actually solves it, which method, why that one, and the validation results that prove it works.
-This layer links straight into the source code.
 
 Live simulations are the real engine running in your browser through WebAssembly. They are not videos. Drag the sliders,
 and the numbers you see are being computed as you watch.

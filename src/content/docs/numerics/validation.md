@@ -202,12 +202,7 @@ A few hundred molecules fluctuate, so these are tested within a stated tolerance
 | NLS | moving bright soliton, $t = 10$ | $3 \times 10^{-9}$ |
 | NLS | two-soliton invariants, 10000 steps | drift $< 10^{-8}$ |
 
-Reproduce with:
-
-```sh
-git clone https://github.com/soliton-physics/soliton
-cd soliton && cargo test --release
-```
+Every row is a test that runs against the engine on every change.
 
 The playground shows the invariants and their drift live in the side panel, so you can watch the solver's accuracy
 while it runs.

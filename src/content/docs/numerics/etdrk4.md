@@ -35,5 +35,5 @@ version the NLS solver silently loses mass.
 
 ## Where it lives
 
-[`crates/soliton-core/src/stepper/etdrk4.rs`](https://github.com/soliton-physics/soliton/blob/main/crates/soliton-core/src/stepper/etdrk4.rs).
+It is the time stepper of the engine's wave solvers.
 The coefficients are precomputed once per simulation, so each step costs four nonlinear evaluations, eight FFTs in total.

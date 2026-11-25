@@ -5,7 +5,8 @@ sidebar:
   order: 3
 ---
 
-Published on npm as `@soliton-physics/engine`, built with `wasm-pack` from `crates/soliton-wasm`.
+Published on npm as `@soliton-physics/engine` up to version 0.8.0, the last public release. The
+[playground](https://soliton-playground.vercel.app/) runs newer versions of the engine.
 
 ```sh
 npm install @soliton-physics/engine

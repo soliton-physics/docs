@@ -1,17 +1,27 @@
 ---
 title: Install
-description: Run the engine in the browser, in Python, or in Rust.
+description: Run the engine in the browser, or in Python.
 ---
 
 ## Browser
 
-Nothing to install. Open the [playground](https://soliton-playground.vercel.app/). In a web page of your own:
+Nothing to install. Open the [playground](https://soliton-playground.vercel.app/). It always runs the latest engine,
+and every live simulation in these docs is the playground embedded in the page.
+
+## Packages
+
+The engine was published on npm and PyPI up to version 0.8.0. Those releases still install and work, but they no
+longer change: new physics, new scenarios and fixes go to the playground, not to the packages.
+
+### JavaScript
 
 ```sh
 npm install @soliton-physics/engine
 ```
 
-## Python
+See the [JavaScript API](/reference/javascript/).
+
+### Python
 
 The package wraps the Rust engine with NumPy arrays in and out. It installs as `soliton-physics` and imports as
 `soliton`:
@@ -40,26 +50,5 @@ sim.step(5000)
 print(sim.time, sim.invariants())
 ```
 
-## Rust
-
-```sh
-cargo add soliton-fields soliton-mechanics --git https://github.com/soliton-physics/soliton
-```
-
-```rust
-use soliton_fields::exact::kdv_soliton;
-use soliton_fields::{Complex64, Kdv, PeriodicGrid, Simulate, Simulation};
-
-let mut sim = Simulation::new(PeriodicGrid::new(512, 60.0), Kdv, 1e-3);
-sim.set_profile(|x| Complex64::new(kdv_soliton(x, 0.0, 4.0, -10.0), 0.0));
-sim.advance(5000);
-```
-
-## Running the tests
-
-```sh
-cargo test --release
-```
-
-The tests compare every solver against closed-form solutions. See [Validation](/numerics/validation/) for the
+The engine is tested against closed-form solutions on every change. See [Validation](/numerics/validation/) for the
 current numbers.
