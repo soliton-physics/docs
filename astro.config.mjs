@@ -67,6 +67,7 @@ export default defineConfig({
         { label: 'Solitons', items: [{ autogenerate: { directory: 'physics' } }] },
         { label: 'Numerics', items: [{ autogenerate: { directory: 'numerics' } }] },
         { label: 'Reference', items: [{ autogenerate: { directory: 'reference' } }] },
+        { label: 'Blog', items: [{ autogenerate: { directory: 'blog' } }] },
         { label: 'Roadmap', slug: 'roadmap' },
       ],
     }),
