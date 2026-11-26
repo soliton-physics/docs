@@ -1,55 +1,442 @@
+@import '@fontsource-variable/space-grotesk';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-:root {
+/*
+ * The look of solitonplay.com: near-black with a faint grid, slow coloured light behind it,
+ * glass panels, and the cyan → blue → violet gradient of the logo.
+ */
+:root,
+:root[data-theme='dark'] {
+  --soliton-bg: #05070f;
+  --soliton-panel: rgba(255, 255, 255, 0.035);
+  --soliton-panel-strong: rgba(255, 255, 255, 0.06);
+  --soliton-line: rgba(148, 163, 184, 0.14);
+  --soliton-line-strong: rgba(148, 163, 184, 0.26);
+  --soliton-cyan: #22d3ee;
+  --soliton-blue: #60a5fa;
+  --soliton-violet: #c084fc;
+  --soliton-gradient: linear-gradient(90deg, var(--soliton-cyan), var(--soliton-blue) 50%, var(--soliton-violet));
+  --soliton-display: 'Space Grotesk Variable', 'Inter', system-ui, sans-serif;
+
   --sl-font: 'Inter', system-ui, sans-serif;
   --sl-font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --sl-color-accent-low: #0e2a3a;
+  --sl-content-width: 50rem;
+
+  --sl-color-accent-low: #0b2733;
   --sl-color-accent: #22d3ee;
   --sl-color-accent-high: #a5f3fc;
-  --sl-content-width: 50rem;
+
+  --sl-color-white: #f1f5fb;
+  --sl-color-gray-1: #e2e8f0;
+  --sl-color-gray-2: #cbd5e1;
+  --sl-color-gray-3: #94a3b8;
+  --sl-color-gray-4: #64748b;
+  --sl-color-gray-5: #243049;
+  --sl-color-gray-6: #0c1222;
+  --sl-color-black: var(--soliton-bg);
+  --sl-color-bg: var(--soliton-bg);
+  --sl-color-bg-nav: rgba(5, 7, 15, 0.86);
+  --sl-color-bg-sidebar: rgba(5, 7, 15, 0.45);
+  --sl-color-bg-inline-code: rgba(96, 165, 250, 0.1);
+  --sl-color-hairline-light: var(--soliton-line);
+  --sl-color-hairline: var(--soliton-line);
+  --sl-color-hairline-shade: rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
 }
 
-:root[data-theme='light'] {
-  --sl-color-accent-low: #cffafe;
-  --sl-color-accent: #0891b2;
-  --sl-color-accent-high: #164e63;
-  --sl-color-bg: #fbfcfe;
+html {
+  background: var(--soliton-bg);
 }
 
-.sl-markdown-content h2 {
+body {
+  background: transparent;
+}
+
+/* A faint grid over the whole page … */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 85%);
+}
+
+/* … and coloured light drifting behind it. */
+body::after {
+  z-index: -2;
+  background:
+    radial-gradient(520px circle at 8% 4%, rgba(14, 116, 144, 0.36), transparent 70%),
+    radial-gradient(600px circle at 96% 30%, rgba(76, 29, 149, 0.34), transparent 70%),
+    radial-gradient(520px circle at 40% 105%, rgba(30, 58, 138, 0.36), transparent 70%);
+  animation: soliton-drift 26s ease-in-out infinite alternate;
+}
+
+@keyframes soliton-drift {
+  to {
+    transform: translate(40px, 30px) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    animation: none;
+  }
+}
+
+/* Type: Space Grotesk for headings, as on the home page. */
+h1,
+h2,
+h3,
+h4,
+.site-title,
+.sl-markdown-content :is(h1, h2, h3, h4) {
+  font-family: var(--soliton-display);
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-weight: 650;
+}
+
+.sl-markdown-content :is(h2, h3) {
+  font-weight: 600;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.28);
+}
+
+/* Header and sidebars: glass over the backdrop. */
+.header {
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom-color: var(--soliton-line);
+}
+
+.site-title {
+  color: var(--sl-color-white);
+  font-weight: 650;
+  font-size: 1.3rem;
+  gap: 0.6rem;
+}
+
+.site-title img {
+  filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.45));
+}
+
+site-search button[data-open-modal] {
+  background: #0b1020;
+  border: 1px solid var(--soliton-line);
+  border-radius: 999px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+site-search button[data-open-modal]:hover {
+  border-color: var(--soliton-line-strong);
+  background: #10172b;
+}
+
+site-search button[data-open-modal] kbd {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+}
+
+.sidebar-pane {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-inline-end-color: var(--soliton-line);
+}
+
+/* On a phone the sidebar covers the page: solid, so the page does not show through it. */
+@media (max-width: 49.99rem) {
+  #starlight__sidebar,
+  .sidebar-pane {
+    background: #070a16;
+    backdrop-filter: none;
+  }
+
+  .hero > img {
+    width: min(14rem, 60vw);
+    height: auto;
+    margin-inline: auto;
+  }
+}
+
+.sidebar-content .group-label .large {
+  font-family: var(--soliton-display);
+  font-weight: 600;
   letter-spacing: -0.01em;
+  color: var(--sl-color-white);
 }
 
+.sidebar-content a {
+  border-radius: 8px;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.sidebar-content a:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.sidebar-content [aria-current='page'],
+.sidebar-content [aria-current='page']:hover,
+.sidebar-content [aria-current='page']:focus {
+  color: #e0f7ff;
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.16), rgba(192, 132, 252, 0.08));
+  box-shadow: inset 2px 0 0 var(--soliton-cyan);
+}
+
+.sidebar-content ul ul {
+  border-inline-start-color: var(--soliton-line);
+}
+
+.right-sidebar {
+  border-inline-start-color: var(--soliton-line);
+}
+
+starlight-toc a[aria-current='true'],
+mobile-starlight-toc a[aria-current='true'] {
+  color: var(--soliton-cyan);
+}
+
+/* The page title, with a soft gradient line under it. */
+.content-panel {
+  border-top-color: var(--soliton-line);
+}
+
+.content-panel:first-of-type {
+  border-top: 0;
+}
+
+[data-page-title] {
+  font-size: clamp(2rem, 4vw, 2.9rem);
+}
+
+/* Links in prose: cyan, underlined lightly. */
+.sl-markdown-content a:not(:where(.not-content *)) {
+  color: var(--sl-color-accent-high);
+  text-decoration-color: rgba(34, 211, 238, 0.4);
+  text-underline-offset: 3px;
+}
+
+.sl-markdown-content a:not(:where(.not-content *)):hover {
+  text-decoration-color: var(--soliton-cyan);
+}
+
+/* Buttons, as on the home page. */
+.sl-link-button {
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.sl-link-button.primary {
+  color: #04101a;
+  background: var(--soliton-gradient);
+  border: 0;
+  box-shadow: 0 8px 30px -8px rgba(96, 165, 250, 0.7);
+}
+
+.sl-link-button.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 36px -8px rgba(96, 165, 250, 0.9);
+  color: #04101a;
+}
+
+.sl-link-button.secondary,
+.sl-link-button.minimal {
+  border: 1px solid var(--soliton-line-strong);
+  background: var(--soliton-panel);
+  color: var(--sl-color-white);
+  padding-inline: 1.25rem;
+}
+
+.sl-link-button.secondary:hover,
+.sl-link-button.minimal:hover {
+  border-color: rgba(96, 165, 250, 0.6);
+  background: var(--soliton-panel-strong);
+}
+
+/* With no theme picker after them, the social icons need no divider. */
+.header .social-icons::after {
+  display: none;
+}
+
+/* The home page is wider than a reading page. */
+:root[data-has-hero] {
+  --sl-content-width: 68rem;
+}
+
+/* The home page hero. */
+.hero {
+  padding-block: clamp(2rem, 6vw, 5rem) 2rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5.4vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
+.gradient {
+  background: var(--soliton-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero .tagline {
+  max-width: 36rem;
+  color: var(--sl-color-gray-3);
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.65;
+}
+
+.hero > img {
+  border-radius: 28%;
+  filter: drop-shadow(0 0 60px rgba(96, 165, 250, 0.35));
+  animation: soliton-float 7s ease-in-out infinite alternate;
+}
+
+.hero .actions {
+  gap: 0.75rem;
+}
+
+@keyframes soliton-float {
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero > img {
+    animation: none;
+  }
+}
+
+/* Cards: glass panels that glow at the edge. */
+.card-grid .card,
+.sl-link-card {
+  border: 1px solid var(--soliton-line);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+  backdrop-filter: blur(8px);
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.card-grid .card:hover,
+.sl-link-card:hover {
+  border-color: rgba(96, 165, 250, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 50px -24px rgba(96, 165, 250, 0.5);
+}
+
+.card-grid .card .icon {
+  border: 0;
+  border-radius: 10px;
+  padding: 0.35rem;
+  color: #e0f2fe;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.28), rgba(192, 132, 252, 0.28));
+}
+
+.card-grid .card .title {
+  font-family: var(--soliton-display);
+  letter-spacing: -0.02em;
+}
+
+.card-grid .card .body {
+  color: var(--sl-color-gray-3);
+}
+
+.sl-link-card .description {
+  color: var(--sl-color-gray-3);
+}
+
+/* A scenario: the live frame and its three tabs, on one panel. */
 .scenario {
+  position: relative;
   margin: 1rem 0 3rem;
   padding: 1.5rem;
-  border: 1px solid var(--sl-color-gray-5);
-  border-radius: 16px;
-  background: var(--sl-color-bg-nav);
+  border: 1px solid var(--soliton-line);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
+  box-shadow: 0 30px 80px -50px rgba(34, 211, 238, 0.35);
+}
+
+.scenario::before {
+  content: '';
+  position: absolute;
+  inset: 0 18% auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.7), rgba(192, 132, 252, 0.7), transparent);
 }
 
 .live-sim {
   margin: 1.25rem 0;
 }
 
+.scenario .live-sim:first-child {
+  margin-top: 0;
+}
+
 .live-sim iframe {
+  display: block;
   width: 100%;
-  border: 1px solid var(--sl-color-gray-5);
-  border-radius: 12px;
-  background: #070a18;
+  border: 1px solid var(--soliton-line-strong);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(96, 165, 250, 0.08), transparent 60%),
+    #080c1c;
 }
 
 .live-sim figcaption {
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.5rem 1rem;
   font-size: 0.85rem;
   color: var(--sl-color-gray-3);
 }
 
+.live-sim figcaption a {
+  color: var(--sl-color-accent-high);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.live-sim figcaption a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Tabs: a gradient under the open one. */
+starlight-tabs [role='tablist'] {
+  border-bottom-color: var(--soliton-line);
+}
+
+starlight-tabs [role='tab'] {
+  border-bottom-width: 2px;
+  transition: color 0.15s;
+}
+
+starlight-tabs [role='tab'][aria-selected='true'] {
+  color: var(--sl-color-white);
+  border-image: var(--soliton-gradient) 1;
+}
+
 .layer {
-  border-left: 3px solid var(--sl-color-accent);
+  border-left: 2px solid transparent;
+  border-image: linear-gradient(180deg, var(--soliton-cyan), var(--soliton-violet)) 1;
   padding-left: 1rem;
   margin: 2rem 0;
 }
@@ -58,14 +445,83 @@
   margin-top: 0;
 }
 
-.hero .tagline {
-  max-width: 36rem;
+/* Asides and tables, on glass. */
+.starlight-aside {
+  border-radius: 12px;
+  border-inline-start-width: 3px;
+  backdrop-filter: blur(6px);
 }
 
-.card-grid .card {
-  border-radius: 14px;
-}
-
-table {
+.sl-markdown-content table {
   font-variant-numeric: tabular-nums;
+}
+
+.sl-markdown-content :is(th, td) {
+  border-bottom-color: var(--soliton-line);
+  padding-inline: 0.75rem;
+}
+
+.sl-markdown-content th {
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--sl-color-white);
+  font-family: var(--soliton-display);
+  font-weight: 600;
+}
+
+.sl-markdown-content th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.sl-markdown-content th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.sl-markdown-content code:not(pre code) {
+  border-radius: 6px;
+  padding: 0.1em 0.35em;
+  color: #bfe9ff;
+}
+
+/* Equations a touch larger and brighter. */
+.katex-display {
+  padding: 0.75rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Previous and next: two glass cards. */
+.pagination-links a {
+  border: 1px solid var(--soliton-line);
+  border-radius: 16px;
+  background: var(--soliton-panel);
+  box-shadow: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.pagination-links a:hover {
+  border-color: rgba(96, 165, 250, 0.5);
+  background: var(--soliton-panel-strong);
+}
+
+.pagination-links .link-title {
+  font-family: var(--soliton-display);
+  color: var(--sl-color-white);
+}
+
+/* The search window. */
+site-search dialog {
+  background: rgba(8, 12, 28, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--soliton-line-strong);
+  border-radius: 18px;
+}
+
+site-search dialog::backdrop {
+  background: rgba(2, 4, 10, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+footer .meta {
+  border-top: 1px solid var(--soliton-line);
+  padding-top: 1rem;
 }

@@ -13,7 +13,7 @@ export default defineConfig({
     starlight({
       title: 'Soliton Physics',
       description:
-        'Physics for class 11 and 12, explained beside live simulations: mechanics, waves, thermodynamics, circuits, magnetism, optics and modern physics, each checked against the textbook answer.',
+        'Physics explained beside live simulations you can play with: mechanics, waves, heat, circuits, magnetism, optics, modern physics and solitons, for the curious, for students of class 11 and 12, and for developers using the engine.',
       head: [
         { tag: 'meta', attrs: { property: 'og:image', content: 'https://solitonplay.com/og.png' } },
         { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
@@ -22,6 +22,24 @@ export default defineConfig({
         { tag: 'link', attrs: { rel: 'apple-touch-icon', href: 'https://solitonplay.com/apple-touch-icon.png' } },
       ],
       logo: { src: './src/assets/logo.svg' },
+      components: {
+        ThemeProvider: './src/components/overrides/ThemeProvider.astro',
+        ThemeSelect: './src/components/overrides/ThemeSelect.astro',
+        SocialIcons: './src/components/overrides/SocialIcons.astro',
+      },
+      expressiveCode: {
+        themes: ['github-dark-default'],
+        styleOverrides: {
+          borderRadius: '12px',
+          borderColor: 'rgba(148, 163, 184, 0.18)',
+          codeBackground: 'rgba(8, 12, 28, 0.85)',
+          frames: {
+            editorTabBarBackground: 'rgba(255, 255, 255, 0.03)',
+            terminalTitlebarBackground: 'rgba(255, 255, 255, 0.03)',
+            frameBoxShadowCssValue: 'none',
+          },
+        },
+      },
       favicon: '/favicon.svg',
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/soliton-physics' }],
       customCss: ['katex/dist/katex.min.css', './src/styles/custom.css'],
