@@ -12,7 +12,15 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Soliton Physics',
-      description: 'A research-grade, educational physics engine. Every explanation sits next to a live simulation.',
+      description:
+        'Physics for class 11 and 12, explained beside live simulations: mechanics, waves, thermodynamics, circuits, magnetism, optics and modern physics, each checked against the textbook answer.',
+      head: [
+        { tag: 'meta', attrs: { property: 'og:image', content: 'https://solitonplay.com/og.png' } },
+        { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
+        { tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
+        { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://solitonplay.com/og.png' } },
+        { tag: 'link', attrs: { rel: 'apple-touch-icon', href: 'https://solitonplay.com/apple-touch-icon.png' } },
+      ],
       logo: { src: './src/assets/logo.svg' },
       favicon: '/favicon.svg',
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/soliton-physics' }],
