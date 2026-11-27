@@ -3,7 +3,7 @@ title: 'A fountain that never stops: four new scenes in Soliton 0.9.2'
 description: The butterfly effect, the pendulum wave, three stars on a figure eight and the collision fountain, and the rounding error that nearly broke the fountain.
 sidebar:
   label: A fountain that never stops
-  order: 1
+  order: 2
 ---
 
 *26 November 2026*
