@@ -46,7 +46,7 @@ build it: an unknown body id, a missing mass, an unsupported schema.
 | --- | --- |
 | `id` | name used by forces, constraints, `focus` and the free-body diagram |
 | `kind` | `particle` (no rotation), `rigid`, or `static` (never moves) |
-| `shape` | `{"circle": r}`, `{"rectangle": [w, h]}`, `{"polygon": [[x, y], ...]}`, `{"halfplane": {"normal": [nx, ny], "offset": d}}` |
+| `shape` | `{"circle": r}`, `{"rectangle": [w, h]}`, `{"polygon": [[x, y], ...]}`, `{"halfplane": {"normal": [nx, ny], "offset": d}}`, `{"track": {...}}` (see [Curved tracks](#curved-tracks)) |
 | `mass` | required for `particle` and `rigid` |
 | `position`, `angle`, `velocity`, `angular_velocity` | initial state; default zero. Polygon vertices may be given about any origin; the centre of mass becomes the body's position |
 | `friction` | `[static, kinetic]`; default smooth |
@@ -55,6 +55,44 @@ build it: an unknown body id, a missing mass, an unsupported schema.
 | `charge` | electric charge in coulombs, at the body's centre; default none. A charged `static` body is a fixed charge |
 | `magnet` | `{"moment", "length"}`: makes the body a bar magnet along its own x axis, with moment in A·m² from south pole to north and `length` metres between the poles |
 | `magnetisable` | `{"susceptibility", "volume"}`: a small sphere of a material a magnet magnetises; χ negative for a diamagnet, positive for a paramagnet |
+
+### Curved tracks
+
+A track is a fixed surface made of straight pieces and circular arcs, joined end to end. The joins are smooth unless you put a sharp corner in, so balls and boxes ride along it without catching. It is solid on both faces: a body can ride inside a bowl or over a hump of the same track. A track must be `static`.
+
+The track starts at the body's `position` and sets off in the direction of its `angle`. Each piece carries on from where the last one ended, heading the same way:
+
+- `{"line": length}` goes straight ahead for `length` metres.
+- `{"arc": {"radius": r, "angle": a}}` turns through `a` radians on a circle of radius `r`. A positive angle turns left (counter-clockwise), a negative one turns right. An arc turns at most a full circle (2π).
+- `{"corner": a}` turns sharply on the spot through `a` radians, positive left, where a floor meets a wall or a ledge drops away. A corner sits between two pieces that are not corners, and turns less than a half turn (π).
+
+`thickness` is the track's full thickness in metres, default 0.1. The surface lies half of it either side of the line the pieces trace.
+
+A U-shaped valley, 2 m deep with a 2 m flat floor whose surface is at y = 0.05. It starts at the top of the left wall heading straight down (`angle` −π/2), turns a quarter circle to level, runs along the floor, and turns another quarter circle back up:
+
+```json
+{ "id": "valley", "kind": "static", "position": [-3, 2], "angle": -1.5707963267948966,
+  "shape": { "track": { "pieces": [
+    { "arc": { "radius": 2, "angle": 1.5707963267948966 } },
+    { "line": 2 },
+    { "arc": { "radius": 2, "angle": 1.5707963267948966 } }
+  ] } } }
+```
+
+A full circle (`{"arc": {"radius": r, "angle": 6.283185307179586}}`) is a ring: a ball launched along its inside needs the textbook √(5 g r) at the bottom to go over the top. In a flat world a loop cannot have a run-in and a run-out, because the path would have to cross itself.
+
+A ramp that curves down on the left and meets a vertical wall on the right, in a sharp corner:
+
+```json
+"pieces": [
+  { "arc": { "radius": 2, "angle": 1.5707963267948966 } },
+  { "line": 3 },
+  { "corner": 1.5707963267948966 },
+  { "line": 2 }
+]
+```
+
+In the playground sandbox, the curved ramp tool (U) places a valley. Select it to make each side curved or vertical and to change the curve's radius, how far it turns, the length of the floor and the thickness.
 
 ### Forces
 
