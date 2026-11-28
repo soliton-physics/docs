@@ -20,7 +20,9 @@ export default defineConfig({
         { tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
         { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://solitonplay.com/og.png' } },
         { tag: 'link', attrs: { rel: 'apple-touch-icon', href: 'https://solitonplay.com/apple-touch-icon.png' } },
-        // Vercel Web Analytics: visits counted without cookies.
+        // Vercel Web Analytics: visits counted without cookies. Your own visits: open any page once with
+        // ?analytics=off and this browser is no longer counted; ?analytics=on undoes it.
+        { tag: 'script', content: `(function () { var q = new URLSearchParams(location.search).get('analytics'); try { if (q === 'off') localStorage.setItem('soliton-analytics', 'off'); if (q === 'on') localStorage.removeItem('soliton-analytics'); } catch (e) {} var off = false; try { off = localStorage.getItem('soliton-analytics') === 'off'; } catch (e) {} window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; if (off) window.va('beforeSend', function () { return null; }); if (q === 'off' || q === 'on') alert(off ? 'Done: visits from this browser are no longer counted in Soliton analytics. Open any page with ?analytics=on to undo.' : 'Done: visits from this browser are counted again.'); })();` },
         { tag: 'script', attrs: { defer: true, src: '/_vercel/insights/script.js' } },
       ],
       logo: { src: './src/assets/logo.svg' },
